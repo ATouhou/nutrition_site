@@ -1,5 +1,5 @@
-var site = angular.module('arabicSite', ['firebase']);
+var site = angular.module('arabicSite', ['firebase', 'verbApp']);
 
-site.controller('rootCtrl', function($scope, $firebaseObject, $firebaseArray) {
+site.controller('rootCtrl', function($scope) {
     $scope.name = 'Shazeb Qadir';
 })
