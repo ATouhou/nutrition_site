@@ -1,0 +1,18 @@
+.full-height {
+  height: 100%;
+}
+html {
+  height: 100%;
+}
+body {
+  font-family: helvetica, verdana, arial, sans-serif;
+  height: 100%;
+  padding-top: 50px;
+}
+.left-panel {
+  height: 100%;
+  background-color: lightsteelblue;
+}
+.main-panel {
+  height: 100%;
+}

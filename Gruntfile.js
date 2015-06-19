@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
             }
         },
-        // concat is for generating a single file which contains all of the projects js and css files
+        // Concat is for generating a single file which contains all of the projects js and css files
         concat: {
             options: {
                 // Define a string to put between each file in the concatenated output
@@ -30,12 +30,25 @@ module.exports = function(grunt) {
                 dest: 'build.js'
             }
         },
-        // Keeps track of changes to the specified files. When there is a change, the task(s) are run
-        // We want the build task to run whenever any js or less files change
+        less: {
+            development: {
+                files: {
+                    "build.css": "app/assets/styles/main.less"
+                }
+            }
+        },
+        // Watch keeps track of changes to the specified files. When there is a change, the task(s) are run
+        // We want the concat task to run whenever any js files is changed and we want the less task to run
+        // whenever any less file is changed
         watch: {
             scripts: {
+                // files to watch
                 files: ['app/**/*.js'],
-                tasks: ['build']
+                tasks: ['concat']
+            },
+            styles: {
+                files: ['app/assets/styles/*.less'],
+                tasks: ['less']
             }
         }
     })
@@ -43,12 +56,13 @@ module.exports = function(grunt) {
     // This loads the grunt plugins
     grunt.loadNpmTasks('grunt-bower-concat');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // the default task can be run just by typing "grunt" on the command line
     // This runs the task with the same name inside of initConfig
-    grunt.registerTask('default', ['bower_concat', 'concat']);
+    grunt.registerTask('default', ['bower_concat', 'concat', 'less']);
 
-    // Run grunt build to generate the js build file (which contains all of the project js)
-    grunt.registerTask('build', ['concat']);
+    // Run grunt build to generate the js build file (which contains all of the project js) and css build file
+    grunt.registerTask('build', ['concat', 'less']);
 };

@@ -6,41 +6,19 @@
         <!--twitter bootstrap-->
         <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
 
-        <!--main css file-->
-        <link rel="stylesheet/less" type="text/css" href="assets/styles/main.less">
-
-        <!--all the js from bower_components-->
+        <!--js from bower_components-->
         <script src="../bower.js"></script>
+
+        <!--js from the project-->
         <script src="../build.js"></script>
 
+        <!--css from project-->
+        <link rel="stylesheet" href="../build.css">
     </head>
 
     <body>
 
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Arabic Verb Practice</a>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container-fluid full-height">
-
-            <div class="row full-height">
-
-                <div class="col-md-3 left-panel">
-                    hello there
-                </div>
-
-                <div class="col-md-9 main-panel">
-                    yahoo
-
-                </div>
-
-            </div>
-        </div>
+        <div ui-view class="full-height"></div>
 
     </body>
 
