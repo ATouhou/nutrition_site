@@ -2,25 +2,28 @@
 <html lang="en" ng-app="arabicSite">
 
     <head>
-        <script src="/bower_components/angular/angular.min.js"></script>
-        <script src="/bower_components/firebase/firebase.js"></script>
-        <script src="/bower_components/ui-router/release/angular-ui-router.min.js"></script>
-        <script src="/bower_components/angularfire/dist/angularfire.min.js"></script>
-        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-        <script src="main.js"></script>
-
+        <!--twitter bootstrap-->
         <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
 
+        <!--main css file-->
         <link rel="stylesheet/less" type="text/css" href="styles/main.less">
 
-
-        <script src="../bower_components/less/dist/less.min.js"></script>
+        <script src="../bower.js"></script>
+        <script src="main.js"></script>
 
     </head>
 
     <body ng-controller="rootCtrl">
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Arabic Verb Practice</a>
+                </div>
+            </div>
+        </nav>
 
         <div class="container-fluid full-height">
 
