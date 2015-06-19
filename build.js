@@ -1,5 +1,9 @@
 var app = angular.module('arabicSite', ['ui.router', 'verbApp']);
 
+app.run(function ($rootScope) {
+    $rootScope._ = window._;
+});
+
 ;var verbApp = angular.module('verbApp', [])
 
 console.log('***** verb app module ********');;var app = angular.module('arabicSite');
@@ -14,7 +18,7 @@ verbApp.controller('verbAppCtrl', function($scope) {
 
 
 })
-;app.config(function($stateProvider) {
+;;app.config(function($stateProvider) {
     // For any unmatched url, redirect to /state1
     //$urlRouterProvider.otherwise("/home");
 
