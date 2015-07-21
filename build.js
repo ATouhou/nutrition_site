@@ -5,8 +5,7 @@ app.run(function ($rootScope) {
 });
 
 ;var verbApp = angular.module('verbApp', [])
-
-console.log('***** verb app module ********');;var app = angular.module('arabicSite');
+;var app = angular.module('arabicSite');
 
 app.controller('rootCtrl', function($scope) {
 
@@ -14,11 +13,50 @@ app.controller('rootCtrl', function($scope) {
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope) {
+verbApp.controller('verbAppCtrl', function($scope, conjugator) {
 
+    $scope.conjugator = conjugator;
 
+    var verb = {
+        letter1: 'د',
+        letter2: 'ر',
+        letter3: 'س',
+        type: 'sound',
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ'
+    }
+
+    $scope.conjugator.setVerb(verb);
 })
-;;app.config(function($stateProvider) {
+;var verbApp = angular.module('verbApp');
+
+
+verbApp.service('conjugator', function() {
+
+    var tenses = ['perfect', 'imperfect', 'imperative', 'jussive', 'subjunctive'];
+
+    var forms = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    var persons = ['first', 'second', 'third'];
+
+    var types = ['sound', 'hollow', 'geminate', 'weakLam'];
+
+    var genders = ['masculine', 'feminine'];
+
+    var numbers = ['singular', 'plural'];
+
+    this.setVerb = function(verb) {
+        this.verb = verb;
+    }
+
+    this.perfectForm = function() {
+        return this.verb.letter1 + this.verb.perfectVowel + this.verb.letter2 + 'َ'+ this.verb.letter3 + 'َ';
+    }
+
+    //conjugate('perfect', 1, 'firstPerson', 'plural');
+})
+
+;app.config(function($stateProvider) {
     // For any unmatched url, redirect to /state1
     //$urlRouterProvider.otherwise("/home");
 
