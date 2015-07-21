@@ -13,5 +13,14 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator) {
         imperfectVowel: 'ُ'
     }
 
+    var options = {
+        form: 1,
+        person: 'thirdPerson',
+        gender: 'masculine',
+        number: 'plural',
+        tense: 'perfect'
+    }
+
     $scope.conjugator.setVerb(verb);
+    $scope.conjugator.setOptions(options);
 })
