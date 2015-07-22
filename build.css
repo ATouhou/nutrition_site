@@ -16,3 +16,6 @@ body {
 .main-panel {
   height: 100%;
 }
+.large-font {
+  font-size: 24px;
+}

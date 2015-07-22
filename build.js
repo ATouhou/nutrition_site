@@ -13,11 +13,11 @@ app.controller('rootCtrl', function($scope) {
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator) {
+verbApp.controller('verbAppCtrl', function($scope, conjugator, pronounList) {
     var verb = {
-        letter1: 'د',
-        letter2: 'ر',
-        letter3: 'س',
+        letter1: 'ك',
+        letter2: 'ت',
+        letter3: 'ب',
         type: 'sound',
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
@@ -30,13 +30,16 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator) {
         number: 'plural',
         tense: 'perfect'
     }
-    $scope.conjugator = conjugator;
 
+
+    $scope.conjugator = conjugator;
     $scope.conjugator.initialize(verb, options);
+
+    $scope.pronounList = pronounList;
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.factory('conjugator', function() {
+verbApp.factory('conjugator', function(pronounList) {
     //c stands for conjugator
     var c = {};
 
@@ -57,13 +60,17 @@ verbApp.factory('conjugator', function() {
         c.list = getList();
     }
 
-    c.getVerb = function() {
+    c.getVerb = function(verbName) {
         // focus on perfect, sound verbs for now
+        // base is the same for all perfect verbs
         var base = c.verb.letter1 + 'َ'+ c.verb.letter2 + c.verb.perfectVowel;
-        return base + _.findWhere(c.list, {name: c.getName()}).endings.perfect;
+
+        // concatenate the ending of the appropriate verb with the base
+        return base + _.findWhere(c.list, {name: verbName}).endings.perfect;
     }
 
-    // c is the complete name of the conjugation e.g. "first person masculine singular perfect"
+
+    // get the complete name of the conjugation e.g. "first person masculine singular perfect" based on the options already specified
     c.getName = function() {
         var name = _.startCase(c.options.person);
         if (c.options.gender) {
@@ -73,32 +80,39 @@ verbApp.factory('conjugator', function() {
         return name.toLowerCase();
     }
 
+    //*******************************************
     // Private methods
+    //*******************************************
     function getList() {
-        console.log('trying to get list');
-        return [
-                    { id: 1, pronoun: 'أنا', name: 'first person singular', endings: {perfect: c.verb.letter3 + 'ْتُ'} },
-                    { id: 2, pronoun: 'أنْتَ', name: 'second person masculine singular', endings: {perfect:c.verb.letter3 + 'ْتَ'} },
-                    { id: 3, pronoun: 'أنْتِ', name: 'second person feminine singular', endings: {perfect: c.verb.letter3 + 'ْتِ'} },
-                    { id: 4, pronoun: 'أنْتُما', name: 'second person masculine dual', endings: {perfect: c.verb.letter3 + 'ْتُما'} },
-                    { id: 5, pronoun: 'أَنْتُما', name: 'second person feminine dual', endings: {perfect: c.verb.letter3 + 'ْتُما'} },
-                    { id: 6, pronoun: 'هُوَ', name: 'third person masculine singular', endings: {perfect: c.verb.letter3 + 'َ'} },
-                    { id: 7, pronoun: 'هِيَ', name: 'third person feminine singular', endings: {perfect: c.verb.letter3 + 'َ'+ 'تْ'} },
-                    { id: 8, pronoun: 'هُما', name: 'third person masculine dual', endings: {perfect: c.verb.letter3 + 'ا'} },
-                    { id: 9, pronoun: 'هُما', name: 'third person feminine dual', endings: {perfect: c.verb.letter3 + 'ا'} },
-                    { id: 10, pronoun: 'نَحْنُ', name: 'first person plural', endings: {perfect: c.verb.letter3 + 'ْنا'} },
-                    { id: 11, pronoun: 'أَنْتُم', name: 'second person masculine plural', endings: {perfect: c.verb.letter3 + 'تُم'} },
-                    { id: 12, pronoun: 'أَنْتُنَّ', name: 'second person feminine plural', endings: {perfect: c.verb.letter3 + 'ْتُنَّ'} },
-                    { id: 13, pronoun: 'هُم', name: 'third person masculine plural', endings: {perfect: c.verb.letter3 + 'وا'} },
-                    { id: 14, pronoun: 'هُنَّ', name: 'third person feminine plural', endings: {perfect: c.verb.letter3 + 'ْنَ'} }
-        ]
-
+        var list = angular.copy(pronounList);
+        var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'ْتُما', 'َ', 'تْ', 'ا', 'ا', 'ْنا', 'تُم', 'ْتُنَّ', 'وا', 'ْنَ'];
+        _.forEach(endings, function(ending, index) {
+            list[index].endings.perfect = c.verb.letter3 + ending;
+        })
+        return list;
     }
-
     return c;
 })
 
-;app.config(function($stateProvider) {
+;var verbApp = angular.module('verbApp');
+
+verbApp.value('pronounList', [
+        { id: 1, pronoun: 'أنا', name: 'first person singular', endings: {} },
+        { id: 2, pronoun: 'أنْتَ', name: 'second person masculine singular', endings: {} },
+        { id: 3, pronoun: 'أنْتِ', name: 'second person feminine singular', endings: {} },
+        { id: 4, pronoun: 'أنْتُما', name: 'second person masculine dual', endings: {} },
+        { id: 5, pronoun: 'أَنْتُما', name: 'second person feminine dual', endings: {} },
+        { id: 6, pronoun: 'هُوَ', name: 'third person masculine singular', endings: {} },
+        { id: 7, pronoun: 'هِيَ', name: 'third person feminine singular', endings: {} },
+        { id: 8, pronoun: 'هُما', name: 'third person masculine dual', endings: {} },
+        { id: 9, pronoun: 'هُما', name: 'third person feminine dual', endings: {} },
+        { id: 10, pronoun: 'نَحْنُ', name: 'first person plural', endings: {} },
+        { id: 11, pronoun: 'أَنْتُم', name: 'second person masculine plural', endings: {} },
+        { id: 12, pronoun: 'أَنْتُنَّ', name: 'second person feminine plural', endings: {} },
+        { id: 13, pronoun: 'هُم', name: 'third person masculine plural', endings: {} },
+        { id: 14, pronoun: 'هُنَّ', name: 'third person feminine plural', endings: {} }
+    ]
+);app.config(function($stateProvider) {
     // For any unmatched url, redirect to /state1
     //$urlRouterProvider.otherwise("/home");
 

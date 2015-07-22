@@ -6,9 +6,23 @@
 
     <div class="col-md-9 main-panel">
 
-       <h1>{{conjugator.getName()}}</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Verb</th>
+                    <th>Pronoun</th>
+                </tr>
+            </thead>
 
-        <h1>{{conjugator.getVerb()}}</h1>
+            <tbody>
+                <tr ng-repeat="item in conjugator.list">
+                    <td>{{item.name}}</td>
+                    <td class="large-font">{{conjugator.getVerb(item.name)}}</td>
+                    <td class="large-font">{{item.pronoun}}</td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 
