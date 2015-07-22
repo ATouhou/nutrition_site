@@ -16,7 +16,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator) {
     var options = {
         form: 1,
         person: 'thirdPerson',
-        gender: 'masculine',
+        gender: 'feminine',
         number: 'plural',
         tense: 'perfect'
     }
