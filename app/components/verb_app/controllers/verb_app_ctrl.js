@@ -17,12 +17,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator) {
         number: 'plural',
         tense: 'perfect'
     }
-
     $scope.conjugator = conjugator;
 
-    //what I want to do is this
-    //$scope.conjugator = conjugator(verb, options)
-
-    $scope.conjugator.setVerb(verb);
-    $scope.conjugator.setOptions(options);
+    $scope.conjugator.initialize(verb, options);
 })

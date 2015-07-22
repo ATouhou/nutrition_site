@@ -30,14 +30,9 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator) {
         number: 'plural',
         tense: 'perfect'
     }
-
     $scope.conjugator = conjugator;
 
-    //what I want to do is this
-    //$scope.conjugator = conjugator(verb, options)
-
-    $scope.conjugator.setVerb(verb);
-    $scope.conjugator.setOptions(options);
+    $scope.conjugator.initialize(verb, options);
 })
 ;var verbApp = angular.module('verbApp');
 
@@ -56,13 +51,10 @@ verbApp.factory('conjugator', function() {
     c.options;
     c.list;
 
-    c.setVerb = function(verb) {
+    c.initialize = function(verb, options) {
         c.verb = verb;
-        c.list = c.getList();
-    }
-
-    c.setOptions = function(options) {
-       c.options = options;
+        c.options = options;
+        c.list = getList();
     }
 
     c.getVerb = function() {
@@ -82,7 +74,7 @@ verbApp.factory('conjugator', function() {
     }
 
     // Private methods
-    c.getList =function() {
+    function getList() {
         console.log('trying to get list');
         return [
                     { id: 1, pronoun: 'أنا', name: 'first person singular', endings: {perfect: c.verb.letter3 + 'ْتُ'} },
@@ -102,7 +94,6 @@ verbApp.factory('conjugator', function() {
         ]
 
     }
-
 
     return c;
 })
