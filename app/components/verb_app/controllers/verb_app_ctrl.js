@@ -1,9 +1,6 @@
 var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator) {
-
-    $scope.conjugator = conjugator;
-
     var verb = {
         letter1: 'د',
         letter2: 'ر',
@@ -20,6 +17,11 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator) {
         number: 'plural',
         tense: 'perfect'
     }
+
+    $scope.conjugator = conjugator;
+
+    //what I want to do is this
+    //$scope.conjugator = conjugator(verb, options)
 
     $scope.conjugator.setVerb(verb);
     $scope.conjugator.setOptions(options);
