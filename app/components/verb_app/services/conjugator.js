@@ -21,6 +21,11 @@ verbApp.factory('conjugator', function(helperData) {
         c.list = getList();
     }
 
+    c.setVerb = function(verb) {
+        c.verb = verb;
+        c.list = getList();
+    }
+
     c.getVerb = function(verbName) {
         // focus on perfect, sound verbs for now
         // base is the same for all perfect verbs
@@ -50,7 +55,7 @@ verbApp.factory('conjugator', function(helperData) {
     // Grab and copy pronounList and add endings for each verb
     function getList() {
         var list = angular.copy(helperData.pronounList);
-        var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'ْتُما', 'َ', 'تْ', 'ا', 'ا', 'ْنا', 'تُم', 'ْتُنَّ', 'وا', 'ْنَ'];
+        var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'ْتُما', 'َ', 'َتْ', 'ا', 'ا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'];
         _.forEach(endings, function(ending, index) {
             list[index].endings.perfect = c.verb.letter3 + ending;
         })

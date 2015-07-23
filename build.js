@@ -31,15 +31,19 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
         tense: 'perfect'
     }
 
-
     $scope.conjugator = conjugator;
     $scope.conjugator.initialize(verb, options);
 
     $scope.helperData = helperData;
 
-    $scope.data = {};
-
+    // selections made by the user
     $scope.userInput = {};
+
+    $scope.generateVerbs = function(userInput) {
+        if (userInput.letter1 && userInput.letter2 && userInput.letter3 && userInput.perfectVowel && userInput.imperfectVowel) {
+            $scope.conjugator.setVerb(userInput);
+        }
+    }
 })
 ;var verbApp = angular.module('verbApp');
 
@@ -61,6 +65,11 @@ verbApp.factory('conjugator', function(helperData) {
     c.initialize = function(verb, options) {
         c.verb = verb;
         c.options = options;
+        c.list = getList();
+    }
+
+    c.setVerb = function(verb) {
+        c.verb = verb;
         c.list = getList();
     }
 
@@ -93,7 +102,7 @@ verbApp.factory('conjugator', function(helperData) {
     // Grab and copy pronounList and add endings for each verb
     function getList() {
         var list = angular.copy(helperData.pronounList);
-        var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'ْتُما', 'َ', 'تْ', 'ا', 'ا', 'ْنا', 'تُم', 'ْتُنَّ', 'وا', 'ْنَ'];
+        var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'ْتُما', 'َ', 'َتْ', 'ا', 'ا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'];
         _.forEach(endings, function(ending, index) {
             list[index].endings.perfect = c.verb.letter3 + ending;
         })

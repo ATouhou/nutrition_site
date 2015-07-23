@@ -18,13 +18,17 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
         tense: 'perfect'
     }
 
-
     $scope.conjugator = conjugator;
     $scope.conjugator.initialize(verb, options);
 
     $scope.helperData = helperData;
 
-    $scope.data = {};
-
+    // selections made by the user
     $scope.userInput = {};
+
+    $scope.generateVerbs = function(userInput) {
+        if (userInput.letter1 && userInput.letter2 && userInput.letter3 && userInput.perfectVowel && userInput.imperfectVowel) {
+            $scope.conjugator.setVerb(userInput);
+        }
+    }
 })
