@@ -1,6 +1,6 @@
 var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, pronounList) {
+verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
     var verb = {
         letter1: 'ك',
         letter2: 'ت',
@@ -22,5 +22,9 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, pronounList) {
     $scope.conjugator = conjugator;
     $scope.conjugator.initialize(verb, options);
 
-    $scope.pronounList = pronounList;
+    $scope.helperData = helperData;
+
+    $scope.data = {};
+
+    $scope.userInput = {};
 })

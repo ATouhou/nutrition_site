@@ -13,7 +13,7 @@ app.controller('rootCtrl', function($scope) {
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, pronounList) {
+verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
     var verb = {
         letter1: 'ك',
         letter2: 'ت',
@@ -35,11 +35,15 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, pronounList) {
     $scope.conjugator = conjugator;
     $scope.conjugator.initialize(verb, options);
 
-    $scope.pronounList = pronounList;
+    $scope.helperData = helperData;
+
+    $scope.data = {};
+
+    $scope.userInput = {};
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.factory('conjugator', function(pronounList) {
+verbApp.factory('conjugator', function(helperData) {
     //c stands for conjugator
     var c = {};
 
@@ -73,6 +77,7 @@ verbApp.factory('conjugator', function(pronounList) {
     // get the complete name of the conjugation e.g. "first person masculine singular perfect" based on the options already specified
     c.getName = function() {
         var name = _.startCase(c.options.person);
+        // first person does not have gender so account for that
         if (c.options.gender) {
             name += ' ' + c.options.gender;
         }
@@ -83,8 +88,11 @@ verbApp.factory('conjugator', function(pronounList) {
     //*******************************************
     // Private methods
     //*******************************************
+
+
+    // Grab and copy pronounList and add endings for each verb
     function getList() {
-        var list = angular.copy(pronounList);
+        var list = angular.copy(helperData.pronounList);
         var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'ْتُما', 'َ', 'تْ', 'ا', 'ا', 'ْنا', 'تُم', 'ْتُنَّ', 'وا', 'ْنَ'];
         _.forEach(endings, function(ending, index) {
             list[index].endings.perfect = c.verb.letter3 + ending;
@@ -96,22 +104,28 @@ verbApp.factory('conjugator', function(pronounList) {
 
 ;var verbApp = angular.module('verbApp');
 
-verbApp.value('pronounList', [
-        { id: 1, pronoun: 'أنا', name: 'first person singular', endings: {} },
-        { id: 2, pronoun: 'أنْتَ', name: 'second person masculine singular', endings: {} },
-        { id: 3, pronoun: 'أنْتِ', name: 'second person feminine singular', endings: {} },
-        { id: 4, pronoun: 'أنْتُما', name: 'second person masculine dual', endings: {} },
-        { id: 5, pronoun: 'أَنْتُما', name: 'second person feminine dual', endings: {} },
-        { id: 6, pronoun: 'هُوَ', name: 'third person masculine singular', endings: {} },
-        { id: 7, pronoun: 'هِيَ', name: 'third person feminine singular', endings: {} },
-        { id: 8, pronoun: 'هُما', name: 'third person masculine dual', endings: {} },
-        { id: 9, pronoun: 'هُما', name: 'third person feminine dual', endings: {} },
-        { id: 10, pronoun: 'نَحْنُ', name: 'first person plural', endings: {} },
-        { id: 11, pronoun: 'أَنْتُم', name: 'second person masculine plural', endings: {} },
-        { id: 12, pronoun: 'أَنْتُنَّ', name: 'second person feminine plural', endings: {} },
-        { id: 13, pronoun: 'هُم', name: 'third person masculine plural', endings: {} },
-        { id: 14, pronoun: 'هُنَّ', name: 'third person feminine plural', endings: {} }
-    ]
+// General verb related helper data
+verbApp.value('helperData', {
+        pronounList: [
+                { id: 1, pronoun: 'أنا', name: 'first person singular', endings: {} },
+                { id: 2, pronoun: 'أنْتَ', name: 'second person masculine singular', endings: {} },
+                { id: 3, pronoun: 'أنْتِ', name: 'second person feminine singular', endings: {} },
+                { id: 4, pronoun: 'أنْتُما', name: 'second person masculine dual', endings: {} },
+                { id: 5, pronoun: 'أَنْتُما', name: 'second person feminine dual', endings: {} },
+                { id: 6, pronoun: 'هُوَ', name: 'third person masculine singular', endings: {} },
+                { id: 7, pronoun: 'هِيَ', name: 'third person feminine singular', endings: {} },
+                { id: 8, pronoun: 'هُما', name: 'third person masculine dual', endings: {} },
+                { id: 9, pronoun: 'هُما', name: 'third person feminine dual', endings: {} },
+                { id: 10, pronoun: 'نَحْنُ', name: 'first person plural', endings: {} },
+                { id: 11, pronoun: 'أَنْتُم', name: 'second person masculine plural', endings: {} },
+                { id: 12, pronoun: 'أَنْتُنَّ', name: 'second person feminine plural', endings: {} },
+                { id: 13, pronoun: 'هُم', name: 'third person masculine plural', endings: {} },
+                { id: 14, pronoun: 'هُنَّ', name: 'third person feminine plural', endings: {} }
+        ],
+        letters: ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
+
+        shortVowels: [{vowel: 'َ', name: 'fatha'}, {vowel: 'ُ', name: 'dammah'}, {vowel: 'ِ', name: 'kasrah'}]
+    }
 );app.config(function($stateProvider) {
     // For any unmatched url, redirect to /state1
     //$urlRouterProvider.otherwise("/home");

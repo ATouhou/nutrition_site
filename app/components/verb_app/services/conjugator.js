@@ -1,6 +1,6 @@
 var verbApp = angular.module('verbApp');
 
-verbApp.factory('conjugator', function(pronounList) {
+verbApp.factory('conjugator', function(helperData) {
     //c stands for conjugator
     var c = {};
 
@@ -34,6 +34,7 @@ verbApp.factory('conjugator', function(pronounList) {
     // get the complete name of the conjugation e.g. "first person masculine singular perfect" based on the options already specified
     c.getName = function() {
         var name = _.startCase(c.options.person);
+        // first person does not have gender so account for that
         if (c.options.gender) {
             name += ' ' + c.options.gender;
         }
@@ -44,8 +45,11 @@ verbApp.factory('conjugator', function(pronounList) {
     //*******************************************
     // Private methods
     //*******************************************
+
+
+    // Grab and copy pronounList and add endings for each verb
     function getList() {
-        var list = angular.copy(pronounList);
+        var list = angular.copy(helperData.pronounList);
         var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'ْتُما', 'َ', 'تْ', 'ا', 'ا', 'ْنا', 'تُم', 'ْتُنَّ', 'وا', 'ْنَ'];
         _.forEach(endings, function(ending, index) {
             list[index].endings.perfect = c.verb.letter3 + ending;
