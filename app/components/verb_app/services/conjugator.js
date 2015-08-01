@@ -26,13 +26,24 @@ verbApp.factory('conjugator', function(helperData) {
         c.list = getList();
     }
 
-    c.getVerb = function(verbName) {
-        // focus on perfect, sound verbs for now
+    c.getVerb = function(verbObj) {
+        // focus on perfect verbs for now
         // base is the same for all perfect verbs
-        var base = c.verb.letter1 + 'َ'+ c.verb.letter2 + c.verb.perfectVowel;
+        var base;
 
+        // sound
+        //var base = c.verb.letter1 + 'َ'+ c.verb.letter2 + c.verb.perfectVowel;
+
+        // hollow
+        if (_.includes([5,6,7,8,12], verbObj.id)) {
+            base = c.verb.letter1 + 'ا' + c.verb.letter3;
+
+        }
+        else {
+            base = c.verb.letter1 + 'ُ'  + c.verb.letter3;
+        }
         // concatenate the ending of the appropriate verb with the base
-        return base + _.findWhere(c.list, {name: verbName}).endings.perfect;
+        return base + _.findWhere(c.list, {name: verbObj.name}).endings.perfect;
     }
 
 
@@ -55,10 +66,17 @@ verbApp.factory('conjugator', function(helperData) {
     // Grab and copy pronounList and add endings for each verb
     function getList() {
         var list = angular.copy(helperData.pronounList);
-        var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'ْتُما', 'َ', 'َتْ', 'ا', 'ا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'];
+
+        var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'َ', 'َتْ', 'ا', 'َتا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'];
+
         _.forEach(endings, function(ending, index) {
-            list[index].endings.perfect = c.verb.letter3 + ending;
+            // sound
+            //list[index].endings.perfect = c.verb.letter3 + ending;
+
+            // hollow
+            list[index].endings.perfect = ending;
         })
+
         return list;
     }
     return c;
