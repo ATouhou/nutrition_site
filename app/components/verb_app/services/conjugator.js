@@ -39,6 +39,11 @@ verbApp.factory('conjugator', function(helperData) {
         if (c.verb.type.name === 'hollow') {
             base = getHollowBase(pronoun);
         }
+
+        if (c.verb.type.name === 'geminate') {
+            base = getGeminateBase(pronoun);
+        }
+
         // concatenate the ending of the appropriate verb with the base
         return base + _.findWhere(c.list, {name: pronoun.name}).endings.perfect;
     }
@@ -62,7 +67,7 @@ verbApp.factory('conjugator', function(helperData) {
     function getHollowBase(pronoun) {
         // These persons keep the alif
         var base;
-        if (_.includes([5,6,7,8,12], pronoun.id)) {
+        if (hasConsonantEnding(pronoun.id)) {
             base = c.verb.letter1 + 'ا' + c.verb.letter3;
         }
         else {
@@ -72,10 +77,22 @@ verbApp.factory('conjugator', function(helperData) {
                 shortVowel1 = 'ِ';
 
             }
+            // This is for hollow waaw or hollow yaa verbs
             else {
                 shortVowel1 = helperData.longToShort[c.verb.letter2];
             }
             base = c.verb.letter1 + shortVowel1 + c.verb.letter3;
+        }
+        return base;
+    }
+
+    function getGeminateBase(pronoun) {
+        var base;
+        if (hasConsonantEnding(pronoun.id)) {
+            base = getSoundBase(pronoun);
+        }
+        else {
+            base = c.verb.letter1 + 'َ' + c.verb.letter2 + 'ّ';
         }
         return base;
     }
@@ -91,16 +108,28 @@ verbApp.factory('conjugator', function(helperData) {
         var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'َ', 'َتْ', 'ا', 'َتا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'];
 
         _.forEach(endings, function(ending, index) {
-            if (c.verb.type.name === 'sound') {
+            if (c.verb.type.name === 'sound' || (c.verb.type.name === 'geminate' && hasConsonantEnding(index + 1))) {
                 list[index].endings.perfect = c.verb.letter3 + ending;
             }
-            else if (c.verb.type.name === 'hollow') {
+            else if (c.verb.type.name === 'hollow' || c.verb.type.name === 'geminate') {
                 list[index].endings.perfect = ending;
             }
         })
 
         return list;
     }
+
+    // 1 - 4, 9, 10, 11, 13 have consonant endings
+    function hasConsonantEnding(id) {
+        if (_.includes([5,6,7,8,12], id)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
     return c;
 })
 

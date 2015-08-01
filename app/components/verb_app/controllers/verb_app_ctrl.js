@@ -1,18 +1,19 @@
 var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
-    var verb = {
-        letter1: 'ك',
-        letter2: 'ت',
-        letter3: 'ب',
-        type: {
-            name: 'sound'
-        },
-        perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
-    }
+    // sound example
+    //var verb = {
+    //    letter1: 'ك',
+    //    letter2: 'ت',
+    //    letter3: 'ب',
+    //    type: {
+    //        name: 'sound'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'ُ'
+    //}
 
-    //hollow waaw example
+    // hollow waaw example
     var verb = {
         letter1: 'ق',
         letter2: 'و',
@@ -25,31 +26,17 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
         imperfectVowel: 'ُ'
     }
 
-    // hollow yaa example
-    //var verb = {
-    //    letter1: 'ع',
-    //    letter2: 'ي',
-    //    letter3: 'ش',
-    //    type: {
-    //        name: 'hollow',
-    //        type: 'yaa'
-    //    },
-    //    perfectVowel: 'َ',
-    //    imperfectVowel: 'ُ'
-    //}
-
-    // hollow alif example
-    //var verb = {
-    //    letter1: 'خ',
-    //    letter2: 'و',
-    //    letter3: 'ف',
-    //    type: {
-    //        name: 'hollow',
-    //        type: 'alif'
-    //    },
-    //    perfectVowel: 'َ',
-    //    imperfectVowel: 'ُ'
-    //}
+    // geminate example
+    var verb = {
+        letter1: 'د',
+        letter2: 'ل',
+        letter3: 'ل',
+        type: {
+            name: 'geminate'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ'
+    }
 
     var options = {
         form: 1,

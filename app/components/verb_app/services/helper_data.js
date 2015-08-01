@@ -24,6 +24,6 @@ verbApp.value('helperData', {
         // hash for going from waaw to kasrah, alif to fatha, etc
         longToShort: {'و': 'ُ', 'ي': 'ِ', 'ا': 'َ'},
 
-        types: [{name: 'sound'}, {name: 'hollow', type: 'waaw'}, {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'}]
+        types: [{name: 'sound'}, {name: 'geminate'}, {name: 'hollow', type: 'waaw'}, {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'}]
     }
 )
