@@ -26,24 +26,21 @@ verbApp.factory('conjugator', function(helperData) {
         c.list = getList();
     }
 
-    c.getVerb = function(verbObj) {
+    c.getVerb = function(pronoun) {
         // focus on perfect verbs for now
-        // base is the same for all perfect verbs
         var base;
 
         // sound
-        //var base = c.verb.letter1 + 'َ'+ c.verb.letter2 + c.verb.perfectVowel;
+        if (c.verb.type.name === 'sound') {
+            base = getSoundBase(pronoun);
+        }
 
         // hollow
-        if (_.includes([5,6,7,8,12], verbObj.id)) {
-            base = c.verb.letter1 + 'ا' + c.verb.letter3;
-
-        }
-        else {
-            base = c.verb.letter1 + 'ُ'  + c.verb.letter3;
+        if (c.verb.type.name === 'hollow') {
+            base = getHollowBase(pronoun);
         }
         // concatenate the ending of the appropriate verb with the base
-        return base + _.findWhere(c.list, {name: verbObj.name}).endings.perfect;
+        return base + _.findWhere(c.list, {name: pronoun.name}).endings.perfect;
     }
 
 
@@ -62,6 +59,30 @@ verbApp.factory('conjugator', function(helperData) {
     // Private methods
     //*******************************************
 
+    function getHollowBase(pronoun) {
+        // These persons keep the alif
+        var base;
+        if (_.includes([5,6,7,8,12], pronoun.id)) {
+            base = c.verb.letter1 + 'ا' + c.verb.letter3;
+        }
+        else {
+            var shortVowel1;
+            // This is for نام and خاف type verbs
+            if (c.verb.type.type === 'alif') {
+                shortVowel1 = 'ِ';
+
+            }
+            else {
+                shortVowel1 = helperData.longToShort[c.verb.letter2];
+            }
+            base = c.verb.letter1 + shortVowel1 + c.verb.letter3;
+        }
+        return base;
+    }
+
+    function getSoundBase(pronoun) {
+        return c.verb.letter1 + 'َ'+ c.verb.letter2 + c.verb.perfectVowel;
+    }
 
     // Grab and copy pronounList and add endings for each verb
     function getList() {
@@ -70,11 +91,12 @@ verbApp.factory('conjugator', function(helperData) {
         var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'َ', 'َتْ', 'ا', 'َتا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'];
 
         _.forEach(endings, function(ending, index) {
-            // sound
-            //list[index].endings.perfect = c.verb.letter3 + ending;
-
-            // hollow
-            list[index].endings.perfect = ending;
+            if (c.verb.type.name === 'sound') {
+                list[index].endings.perfect = c.verb.letter3 + ending;
+            }
+            else if (c.verb.type.name === 'hollow') {
+                list[index].endings.perfect = ending;
+            }
         })
 
         return list;

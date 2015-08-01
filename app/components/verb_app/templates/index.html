@@ -16,14 +16,21 @@
                 <select ng-model="userInput.letter2" ng-change="generateVerbs(userInput)" ng-options="letter as letter for letter in helperData.letters"></select>
                 <select ng-model="userInput.letter1" ng-change="generateVerbs(userInput)" ng-options="letter as letter for letter in helperData.letters"></select>
             </div>
+
+            <div class="col-md-4">
+                Type
+                <select ng-model="userInput.type" ng-change="generateVerbs(userInput)" ng-options="type as (type.name + ' ' + type.type) for type in helperData.types"></select>
+            </div>
+
             <div class="col-md-4">
                 Perfect Vowel
                 <select ng-model="userInput.perfectVowel" ng-change="generateVerbs(userInput)" ng-options="letter.vowel as letter.name for letter in helperData.shortVowels"></select>
             </div>
-            <div class="col-md-4">
-                Imperfect Vowel
-                <select ng-model="userInput.imperfectVowel" ng-change="generateVerbs(userInput)" ng-options="letter.vowel as letter.name for letter in helperData.shortVowels"></select>
-            </div>
+            <!--This is not needed right now-->
+            <!--<div class="col-md-4">-->
+                <!--Imperfect Vowel-->
+                <!--<select ng-model="userInput.imperfectVowel" ng-change="generateVerbs(userInput)" ng-options="letter.vowel as letter.name for letter in helperData.shortVowels"></select>-->
+            <!--</div>-->
         </div>
 
         <br>

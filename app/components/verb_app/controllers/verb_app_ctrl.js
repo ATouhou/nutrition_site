@@ -1,18 +1,18 @@
 var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
-    //var verb = {
-    //    letter1: 'ك',
-    //    letter2: 'ت',
-    //    letter3: 'ب',
-    //    type: {
-    //        name: 'sound'
-    //    },
-    //    perfectVowel: 'َ',
-    //    imperfectVowel: 'ُ'
-    //}
+    var verb = {
+        letter1: 'ك',
+        letter2: 'ت',
+        letter3: 'ب',
+        type: {
+            name: 'sound'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ'
+    }
 
-    //hollow example
+    //hollow waaw example
     var verb = {
         letter1: 'ق',
         letter2: 'و',
@@ -24,6 +24,32 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
     }
+
+    // hollow yaa example
+    //var verb = {
+    //    letter1: 'ع',
+    //    letter2: 'ي',
+    //    letter3: 'ش',
+    //    type: {
+    //        name: 'hollow',
+    //        type: 'yaa'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'ُ'
+    //}
+
+    // hollow alif example
+    //var verb = {
+    //    letter1: 'خ',
+    //    letter2: 'و',
+    //    letter3: 'ف',
+    //    type: {
+    //        name: 'hollow',
+    //        type: 'alif'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'ُ'
+    //}
 
     var options = {
         form: 1,
@@ -41,9 +67,9 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
     // selections made by the user
     $scope.userInput = {};
 
-    //$scope.generateVerbs = function(userInput) {
-    //    if (userInput.letter1 && userInput.letter2 && userInput.letter3 && userInput.perfectVowel && userInput.imperfectVowel) {
-    //        $scope.conjugator.setVerb(userInput);
-    //    }
-    //}
+    $scope.generateVerbs = function(userInput) {
+        if (userInput.letter1 && userInput.letter2 && userInput.letter3 && userInput.perfectVowel && userInput.type) {
+            $scope.conjugator.setVerb(userInput);
+        }
+    }
 })

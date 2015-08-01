@@ -14,18 +14,18 @@ app.controller('rootCtrl', function($scope) {
 ;var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
-    //var verb = {
-    //    letter1: 'ك',
-    //    letter2: 'ت',
-    //    letter3: 'ب',
-    //    type: {
-    //        name: 'sound'
-    //    },
-    //    perfectVowel: 'َ',
-    //    imperfectVowel: 'ُ'
-    //}
+    var verb = {
+        letter1: 'ك',
+        letter2: 'ت',
+        letter3: 'ب',
+        type: {
+            name: 'sound'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ'
+    }
 
-    //hollow example
+    //hollow waaw example
     var verb = {
         letter1: 'ق',
         letter2: 'و',
@@ -37,6 +37,32 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
     }
+
+    // hollow yaa example
+    //var verb = {
+    //    letter1: 'ع',
+    //    letter2: 'ي',
+    //    letter3: 'ش',
+    //    type: {
+    //        name: 'hollow',
+    //        type: 'yaa'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'ُ'
+    //}
+
+    // hollow alif example
+    //var verb = {
+    //    letter1: 'خ',
+    //    letter2: 'و',
+    //    letter3: 'ف',
+    //    type: {
+    //        name: 'hollow',
+    //        type: 'alif'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'ُ'
+    //}
 
     var options = {
         form: 1,
@@ -54,11 +80,11 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
     // selections made by the user
     $scope.userInput = {};
 
-    //$scope.generateVerbs = function(userInput) {
-    //    if (userInput.letter1 && userInput.letter2 && userInput.letter3 && userInput.perfectVowel && userInput.imperfectVowel) {
-    //        $scope.conjugator.setVerb(userInput);
-    //    }
-    //}
+    $scope.generateVerbs = function(userInput) {
+        if (userInput.letter1 && userInput.letter2 && userInput.letter3 && userInput.perfectVowel && userInput.type) {
+            $scope.conjugator.setVerb(userInput);
+        }
+    }
 })
 ;var verbApp = angular.module('verbApp');
 
@@ -88,24 +114,21 @@ verbApp.factory('conjugator', function(helperData) {
         c.list = getList();
     }
 
-    c.getVerb = function(verbObj) {
+    c.getVerb = function(pronoun) {
         // focus on perfect verbs for now
-        // base is the same for all perfect verbs
         var base;
 
         // sound
-        //var base = c.verb.letter1 + 'َ'+ c.verb.letter2 + c.verb.perfectVowel;
+        if (c.verb.type.name === 'sound') {
+            base = getSoundBase(pronoun);
+        }
 
         // hollow
-        if (_.includes([5,6,7,8,12], verbObj.id)) {
-            base = c.verb.letter1 + 'ا' + c.verb.letter3;
-
-        }
-        else {
-            base = c.verb.letter1 + 'ُ'  + c.verb.letter3;
+        if (c.verb.type.name === 'hollow') {
+            base = getHollowBase(pronoun);
         }
         // concatenate the ending of the appropriate verb with the base
-        return base + _.findWhere(c.list, {name: verbObj.name}).endings.perfect;
+        return base + _.findWhere(c.list, {name: pronoun.name}).endings.perfect;
     }
 
 
@@ -124,6 +147,30 @@ verbApp.factory('conjugator', function(helperData) {
     // Private methods
     //*******************************************
 
+    function getHollowBase(pronoun) {
+        // These persons keep the alif
+        var base;
+        if (_.includes([5,6,7,8,12], pronoun.id)) {
+            base = c.verb.letter1 + 'ا' + c.verb.letter3;
+        }
+        else {
+            var shortVowel1;
+            // This is for نام and خاف type verbs
+            if (c.verb.type.type === 'alif') {
+                shortVowel1 = 'ِ';
+
+            }
+            else {
+                shortVowel1 = helperData.longToShort[c.verb.letter2];
+            }
+            base = c.verb.letter1 + shortVowel1 + c.verb.letter3;
+        }
+        return base;
+    }
+
+    function getSoundBase(pronoun) {
+        return c.verb.letter1 + 'َ'+ c.verb.letter2 + c.verb.perfectVowel;
+    }
 
     // Grab and copy pronounList and add endings for each verb
     function getList() {
@@ -132,11 +179,12 @@ verbApp.factory('conjugator', function(helperData) {
         var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'َ', 'َتْ', 'ا', 'َتا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'];
 
         _.forEach(endings, function(ending, index) {
-            // sound
-            //list[index].endings.perfect = c.verb.letter3 + ending;
-
-            // hollow
-            list[index].endings.perfect = ending;
+            if (c.verb.type.name === 'sound') {
+                list[index].endings.perfect = c.verb.letter3 + ending;
+            }
+            else if (c.verb.type.name === 'hollow') {
+                list[index].endings.perfect = ending;
+            }
         })
 
         return list;
@@ -165,7 +213,12 @@ verbApp.value('helperData', {
         ],
         letters: ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
 
-        shortVowels: [{vowel: 'َ', name: 'fatha'}, {vowel: 'ُ', name: 'dammah'}, {vowel: 'ِ', name: 'kasrah'}]
+        shortVowels: [{vowel: 'َ', name: 'fatha'}, {vowel: 'ُ', name: 'dammah'}, {vowel: 'ِ', name: 'kasrah'}],
+
+        // hash for going from waaw to kasrah, alif to fatha, etc
+        longToShort: {'و': 'ُ', 'ي': 'ِ', 'ا': 'َ'},
+
+        types: [{name: 'sound'}, {name: 'hollow', type: 'waaw'}, {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'}]
     }
 );app.config(function($stateProvider) {
     // For any unmatched url, redirect to /state1
