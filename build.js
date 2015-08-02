@@ -16,36 +16,20 @@ app.controller('rootCtrl', function($scope) {
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
     // sound example
     //var verb = {
-    //    letter1: 'ك',
-    //    letter2: 'ت',
-    //    letter3: 'ب',
-    //    type: {
-    //        name: 'sound'
-    //    },
+    //    letter1: 'د',
+    //    letter2: 'ع',
+    //    letter3: 'و',
+    //    type: {name: 'defective', type: 'waaw'},
     //    perfectVowel: 'َ',
     //    imperfectVowel: 'ُ'
     //}
 
-    // hollow waaw example
     var verb = {
-        letter1: 'ق',
-        letter2: 'و',
-        letter3: 'ل',
+        letter1: 'ك',
+        letter2: 'ت',
+        letter3: 'ب',
         type: {
-            name: 'hollow',
-            type: 'waaw'
-        },
-        perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
-    }
-
-    // geminate example
-    var verb = {
-        letter1: 'د',
-        letter2: 'ل',
-        letter3: 'ل',
-        type: {
-            name: 'geminate'
+            name: 'sound'
         },
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
@@ -82,7 +66,7 @@ verbApp.factory('conjugator', function(helperData) {
     var tenses = ['perfect', 'imperfect', 'imperative', 'jussive', 'subjunctive'];
     var forms = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     var persons = ['firstPerson', 'secondPerson', 'thirdPerson'];
-    var types = ['sound', 'hollow', 'geminate', 'weakLam'];
+    var types = ['sound', 'hollow', 'geminate', 'weakLam', 'assimilated'];
     var genders = ['masculine', 'feminine'];
     var numbers = ['singular', 'dual', 'plural'];
 
@@ -105,8 +89,8 @@ verbApp.factory('conjugator', function(helperData) {
         // focus on perfect verbs for now
         var base;
 
-        // sound
-        if (c.verb.type.name === 'sound') {
+        // sound and assimilated are the same in perfect tense
+        if (c.verb.type.name === 'sound' || c.verb.type.name === 'assimilated') {
             base = getSoundBase(pronoun);
         }
 
@@ -117,6 +101,10 @@ verbApp.factory('conjugator', function(helperData) {
 
         if (c.verb.type.name === 'geminate') {
             base = getGeminateBase(pronoun);
+        }
+
+        if (c.verb.type.name === 'defective') {
+            base = getDefectiveBase(pronoun);
         }
 
         // concatenate the ending of the appropriate verb with the base
@@ -138,6 +126,32 @@ verbApp.factory('conjugator', function(helperData) {
     //*******************************************
     // Private methods
     //*******************************************
+
+    function getDefectiveBase(pronoun) {
+        var base;
+        if (pronoun.id === 5) {
+            base = c.verb.letter1 + 'َ'+ c.verb.letter2 + 'ا';
+        }
+        else {
+            base = getSoundBase(pronoun);
+        }
+
+        return base;
+
+
+
+        //if (c.verb.type.type === 'waaw') {
+        //    if (hasConsonantEnding(pronoun.id)) {
+        //        base = getSoundBase(pronoun);
+        //    }
+        //    else {
+        //        if (pronoun.id === 5) {
+        //
+        //        }
+        //    }
+        //}
+
+    }
 
     function getHollowBase(pronoun) {
         // These persons keep the alif
@@ -176,19 +190,18 @@ verbApp.factory('conjugator', function(helperData) {
         return c.verb.letter1 + 'َ'+ c.verb.letter2 + c.verb.perfectVowel;
     }
 
-    // Grab and copy pronounList and add endings for each verb
+    // Grab and copy pronounList and add the endings for each verb
     function getList() {
         var list = angular.copy(helperData.pronounList);
 
-        var endings = ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'َ', 'َتْ', 'ا', 'َتا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'];
-
-        _.forEach(endings, function(ending, index) {
+        _.forEach(helperData.endings, function(ending, index) {
             if (c.verb.type.name === 'sound' || (c.verb.type.name === 'geminate' && hasConsonantEnding(index + 1))) {
                 list[index].endings.perfect = c.verb.letter3 + ending;
             }
             else if (c.verb.type.name === 'hollow' || c.verb.type.name === 'geminate') {
                 list[index].endings.perfect = ending;
             }
+
         })
 
         return list;
@@ -229,14 +242,56 @@ verbApp.value('helperData', {
         ],
         letters: ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
 
+        endings: ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'َ', 'َتْ', 'ا', 'َتا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'],
+
         shortVowels: [{vowel: 'َ', name: 'fatha'}, {vowel: 'ُ', name: 'dammah'}, {vowel: 'ِ', name: 'kasrah'}],
 
         // hash for going from waaw to kasrah, alif to fatha, etc
         longToShort: {'و': 'ُ', 'ي': 'ِ', 'ا': 'َ'},
 
-        types: [{name: 'sound'}, {name: 'geminate'}, {name: 'hollow', type: 'waaw'}, {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'}]
+        types: [{name: 'sound'}, {name: 'geminate'}, {name: 'hollow', type: 'waaw'},
+                {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'},
+                {name: 'assimilated'},
+                {name: 'defective', type: 'waaw'}, {name: 'defective', type: 'yaa (aa-ii)'}, {name: 'defective', type: 'yaa (ya-aa)'}]
     }
-);app.config(function($stateProvider) {
+);// sound example
+var verb = {
+    letter1: 'ك',
+    letter2: 'ت',
+    letter3: 'ب',
+    type: {
+        name: 'sound'
+    },
+    perfectVowel: 'َ',
+    imperfectVowel: 'ُ'
+}
+
+
+//hollow waaw example
+var verb = {
+    letter1: 'ق',
+    letter2: 'و',
+    letter3: 'ل',
+    type: {
+        name: 'hollow',
+        type: 'waaw'
+    },
+    perfectVowel: 'َ',
+    imperfectVowel: 'ُ'
+}
+
+//geminate example
+var verb = {
+    letter1: 'د',
+    letter2: 'ل',
+    letter3: 'ل',
+    type: {
+        name: 'geminate'
+    },
+    perfectVowel: 'َ',
+    imperfectVowel: 'ُ'
+}
+;app.config(function($stateProvider) {
     // For any unmatched url, redirect to /state1
     //$urlRouterProvider.otherwise("/home");
 

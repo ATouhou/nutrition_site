@@ -19,11 +19,16 @@ verbApp.value('helperData', {
         ],
         letters: ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
 
+        endings: ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'َ', 'َتْ', 'ا', 'َتا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'],
+
         shortVowels: [{vowel: 'َ', name: 'fatha'}, {vowel: 'ُ', name: 'dammah'}, {vowel: 'ِ', name: 'kasrah'}],
 
         // hash for going from waaw to kasrah, alif to fatha, etc
         longToShort: {'و': 'ُ', 'ي': 'ِ', 'ا': 'َ'},
 
-        types: [{name: 'sound'}, {name: 'geminate'}, {name: 'hollow', type: 'waaw'}, {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'}]
+        types: [{name: 'sound'}, {name: 'geminate'}, {name: 'hollow', type: 'waaw'},
+                {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'},
+                {name: 'assimilated'},
+                {name: 'defective', type: 'waaw'}, {name: 'defective', type: 'yaa (aa-ii)'}, {name: 'defective', type: 'yaa (ya-aa)'}]
     }
 )
