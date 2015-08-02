@@ -41,11 +41,15 @@ verbApp.factory('conjugator', function(helperData) {
     // Private methods
     //*******************************************
     function getList() {
-        switch (c.verb.type.name) {
-            case 'sound': return getSoundList();
-            case 'geminate': return getGeminateList();
-            case 'hollow': return getHollowList();
-        }
+        var list = angular.copy(helperData.pronounList);
+        _.forEach(list, function(pronoun, index) {
+            switch (c.verb.type.name) {
+                case 'sound': pronoun.perfect = getSoundVerb(pronoun.id); break;
+                case 'geminate': pronoun.perfect = getGeminiteVerb(pronoun.id); break;
+                case 'hollow': pronoun.perfect = getHollowVerb(pronoun.id); break;
+            }
+        })
+        return list
     }
 
     function getDefectiveList(pronoun) {
@@ -56,7 +60,6 @@ verbApp.factory('conjugator', function(helperData) {
         else {
             base = getSoundBase(pronoun);
         }
-
         return base;
         //if (c.verb.type.type === 'waaw') {
         //    if (hasConsonantEnding(pronoun.id)) {
@@ -70,42 +73,25 @@ verbApp.factory('conjugator', function(helperData) {
         //}
     }
 
-    function getHollowList(pronoun) {
-        // These persons keep the alif
-        var base;
-        if (hasConsonantEnding(pronoun.id)) {
-            base = c.verb.letter1 + 'ا' + c.verb.letter3;
-        }
-        else {
+    function getHollowVerb(id) {
+        // These pronouns keep the alif
+        var verb;
+        if (hasConsonantEnding(id)) {
             var shortVowel1;
             // This is for نام and خاف type verbs
             if (c.verb.type.type === 'alif') {
                 shortVowel1 = 'ِ';
-
             }
-            // This is for hollow waaw or hollow yaa verbs
+            // This is for hollow waaw or hollow yaa verbs where the short vowel is based on the second root letter
             else {
                 shortVowel1 = helperData.longToShort[c.verb.letter2];
             }
-            base = c.verb.letter1 + shortVowel1 + c.verb.letter3;
+            verb = c.verb.letter1 + shortVowel1 + c.verb.letter3 + helperData.endings[id - 1];
         }
-        return base;
-    }
-
-    function getGeminateList() {
-        var list = angular.copy(helperData.pronounList);
-        _.forEach(list, function(pronoun, index) {
-            pronoun.perfect = getGeminateVerb(pronoun.id);
-        })
-        return list
-    }
-
-    function getSoundList() {
-        var list = angular.copy(helperData.pronounList);
-        _.forEach(list, function(pronoun) {
-            pronoun.perfect = getSoundVerb(pronoun.id);
-        })
-        return list;
+        else {
+            verb = c.verb.letter1 + 'ا' + c.verb.letter3 + helperData.endings[id - 1];
+        }
+        return verb;
     }
 
     function getSoundVerb(id) {
