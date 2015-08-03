@@ -14,13 +14,13 @@ app.controller('rootCtrl', function($scope) {
 ;var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
+    //defective example
     var verb = {
-        letter1: 'ق',
-        letter2: 'و',
-        letter3: 'ل',
+        letter1: 'د',
+        letter2: 'ع',
+        letter3: 'و',
         type: {
-            name: 'hollow',
-            type: 'waaw'
+            name: 'defective'
         },
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
@@ -95,32 +95,30 @@ verbApp.factory('conjugator', function(helperData) {
         _.forEach(list, function(pronoun, index) {
             switch (c.verb.type.name) {
                 case 'sound': pronoun.perfect = getSoundVerb(pronoun.id); break;
-                case 'geminate': pronoun.perfect = getGeminiteVerb(pronoun.id); break;
+                case 'geminate': pronoun.perfect = getGeminateVerb(pronoun.id); break;
                 case 'hollow': pronoun.perfect = getHollowVerb(pronoun.id); break;
+                case 'defective': pronoun.perfect = getDefectiveVerb(pronoun.id); break;
             }
         })
         return list
     }
 
-    function getDefectiveList(pronoun) {
-        var base;
-        if (pronoun.id === 5) {
-            base = c.verb.letter1 + 'َ'+ c.verb.letter2 + 'ا';
+    function getDefectiveVerb(id) {
+        // Work on defective waaw first
+        var verb;
+        if (hasConsonantEnding(id)) {
+            verb = getSoundVerb(id);
         }
         else {
-            base = getSoundBase(pronoun);
+            if (id === 5) {
+                verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'ا';
+            }
+            //else if (id === )
+            else if (id === 7) {
+                verb = getSoundVerb(id);
+            }
         }
-        return base;
-        //if (c.verb.type.type === 'waaw') {
-        //    if (hasConsonantEnding(pronoun.id)) {
-        //        base = getSoundBase(pronoun);
-        //    }
-        //    else {
-        //        if (pronoun.id === 5) {
-        //
-        //        }
-        //    }
-        //}
+        return verb;
     }
 
     function getHollowVerb(id) {
@@ -234,6 +232,19 @@ var verb = {
     letter1: 'د',
     letter2: 'ل',
     letter3: 'ل',
+    type: {
+        name: 'geminate'
+    },
+    perfectVowel: 'َ',
+    imperfectVowel: 'ُ'
+}
+
+
+//defective example
+var verb = {
+    letter1: 'د',
+    letter2: 'ع',
+    letter3: 'و',
     type: {
         name: 'geminate'
     },

@@ -35,3 +35,16 @@ var verb = {
     perfectVowel: 'َ',
     imperfectVowel: 'ُ'
 }
+
+
+//defective example
+var verb = {
+    letter1: 'د',
+    letter2: 'ع',
+    letter3: 'و',
+    type: {
+        name: 'geminate'
+    },
+    perfectVowel: 'َ',
+    imperfectVowel: 'ُ'
+}
