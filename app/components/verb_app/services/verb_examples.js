@@ -37,7 +37,7 @@ var verb = {
 }
 
 
-//defective example
+//defective waaw example
 var verb = {
     letter1: 'د',
     letter2: 'ع',

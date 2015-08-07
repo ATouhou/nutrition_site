@@ -14,13 +14,14 @@ app.controller('rootCtrl', function($scope) {
 ;var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
-    //defective example
+    //defective waaw example
     var verb = {
-        letter1: 'د',
-        letter2: 'ع',
-        letter3: 'و',
+        letter1: 'م',
+        letter2: 'ش',
+        letter3: 'ي',
         type: {
-            name: 'defective'
+            name: 'defective',
+            type: 'yaa (aa-ii)'
         },
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
@@ -112,7 +113,9 @@ verbApp.factory('conjugator', function(helperData) {
         }
         else {
             switch (id) {
-                case 5: verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'ا'; break;
+                case 5:
+                    var lastLetter = getDefectiveLastLetter();
+                    verb = c.verb.letter1 + 'َ' + c.verb.letter2 + lastLetter; break;
                 case 7: verb = soundVerb; break;
                 case 12: verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'َوْا'; break;
 
@@ -125,6 +128,14 @@ verbApp.factory('conjugator', function(helperData) {
             }
         }
         return verb;
+    }
+
+    function getDefectiveLastLetter() {
+        switch (c.verb.type.type) {
+            case 'waaw': return 'ا'; break;
+            case 'yaa (aa-ii)': return 'ى'; break;
+            case 'yaa (ya-aa)': return 'يَ'; break;
+        }
     }
 
     function getHollowVerb(id) {
@@ -246,7 +257,7 @@ var verb = {
 }
 
 
-//defective example
+//defective waaw example
 var verb = {
     letter1: 'د',
     letter2: 'ع',

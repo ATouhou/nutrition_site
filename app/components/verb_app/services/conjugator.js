@@ -62,7 +62,9 @@ verbApp.factory('conjugator', function(helperData) {
         }
         else {
             switch (id) {
-                case 5: verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'ا'; break;
+                case 5:
+                    var lastLetter = getDefectiveLastLetter();
+                    verb = c.verb.letter1 + 'َ' + c.verb.letter2 + lastLetter; break;
                 case 7: verb = soundVerb; break;
                 case 12: verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'َوْا'; break;
 
@@ -75,6 +77,14 @@ verbApp.factory('conjugator', function(helperData) {
             }
         }
         return verb;
+    }
+
+    function getDefectiveLastLetter() {
+        switch (c.verb.type.type) {
+            case 'waaw': return 'ا'; break;
+            case 'yaa (aa-ii)': return 'ى'; break;
+            case 'yaa (ya-aa)': return 'يَ'; break;
+        }
     }
 
     function getHollowVerb(id) {
