@@ -1,14 +1,14 @@
 var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
-    //defective waaw example
+    //defective yaa example
     var verb = {
-        letter1: 'م',
-        letter2: 'ش',
+        letter1: 'ن',
+        letter2: 'س',
         letter3: 'ي',
         type: {
             name: 'defective',
-            type: 'yaa (aa-ii)'
+            type: 'yaa (ya-aa)'
         },
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'

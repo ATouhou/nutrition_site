@@ -76,6 +76,11 @@ verbApp.factory('conjugator', function(helperData) {
                     verb = verb.replace(regex, '');
             }
         }
+
+        if (c.verb.type.type === 'yaa (ya-aa)') {
+            return verb.replaceAt(3, 'ِ');
+        }
+
         return verb;
     }
 
@@ -134,3 +139,7 @@ verbApp.factory('conjugator', function(helperData) {
     return c;
 })
 
+
+String.prototype.replaceAt = function(index, character) {
+    return this.substr(0, index) + character + this.substr(index+character.length);
+}

@@ -14,14 +14,14 @@ app.controller('rootCtrl', function($scope) {
 ;var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
-    //defective waaw example
+    //defective yaa example
     var verb = {
-        letter1: 'م',
-        letter2: 'ش',
+        letter1: 'ن',
+        letter2: 'س',
         letter3: 'ي',
         type: {
             name: 'defective',
-            type: 'yaa (aa-ii)'
+            type: 'yaa (ya-aa)'
         },
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
@@ -127,6 +127,11 @@ verbApp.factory('conjugator', function(helperData) {
                     verb = verb.replace(regex, '');
             }
         }
+
+        if (c.verb.type.type === 'yaa (ya-aa)') {
+            return verb.replaceAt(3, 'ِ');
+        }
+
         return verb;
     }
 
@@ -185,6 +190,10 @@ verbApp.factory('conjugator', function(helperData) {
     return c;
 })
 
+
+String.prototype.replaceAt = function(index, character) {
+    return this.substr(0, index) + character + this.substr(index+character.length);
+}
 ;var verbApp = angular.module('verbApp');
 
 // General verb related helper data
@@ -264,6 +273,19 @@ var verb = {
     letter3: 'و',
     type: {
         name: 'geminate'
+    },
+    perfectVowel: 'َ',
+    imperfectVowel: 'ُ'
+}
+
+//defective yaa example
+var verb = {
+    letter1: 'م',
+    letter2: 'ش',
+    letter3: 'ي',
+    type: {
+        name: 'defective',
+        type: 'yaa (aa-ii)'
     },
     perfectVowel: 'َ',
     imperfectVowel: 'ُ'
