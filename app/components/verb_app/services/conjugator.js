@@ -60,12 +60,17 @@ verbApp.factory('conjugator', function(helperData) {
             verb = getSoundVerb(id);
         }
         else {
-            if (id === 5) {
-                verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'ا';
-            }
-            //else if (id === )
-            else if (id === 7) {
-                verb = getSoundVerb(id);
+            switch (id) {
+                case 5: verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'ا'; break;
+                case 7: verb = getSoundVerb(id); break;
+                case 12: verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'َوْا'; break;
+
+                // Note, for 6 and 8, the waaw fathah part of the root simply disappear so get the sound verb and just remove the waaw fathah using regex
+                case 6:
+                case 8:
+                    var regex = new RegExp(c.verb.letter3 + 'َ');
+                    verb = getSoundVerb(id);
+                    verb = verb.replace(regex, '');
             }
         }
         return verb;
