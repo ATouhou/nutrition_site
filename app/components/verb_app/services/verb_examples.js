@@ -62,3 +62,17 @@ var verb = {
     perfectVowel: 'َ',
     imperfectVowel: 'ُ'
 }
+
+
+//defective yaa example 2
+var verb = {
+    letter1: 'ن',
+    letter2: 'س',
+    letter3: 'ي',
+    type: {
+        name: 'defective',
+        type: 'yaa (ya-aa)'
+    },
+    perfectVowel: 'ِ',
+    imperfectVowel: 'ُ'
+}
