@@ -15,17 +15,17 @@ app.controller('rootCtrl', function($scope) {
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
     //defective yaa example
-    //var verb = {
-    //    letter1: 'ن',
-    //    letter2: 'س',
-    //    letter3: 'ي',
-    //    type: {
-    //        name: 'defective',
-    //        type: 'yaa (ya-aa)'
-    //    },
-    //    perfectVowel: 'ِ',
-    //    imperfectVowel: 'ُ'
-    //}
+    var verb = {
+        letter1: 'ن',
+        letter2: 'س',
+        letter3: 'ي',
+        type: {
+            name: 'defective',
+            type: 'yaa (ya-aa)'
+        },
+        perfectVowel: 'ِ',
+        imperfectVowel: 'ُ'
+    }
 
     //var verb = {
     //    letter1: 'ك',
@@ -39,17 +39,17 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
     //}
 
     //defective waaw example
-    var verb = {
-        letter1: 'د',
-        letter2: 'ع',
-        letter3: 'و',
-        type: {
-            name: 'defective',
-            type: 'waaw'
-        },
-        perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
-    }
+    //var verb = {
+    //    letter1: 'د',
+    //    letter2: 'ع',
+    //    letter3: 'و',
+    //    type: {
+    //        name: 'defective',
+    //        type: 'waaw'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'ُ'
+    //}
 
     var options = {
         form: 1,
@@ -135,16 +135,20 @@ verbApp.factory('conjugator', function(helperData) {
         if (hasConsonantEnding(id)) {
             verb = soundVerb;
         }
+        else if (c.verb.type.type === 'yaa (ya-aa)') {
+            // nasiya type verbs are conjugated like sound verbs except for number 12
+           if (id === 12) {
+               verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'ُوْا';
+           }
+           else {
+               verb = soundVerb;
+           }
+        }
         else {
             switch (id) {
                 case 5:
-                    if (c.verb.type.type === 'yaa (ya-aa)') {
-                        verb = soundVerb;
-                    }
-                    else {
-                        var lastLetter = getDefectiveLastLetter();
-                        verb = c.verb.letter1 + 'َ' + c.verb.letter2 + c.verb.perfectVowel + lastLetter;
-                    }
+                    var lastLetter = getDefectiveLastLetter();
+                    verb = c.verb.letter1 + 'َ' + c.verb.letter2 + c.verb.perfectVowel + lastLetter;
                     break;
                 case 7: verb = soundVerb; break;
 
@@ -153,16 +157,10 @@ verbApp.factory('conjugator', function(helperData) {
                 case 8:
                 case 6:
                 case 12:
-                    if (c.verb.type.type === 'yaa (ya-aa)') {
-                        verb = soundVerb;
-                        break;
-                    }
-                    else {
-                        // Group 1: first 4 chars, group 2: the chars that need to be removed, group 3: the rest of verb which we'll keep
-                        var regex = new RegExp('(.{4})' + '(' + c.verb.letter3 + '.)' + '(.*)');
-                        // Remove the middle group which disappears
-                        verb = soundVerb.replace(regex, '$1$3');
-                    }
+                    // Group 1: first 4 chars, group 2: the chars that need to be removed, group 3: the rest of verb which we'll keep
+                    var regex = new RegExp('(.{4})' + '(' + c.verb.letter3 + '.)' + '(.*)');
+                    // Remove the middle group which disappears
+                    verb = soundVerb.replace(regex, '$1$3');
             }
         }
         return verb;
