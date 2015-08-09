@@ -43,7 +43,8 @@ var verb = {
     letter2: 'ع',
     letter3: 'و',
     type: {
-        name: 'geminate'
+        name: 'defective',
+        type: 'waaw'
     },
     perfectVowel: 'َ',
     imperfectVowel: 'ُ'

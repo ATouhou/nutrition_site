@@ -15,13 +15,37 @@ app.controller('rootCtrl', function($scope) {
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
     //defective yaa example
+    //var verb = {
+    //    letter1: 'ن',
+    //    letter2: 'س',
+    //    letter3: 'ي',
+    //    type: {
+    //        name: 'defective',
+    //        type: 'yaa (ya-aa)'
+    //    },
+    //    perfectVowel: 'ِ',
+    //    imperfectVowel: 'ُ'
+    //}
+
+    //var verb = {
+    //    letter1: 'ك',
+    //    letter2: 'ت',
+    //    letter3: 'ب',
+    //    type: {
+    //        name: 'sound'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'ُ'
+    //}
+
+    //defective waaw example
     var verb = {
-        letter1: 'ن',
-        letter2: 'س',
-        letter3: 'ي',
+        letter1: 'د',
+        letter2: 'ع',
+        letter3: 'و',
         type: {
             name: 'defective',
-            type: 'yaa (ya-aa)'
+            type: 'waaw'
         },
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
@@ -114,24 +138,33 @@ verbApp.factory('conjugator', function(helperData) {
         else {
             switch (id) {
                 case 5:
-                    var lastLetter = getDefectiveLastLetter();
-                    verb = c.verb.letter1 + 'َ' + c.verb.letter2 + lastLetter; break;
+                    if (c.verb.type.type === 'yaa (ya-aa)') {
+                        verb = soundVerb;
+                    }
+                    else {
+                        var lastLetter = getDefectiveLastLetter();
+                        verb = c.verb.letter1 + 'َ' + c.verb.letter2 + c.verb.perfectVowel + lastLetter;
+                    }
+                    break;
                 case 7: verb = soundVerb; break;
-                case 12: verb = c.verb.letter1 + 'َ' + c.verb.letter2 + 'َوْا'; break;
 
-                // Note, for 6 and 8, the waaw fathah part of the root simply disappear so get the sound verb and just remove the waaw fathah using regex
-                case 6:
+                // Note, for 6, 8, 12 the waaw fathah/yaa fathah part of the root simply disappear so get the sound verb and just remove the waaw fathah using regex
+                // But yaa fathah (ya-aa) acts like a sound verb here
                 case 8:
-                    var regex = new RegExp(c.verb.letter3 + 'َ');
-                    verb = soundVerb;
-                    verb = verb.replace(regex, '');
+                case 6:
+                case 12:
+                    if (c.verb.type.type === 'yaa (ya-aa)') {
+                        verb = soundVerb;
+                        break;
+                    }
+                    else {
+                        // Group 1: first 4 chars, group 2: the chars that need to be removed, group 3: the rest of verb which we'll keep
+                        var regex = new RegExp('(.{4})' + '(' + c.verb.letter3 + '.)' + '(.*)');
+                        // Remove the middle group which disappears
+                        verb = soundVerb.replace(regex, '$1$3');
+                    }
             }
         }
-
-        if (c.verb.type.type === 'yaa (ya-aa)') {
-            return verb.replaceAt(3, 'ِ');
-        }
-
         return verb;
     }
 
@@ -191,6 +224,7 @@ verbApp.factory('conjugator', function(helperData) {
 })
 
 
+// Method to replace a char in a string by index
 String.prototype.replaceAt = function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
@@ -215,7 +249,7 @@ verbApp.value('helperData', {
         ],
         letters: ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
 
-        endings: ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُما', 'َ', 'َتْ', 'ا', 'َتا', 'ْنا', 'ْتُمْ', 'ْتُنَّ', 'وا', 'ْنَ'],
+        endings: ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُمَا', 'َ', 'َتْ', 'َا', 'َتَا', 'ْنَا', 'ْتُمْ', 'ْتُنَّ', 'ُوْا', 'ْنَ'],
 
         shortVowels: [{vowel: 'َ', name: 'fatha'}, {vowel: 'ُ', name: 'dammah'}, {vowel: 'ِ', name: 'kasrah'}],
 
@@ -272,7 +306,8 @@ var verb = {
     letter2: 'ع',
     letter3: 'و',
     type: {
-        name: 'geminate'
+        name: 'defective',
+        type: 'waaw'
     },
     perfectVowel: 'َ',
     imperfectVowel: 'ُ'
