@@ -35,12 +35,5 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
         }
     }
 
-    $scope.word = hamzatedWord.getWord('ءُسْتَاذ');
-
-
-
-
-
-
-
+    $scope.word = hamzatedWord.getWord('ءِسلام');
 })
