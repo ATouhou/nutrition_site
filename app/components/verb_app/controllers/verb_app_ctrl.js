@@ -1,30 +1,6 @@
 var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
-    //var verb = {
-    //    letter1: 'ك',
-    //    letter2: 'ت',
-    //    letter3: 'ب',
-    //    type: {
-    //        name: 'sound'
-    //    },
-    //    perfectVowel: 'َ',
-    //    imperfectVowel: 'ُ'
-    //}
-
-    //defective yaa example
-    //var verb = {
-    //    letter1: 'ن',
-    //    letter2: 'س',
-    //    letter3: 'ي',
-    //    type: {
-    //        name: 'defective',
-    //        type: 'yaa (ya-aa)'
-    //    },
-    //    perfectVowel: 'ِ',
-    //    imperfectVowel: 'ُ'
-    //}
-
+verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, helperData) {
     // hamzated example
     var verb = {
         letter1: 'ق',
@@ -58,4 +34,13 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
             $scope.conjugator.setVerb(userInput);
         }
     }
+
+    $scope.word = hamzatedWord.getWord('ءُسْتَاذ');
+
+
+
+
+
+
+
 })

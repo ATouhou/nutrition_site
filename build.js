@@ -13,31 +13,7 @@ app.controller('rootCtrl', function($scope) {
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
-    //var verb = {
-    //    letter1: 'ك',
-    //    letter2: 'ت',
-    //    letter3: 'ب',
-    //    type: {
-    //        name: 'sound'
-    //    },
-    //    perfectVowel: 'َ',
-    //    imperfectVowel: 'ُ'
-    //}
-
-    //defective yaa example
-    //var verb = {
-    //    letter1: 'ن',
-    //    letter2: 'س',
-    //    letter3: 'ي',
-    //    type: {
-    //        name: 'defective',
-    //        type: 'yaa (ya-aa)'
-    //    },
-    //    perfectVowel: 'ِ',
-    //    imperfectVowel: 'ُ'
-    //}
-
+verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, helperData) {
     // hamzated example
     var verb = {
         letter1: 'ق',
@@ -71,6 +47,15 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
             $scope.conjugator.setVerb(userInput);
         }
     }
+
+    $scope.word = hamzatedWord.getWord('ءُسْتَاذ');
+
+
+
+
+
+
+
 })
 ;var verbApp = angular.module('verbApp');
 
@@ -249,6 +234,23 @@ verbApp.factory('conjugator', function(helperData) {
 String.prototype.replaceAt = function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
+;var verbApp = angular.module('verbApp');
+
+// Take any word with hamza and put it on the its correct seat
+verbApp.factory('hamzatedWord', function() {
+    var factory = {};
+
+    factory.getWord = function(word) {
+
+
+    }
+
+    return factory;
+})
+
+
+// if first letter, then written on top if vowel is fathah or dammah. written on bottom if short vowel is kasrah
+//
 ;var verbApp = angular.module('verbApp');
 
 // General verb related helper data
