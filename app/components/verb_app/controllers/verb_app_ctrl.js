@@ -13,15 +13,27 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData) {
     //}
 
     //defective yaa example
+    //var verb = {
+    //    letter1: 'ن',
+    //    letter2: 'س',
+    //    letter3: 'ي',
+    //    type: {
+    //        name: 'defective',
+    //        type: 'yaa (ya-aa)'
+    //    },
+    //    perfectVowel: 'ِ',
+    //    imperfectVowel: 'ُ'
+    //}
+
+    // hamzated example
     var verb = {
-        letter1: 'ن',
-        letter2: 'س',
-        letter3: 'ي',
+        letter1: 'ق',
+        letter2: 'ر',
+        letter3: 'ء',
         type: {
-            name: 'defective',
-            type: 'yaa (ya-aa)'
+            name: 'hamzated'
         },
-        perfectVowel: 'ِ',
+        perfectVowel: 'َ',
         imperfectVowel: 'ُ'
     }
 

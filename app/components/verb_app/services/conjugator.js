@@ -48,9 +48,21 @@ verbApp.factory('conjugator', function(helperData) {
                 case 'geminate': pronoun.perfect = getGeminateVerb(pronoun.id); break;
                 case 'hollow': pronoun.perfect = getHollowVerb(pronoun.id); break;
                 case 'defective': pronoun.perfect = getDefectiveVerb(pronoun.id); break;
+                case 'hamzated': pronoun.perfect = getHamzatedVerb(pronoun.id); break;
             }
         })
         return list
+    }
+
+    // For now, if any root contains hamza change it so it's seat is alif
+    function getHamzatedVerb(id) {
+        var verb = getSoundVerb(id);
+        verb = verb.replace(/ء/, 'أ');
+        // Hamza final root is written with madd on second person masculine dual
+        if (c.verb.letter3 === 'ء' && id === 7) {
+            verb = verb.replace(/أَا/, 'آ');
+        }
+        return verb;
     }
 
     function getDefectiveVerb(id) {

@@ -76,3 +76,15 @@ var verb = {
     perfectVowel: 'ِ',
     imperfectVowel: 'ُ'
 }
+
+// hamzated example
+var verb = {
+    letter1: 'ء',
+    letter2: 'ك',
+    letter3: 'ل',
+    type: {
+        name: 'hamzated'
+    },
+    perfectVowel: 'َ',
+    imperfectVowel: 'ُ'
+}
