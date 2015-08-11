@@ -4,11 +4,54 @@ var verbApp = angular.module('verbApp');
 verbApp.factory('hamzatedWord', function() {
     var factory = {};
 
+    // Make wordArray and indexes available to all functions
+    var wordArray;
+    var indexes;
+
     factory.getWord = function(word) {
         // Get an array of indexes where hamza is present [0,3] for example
-        var wordArray = word.split('');
-        var indexes = getCharIndexes('ء', wordArray);
+        wordArray = word.split('');
+        indexes = getCharIndexes('ء', wordArray);
 
+        debugger;
+        checkFirstLetter();
+
+        // Check if there hamzas beyond the first letter
+        //var moreHamzas = _.some(indexes, function(index) {
+        //    return index > 0;
+        //})
+        //
+        //if (moreHamzas) {
+        //    _.forEach(indexes, function(index) {
+        //        var leftVowel = wordArray[index - 1];
+        //        var rightVowel = wordArray[index + 1];
+        //
+        //        if (isMedialAloof()) {}
+        //        else {
+        //            // Check general rules
+        //            // if it's a sukoon, then look at the next one
+        //            if (leftVowel ===  'ْ') {
+        //                leftVowel = wordArray[index - 2];
+        //            }
+        //
+        //            // compare leftVowel and rightVowel
+        //            if ( (leftVowel === 'ي' || leftVowel === 'ِ') || (rightVowel === 'ي' || rightVowel === 'ِ') ) {
+        //                wordArray[index] = 'ئ';
+        //            }
+        //            else if ( (leftVowel === 'ُ' || leftVowel === 'و') || (rightVowel === 'ُ' || rightVowel === 'و') ) {
+        //                wordArray[index] = 'ؤ';
+        //            }
+        //            else {
+        //                wordArray[index] = 'أ';
+        //            }
+        //        }
+        //    })
+        //}
+
+        return wordArray.join('');
+    }
+
+    function checkFirstLetter() {
         // Check if first letter is hamza
         if (_.contains(indexes, 0)) {
             // Fathah or dammah means hamza on top of alif
@@ -20,43 +63,9 @@ verbApp.factory('hamzatedWord', function() {
                 wordArray[0] = 'إ';
             }
         }
-
-        // Check if there hamzas beyond the first letter
-        var moreHamzas = _.some(indexes, function(index) {
-            return index > 0;
-        })
-
-        if (moreHamzas) {
-            _.forEach(indexes, function(index) {
-                var leftVowel = wordArray[index - 1];
-                var rightVowel = wordArray[index + 1];
-
-                if (isMedialAloof(wordArray, index)) {}
-                else {
-                    // Check general rules
-                    // if it's a sukoon, then look at the next one
-                    if (leftVowel ===  'ْ') {
-                        leftVowel = wordArray[index - 2];
-                    }
-
-                    // compare leftVowel and rightVowel
-                    if ( (leftVowel === 'ي' || leftVowel === 'ِ') || (rightVowel === 'ي' || rightVowel === 'ِ') ) {
-                        wordArray[index] = 'ئ';
-                    }
-                    else if ( (leftVowel === 'ُ' || leftVowel === 'و') || (rightVowel === 'ُ' || rightVowel === 'و') ) {
-                        wordArray[index] = 'ؤ';
-                    }
-                    else {
-                        wordArray[index] = 'أ';
-                    }
-                }
-            })
-        }
-
-        return wordArray.join('');
     }
 
-    function isMedialAloof(wordArray, index) {
+    function isMedialAloof() {
         var leftLetter1 = wordArray[index - 1];
         var leftLetter2 = wordArray[index - 2];
         var leftLetter3 = wordArray[index - 3];
@@ -74,13 +83,13 @@ verbApp.factory('hamzatedWord', function() {
     }
 
     function getCharIndexes(char, list) {
-        var indexes = [];
+        var indexList = [];
         for(var i=0; i < list.length;i++) {
             if (list[i] === char) {
-                indexes.push(i)
+                indexList.push(i)
             };
         }
-        return indexes;
+        return indexList;
     }
     return factory;
 })
