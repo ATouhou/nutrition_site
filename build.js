@@ -49,14 +49,13 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
     }
 
     //var myWord = 'هَيْءَة';
-
     //var myWord = 'سَءَلَتْ';
-
     //var myWord = 'مُءَدِّب';
-
-    var myWord = 'ءِسْلَام';
-
+    //var myWord = 'ءِسْلَام';
     //var myWord = 'مُرُوْءَة';
+    //var myWord = 'رَءْس'
+
+    var myWord = 'مَءَاذِن';
 
     $scope.word = hamzatedWord.getWord(myWord);
 })
@@ -252,42 +251,53 @@ verbApp.factory('hamzatedWord', function() {
         wordArray = word.split('');
         indexes = getCharIndexes('ء', wordArray);
 
-        debugger;
         checkFirstLetter();
 
         // Check if there hamzas beyond the first letter
-        //var moreHamzas = _.some(indexes, function(index) {
-        //    return index > 0;
-        //})
-        //
-        //if (moreHamzas) {
-        //    _.forEach(indexes, function(index) {
-        //        var leftVowel = wordArray[index - 1];
-        //        var rightVowel = wordArray[index + 1];
-        //
-        //        if (isMedialAloof()) {}
-        //        else {
-        //            // Check general rules
-        //            // if it's a sukoon, then look at the next one
-        //            if (leftVowel ===  'ْ') {
-        //                leftVowel = wordArray[index - 2];
-        //            }
-        //
-        //            // compare leftVowel and rightVowel
-        //            if ( (leftVowel === 'ي' || leftVowel === 'ِ') || (rightVowel === 'ي' || rightVowel === 'ِ') ) {
-        //                wordArray[index] = 'ئ';
-        //            }
-        //            else if ( (leftVowel === 'ُ' || leftVowel === 'و') || (rightVowel === 'ُ' || rightVowel === 'و') ) {
-        //                wordArray[index] = 'ؤ';
-        //            }
-        //            else {
-        //                wordArray[index] = 'أ';
-        //            }
-        //        }
-        //    })
-        //}
+        var moreHamzas = _.some(indexes, function(index) {
+            return index > 0;
+        })
+
+        if (moreHamzas) {
+            _.forEach(indexes, function(index) {
+                // This represents the penultimate letter where the case ending is present (or last letter of you think of the case ending as a vowel)
+                if (wordArray[wordArray.length - 2] === 'ء') {
+                   checkFinalHamza(index);
+                }
+
+                else if (isMedialAloof(index)) {}
+
+                else if (wordArray[index + 2] === 'ا') {
+                    debugger;
+                    checkMadd(index);
+                }
+                else {
+                    checkMedialRegular(index);
+                }
+            })
+        }
 
         return wordArray.join('');
+    }
+
+    function checkMadd(index) {
+        wordArray[index] = 'آ';
+        _.pullAt(wordArray, (index + 1), (index + 2));
+    }
+
+    function checkFinalHamza(index) {
+       // aloof
+        var previousLetter1 = wordArray[index - 1];
+        var previousLetter2 = wordArray[index - 2];
+
+        if (previousLetter1 === 'ا' || previousLetter1 === 'ْْْ') {}
+        else {
+            switch (previousLetter1) {
+                case 'َ': wordArray[index] = 'أ'; break;
+                case 'ُ': wordArray[index] = 'ؤ'; break;
+                case 'ِ': wordArray[index] = 'ئ'; break;
+            }
+        }
     }
 
     function checkFirstLetter() {
@@ -304,16 +314,39 @@ verbApp.factory('hamzatedWord', function() {
         }
     }
 
-    function isMedialAloof() {
-        var leftLetter1 = wordArray[index - 1];
-        var leftLetter2 = wordArray[index - 2];
-        var leftLetter3 = wordArray[index - 3];
-        var rightLetter = wordArray[index + 1];
+    // Check regular medial rules
+    function checkMedialRegular(index) {
+        var previousLetter = wordArray[index - 1];
+        var nextLetter = wordArray[index + 1];
 
-        // First case: before, you have sukoon, waaw, then dammah
-        // Second case: alif before, and fathah after
+        // if it's a sukoon, then look at the next one
+        if (previousLetter ===  'ْ') {
+            previousLetter = wordArray[index - 2];
+        }
+        // yaa seat
+        if ( (previousLetter === 'ي' || previousLetter === 'ِ') || (nextLetter === 'ي' || nextLetter === 'ِ') ) {
+            wordArray[index] = 'ئ';
+        }
+        // waaw seat
+        else if ( (previousLetter === 'ُ' || previousLetter === 'و') || (nextLetter === 'ُ' || nextLetter === 'و') ) {
+            wordArray[index] = 'ؤ';
+        }
+        // alif seat
+        else {
+            wordArray[index] = 'أ';
+        }
+    }
+
+    function isMedialAloof(index) {
+        var previousLetter1 = wordArray[index - 1];
+        var previousLetter2 = wordArray[index - 2];
+        var previousLetter3 = wordArray[index - 3];
+        var nextLetter = wordArray[index + 1];
+
+        // First case: previous, you have sukoon, waaw, then dammah
+        // Second case: alif previous, and fathah next
         // If either case is true, then it's medial aloof
-        if ( (leftLetter1 === 'ْ'&& leftLetter2 === 'و' && leftLetter3 === 'ُ') || (leftLetter1 === 'ا' && rightLetter === 'َ') ) {
+        if ( (previousLetter1 === 'ْ'&& previousLetter2 === 'و' && previousLetter3 === 'ُ') || (previousLetter1 === 'ا' && nextLetter === 'َ') ) {
             return true;
         }
         else {
