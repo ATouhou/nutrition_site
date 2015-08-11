@@ -39,9 +39,11 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
 
     //var myWord = 'سَءَلَتْ';
 
-    var myWord = 'مُءَدِّب';
+    //var myWord = 'مُءَدِّب';
 
-    //var myWord = 'ءِسْلَام';
+    var myWord = 'ءِسْلَام';
+
+    //var myWord = 'مُرُوْءَة';
 
     $scope.word = hamzatedWord.getWord(myWord);
 })
