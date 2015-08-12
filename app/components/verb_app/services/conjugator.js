@@ -1,6 +1,6 @@
 var verbApp = angular.module('verbApp');
 
-verbApp.factory('conjugator', function(helperData) {
+verbApp.factory('conjugator', function(helperData, hamzatedWord) {
     //c stands for conjugator
     var c = {};
 
@@ -48,21 +48,22 @@ verbApp.factory('conjugator', function(helperData) {
                 case 'geminate': pronoun.perfect = getGeminateVerb(pronoun.id); break;
                 case 'hollow': pronoun.perfect = getHollowVerb(pronoun.id); break;
                 case 'defective': pronoun.perfect = getDefectiveVerb(pronoun.id); break;
-                case 'hamzated': pronoun.perfect = getHamzatedVerb(pronoun.id); break;
+                //case 'hamzated': pronoun.perfect = getHamzatedVerb(pronoun.id); break;
+            }
+            if (anyHamzas()) {
+                pronoun.perfect = hamzatedWord.getWord(pronoun.perfect);
             }
         })
         return list
     }
 
-    // For now, if any root contains hamza change it so it's seat is alif
-    function getHamzatedVerb(id) {
-        var verb = getSoundVerb(id);
-        verb = verb.replace(/ء/, 'أ');
-        // Hamza final root is written with madd on second person masculine dual
-        if (c.verb.letter3 === 'ء' && id === 7) {
-            verb = verb.replace(/أَا/, 'آ');
+    function anyHamzas() {
+        if (c.verb.letter1 === 'ء' || c.verb.letter2 === 'ء' || c.verb.letter3 === 'ء') {
+            return true;
         }
-        return verb;
+        else {
+            return false;
+        }
     }
 
     function getDefectiveVerb(id) {

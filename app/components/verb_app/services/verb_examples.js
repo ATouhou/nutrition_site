@@ -88,3 +88,25 @@ var verb = {
     perfectVowel: 'َ',
     imperfectVowel: 'ُ'
 }
+
+// hamzated example
+var verb = {
+    letter1: 'ق',
+    letter2: 'ر',
+    letter3: 'ء',
+    type: {
+        name: 'hamzated'
+    },
+    perfectVowel: 'َ',
+    imperfectVowel: 'ُ'
+}
+
+// hamazated word examples
+
+//var myWord = 'هَيْءَة';
+//var myWord = 'سَءَلَتْ';
+//var myWord = 'مُءَدِّب';
+//var myWord = 'ءِسْلَام';
+//var myWord = 'مُرُوْءَة';
+//var myWord = 'رَءْس'
+var myWord = 'مَءَاذِن';

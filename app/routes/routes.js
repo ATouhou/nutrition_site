@@ -17,4 +17,10 @@ app.config(function($stateProvider) {
             controller: 'verbAppCtrl'
         })
 
+        .state('main.conjugation', {
+            url: '/conjugation',
+            templateUrl: '/app/components/verb_app/templates/conjugation.html',
+            controller: 'verbAppCtrl'
+        })
+
 })

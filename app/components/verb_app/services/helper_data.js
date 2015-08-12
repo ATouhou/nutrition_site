@@ -17,7 +17,7 @@ verbApp.value('helperData', {
                 { id: 12, pronoun: 'هُم', name: 'third person masculine plural', perfect: '' },
                 { id: 13, pronoun: 'هُنَّ', name: 'third person feminine plural', perfect: '' }
         ],
-        letters: ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
+        letters: ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ل', 'م', 'ن', 'ه', 'و', 'ي', 'ء'],
 
         endings: ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُمَا', 'َ', 'َتْ', 'َا', 'َتَا', 'ْنَا', 'ْتُمْ', 'ْتُنَّ', 'ُوْا', 'ْنَ'],
 
@@ -26,8 +26,10 @@ verbApp.value('helperData', {
         // hash for going from waaw to kasrah, alif to fatha, etc
         longToShort: {'و': 'ُ', 'ي': 'ِ', 'ا': 'َ'},
 
-        types: [{name: 'sound'}, {name: 'geminate'}, {name: 'hollow', type: 'waaw'},
-                {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'},
+        types: [{name: 'sound'},
+                {name: 'geminate'},
+                {name: 'hamzated'},
+                {name: 'hollow', type: 'waaw'}, {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'},
                 {name: 'assimilated'},
                 {name: 'defective', type: 'waaw'}, {name: 'defective', type: 'yaa (aa-ii)'}, {name: 'defective', type: 'yaa (ya-aa)'}]
     }

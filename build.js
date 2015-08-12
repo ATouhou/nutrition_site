@@ -20,7 +20,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
         letter2: 'ر',
         letter3: 'ء',
         type: {
-            name: 'hamzated'
+            name: 'sound'
         },
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
@@ -47,21 +47,10 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
             $scope.conjugator.setVerb(userInput);
         }
     }
-
-    //var myWord = 'هَيْءَة';
-    //var myWord = 'سَءَلَتْ';
-    //var myWord = 'مُءَدِّب';
-    //var myWord = 'ءِسْلَام';
-    //var myWord = 'مُرُوْءَة';
-    //var myWord = 'رَءْس'
-
-    var myWord = 'مَءَاذِن';
-
-    $scope.word = hamzatedWord.getWord(myWord);
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.factory('conjugator', function(helperData) {
+verbApp.factory('conjugator', function(helperData, hamzatedWord) {
     //c stands for conjugator
     var c = {};
 
@@ -109,21 +98,22 @@ verbApp.factory('conjugator', function(helperData) {
                 case 'geminate': pronoun.perfect = getGeminateVerb(pronoun.id); break;
                 case 'hollow': pronoun.perfect = getHollowVerb(pronoun.id); break;
                 case 'defective': pronoun.perfect = getDefectiveVerb(pronoun.id); break;
-                case 'hamzated': pronoun.perfect = getHamzatedVerb(pronoun.id); break;
+                //case 'hamzated': pronoun.perfect = getHamzatedVerb(pronoun.id); break;
+            }
+            if (anyHamzas()) {
+                pronoun.perfect = hamzatedWord.getWord(pronoun.perfect);
             }
         })
         return list
     }
 
-    // For now, if any root contains hamza change it so it's seat is alif
-    function getHamzatedVerb(id) {
-        var verb = getSoundVerb(id);
-        verb = verb.replace(/ء/, 'أ');
-        // Hamza final root is written with madd on second person masculine dual
-        if (c.verb.letter3 === 'ء' && id === 7) {
-            verb = verb.replace(/أَا/, 'آ');
+    function anyHamzas() {
+        if (c.verb.letter1 === 'ء' || c.verb.letter2 === 'ء' || c.verb.letter3 === 'ء') {
+            return true;
         }
-        return verb;
+        else {
+            return false;
+        }
     }
 
     function getDefectiveVerb(id) {
@@ -268,7 +258,6 @@ verbApp.factory('hamzatedWord', function() {
                 else if (isMedialAloof(index)) {}
 
                 else if (wordArray[index + 2] === 'ا') {
-                    debugger;
                     checkMadd(index);
                 }
                 else {
@@ -390,7 +379,7 @@ verbApp.value('helperData', {
                 { id: 12, pronoun: 'هُم', name: 'third person masculine plural', perfect: '' },
                 { id: 13, pronoun: 'هُنَّ', name: 'third person feminine plural', perfect: '' }
         ],
-        letters: ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ل', 'م', 'ن', 'ه', 'و', 'ي'],
+        letters: ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ل', 'م', 'ن', 'ه', 'و', 'ي', 'ء'],
 
         endings: ['ْتُ', 'ْتَ', 'ْتِ', 'ْتُمَا', 'َ', 'َتْ', 'َا', 'َتَا', 'ْنَا', 'ْتُمْ', 'ْتُنَّ', 'ُوْا', 'ْنَ'],
 
@@ -399,8 +388,10 @@ verbApp.value('helperData', {
         // hash for going from waaw to kasrah, alif to fatha, etc
         longToShort: {'و': 'ُ', 'ي': 'ِ', 'ا': 'َ'},
 
-        types: [{name: 'sound'}, {name: 'geminate'}, {name: 'hollow', type: 'waaw'},
-                {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'},
+        types: [{name: 'sound'},
+                {name: 'geminate'},
+                {name: 'hamzated'},
+                {name: 'hollow', type: 'waaw'}, {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'},
                 {name: 'assimilated'},
                 {name: 'defective', type: 'waaw'}, {name: 'defective', type: 'yaa (aa-ii)'}, {name: 'defective', type: 'yaa (ya-aa)'}]
     }
@@ -494,6 +485,28 @@ var verb = {
     perfectVowel: 'َ',
     imperfectVowel: 'ُ'
 }
+
+// hamzated example
+var verb = {
+    letter1: 'ق',
+    letter2: 'ر',
+    letter3: 'ء',
+    type: {
+        name: 'hamzated'
+    },
+    perfectVowel: 'َ',
+    imperfectVowel: 'ُ'
+}
+
+// hamazated word examples
+
+//var myWord = 'هَيْءَة';
+//var myWord = 'سَءَلَتْ';
+//var myWord = 'مُءَدِّب';
+//var myWord = 'ءِسْلَام';
+//var myWord = 'مُرُوْءَة';
+//var myWord = 'رَءْس'
+var myWord = 'مَءَاذِن';
 ;app.config(function($stateProvider) {
     // For any unmatched url, redirect to /state1
     //$urlRouterProvider.otherwise("/home");
@@ -510,6 +523,12 @@ var verb = {
         .state('main.verbApp', {
             url: '/verb_app',
             templateUrl: '/app/components/verb_app/templates/index.html',
+            controller: 'verbAppCtrl'
+        })
+
+        .state('main.conjugation', {
+            url: '/conjugation',
+            templateUrl: '/app/components/verb_app/templates/conjugation.html',
             controller: 'verbAppCtrl'
         })
 

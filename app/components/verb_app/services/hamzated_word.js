@@ -30,7 +30,6 @@ verbApp.factory('hamzatedWord', function() {
                 else if (isMedialAloof(index)) {}
 
                 else if (wordArray[index + 2] === 'ا') {
-                    debugger;
                     checkMadd(index);
                 }
                 else {

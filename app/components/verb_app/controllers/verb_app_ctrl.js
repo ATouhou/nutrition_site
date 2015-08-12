@@ -7,7 +7,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
         letter2: 'ر',
         letter3: 'ء',
         type: {
-            name: 'hamzated'
+            name: 'sound'
         },
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
@@ -34,15 +34,4 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
             $scope.conjugator.setVerb(userInput);
         }
     }
-
-    //var myWord = 'هَيْءَة';
-    //var myWord = 'سَءَلَتْ';
-    //var myWord = 'مُءَدِّب';
-    //var myWord = 'ءِسْلَام';
-    //var myWord = 'مُرُوْءَة';
-    //var myWord = 'رَءْس'
-
-    var myWord = 'مَءَاذِن';
-
-    $scope.word = hamzatedWord.getWord(myWord);
 })
