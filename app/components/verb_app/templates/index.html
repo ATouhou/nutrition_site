@@ -2,6 +2,19 @@
 
     <div class="col-md-3 left-panel">
 
+        <div ng-repeat="menuOption in menuOptions">
+            <div>
+                <strong>{{menuOption.title}}</strong>
+            </div>
+
+            <div ng-repeat="option in menuOption.options">
+                <input type="checkbox" ng-model="option.selected">
+                {{option.name}}
+            </div>
+        </div>
+
+
+
     </div>
     <div class="col-md-9 main-panel">
 

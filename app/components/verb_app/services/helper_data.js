@@ -26,11 +26,12 @@ verbApp.value('helperData', {
         // hash for going from waaw to kasrah, alif to fatha, etc
         longToShort: {'و': 'ُ', 'ي': 'ِ', 'ا': 'َ'},
 
-        types: [{name: 'sound'},
+        verbTypes: [{name: 'assimilated'},
                 {name: 'geminate'},
                 {name: 'hamzated'},
                 {name: 'hollow', type: 'waaw'}, {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'},
-                {name: 'assimilated'},
-                {name: 'defective', type: 'waaw'}, {name: 'defective', type: 'yaa (aa-ii)'}, {name: 'defective', type: 'yaa (ya-aa)'}]
+                {name: 'defective', type: 'waaw'}, {name: 'defective', type: 'yaa (aa-ii)'}, {name: 'defective', type: 'yaa (ya-aa)'},
+                {name: 'sound'}]
+
     }
 )

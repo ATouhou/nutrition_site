@@ -13,7 +13,7 @@ app.controller('rootCtrl', function($scope) {
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, helperData) {
+verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, helperData) {
     // hamzated example
     var verb = {
         letter1: 'ق',
@@ -48,6 +48,16 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
         }
     }
 })
+;var verbApp = angular.module('verbApp');
+
+verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, helperData, menuOptions) {
+
+    $scope.helperData = helperData;
+
+    $scope.menuOptions = menuOptions;
+
+})
+
 ;var verbApp = angular.module('verbApp');
 
 verbApp.factory('conjugator', function(helperData, hamzatedWord) {
@@ -388,14 +398,24 @@ verbApp.value('helperData', {
         // hash for going from waaw to kasrah, alif to fatha, etc
         longToShort: {'و': 'ُ', 'ي': 'ِ', 'ا': 'َ'},
 
-        types: [{name: 'sound'},
+        verbTypes: [{name: 'assimilated'},
                 {name: 'geminate'},
                 {name: 'hamzated'},
                 {name: 'hollow', type: 'waaw'}, {name: 'hollow', type: 'yaa'}, {name: 'hollow', type: 'alif'},
-                {name: 'assimilated'},
-                {name: 'defective', type: 'waaw'}, {name: 'defective', type: 'yaa (aa-ii)'}, {name: 'defective', type: 'yaa (ya-aa)'}]
+                {name: 'defective', type: 'waaw'}, {name: 'defective', type: 'yaa (aa-ii)'}, {name: 'defective', type: 'yaa (ya-aa)'},
+                {name: 'sound'}]
+
     }
-);// sound example
+);var verbApp = angular.module('verbApp');
+
+verbApp.value('menuOptions', [
+    {title: 'type', options: [{name: 'all'}, {name: 'assimilated'}, {name: 'geminate'}, {name: 'hamzated'}, {name: 'hollow'}, {name: 'defective'}, {name: 'sound'}]},
+    {title: 'person', options: [{name: 'all'}, {name: 'first'}, {name: 'second'}, {name: 'third'}]},
+    {title: 'gender', options: [{name: 'all'}, {name: 'masculine'}, {name: 'feminine'}]},
+    {title: 'number', options: [{name: 'all'}, {name: 'singular'}, {name: 'dual'}, {name: 'plural'}]},
+])
+
+;// sound example
 var verb = {
     letter1: 'ك',
     letter2: 'ت',
@@ -529,7 +549,7 @@ var myWord = 'مَءَاذِن';
         .state('main.conjugation', {
             url: '/conjugation',
             templateUrl: '/app/components/verb_app/templates/conjugation.html',
-            controller: 'verbAppCtrl'
+            controller: 'conjugatorCtrl'
         })
 
 })
