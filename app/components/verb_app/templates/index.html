@@ -8,7 +8,7 @@
             </div>
 
             <div ng-repeat="option in menuOption.options">
-                <input type="checkbox" ng-model="option.selected">
+                <input type="checkbox" ng-model="option.selected" ng-change="test()">
                 {{_.capitalize(option.name)}}
             </div>
         </div>
@@ -17,10 +17,14 @@
 
     <div class="col-md-9 main-panel">
 
-       <div ng-repeat="verb in verbs">
-           {{conjugator.verb}}
-       </div>
+       <!--<div ng-repeat="verb in verbs">-->
+           <!--{{verb.type.name}}-->
+       <!--</div>-->
 
+
+        <div ng-repeat="selection in menuOptions[3].options | filter:{selected:true}">
+            selection: {{selection.name}}
+        </div>
 
     </div>
 
