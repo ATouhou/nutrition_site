@@ -27,13 +27,13 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
     }
 
     // get the complete name of the conjugation e.g. "first person masculine singular perfect" based on the options already specified
-    c.getName = function() {
-        var name = _.startCase(c.options.person);
+    c.getName = function(item) {
+        var name = _.startCase(item.person);
         // first person does not have gender so account for that
-        if (c.options.gender) {
-            name += ' ' + c.options.gender;
+        if (item.gender) {
+            name += ' ' + item.gender;
         }
-        name += ' ' + c.options.number
+        name += ' ' + item.number
         return name.toLowerCase();
     }
 
