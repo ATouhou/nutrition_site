@@ -6,5 +6,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
 
     $scope.menuOptions = menuOptions;
 
+
+
 })
 

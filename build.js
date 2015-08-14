@@ -8,6 +8,7 @@ app.run(function ($rootScope) {
 ;var app = angular.module('arabicSite');
 
 app.controller('rootCtrl', function($scope) {
+    $scope._ = _;
 
 
 })
@@ -55,6 +56,8 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, hamzatedWord, hel
     $scope.helperData = helperData;
 
     $scope.menuOptions = menuOptions;
+
+
 
 })
 
@@ -413,6 +416,8 @@ verbApp.value('menuOptions', [
     {title: 'person', options: [{name: 'all'}, {name: 'first'}, {name: 'second'}, {name: 'third'}]},
     {title: 'gender', options: [{name: 'all'}, {name: 'masculine'}, {name: 'feminine'}]},
     {title: 'number', options: [{name: 'all'}, {name: 'singular'}, {name: 'dual'}, {name: 'plural'}]},
+
+    //{title: 'form', options: [{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]}
 ])
 
 ;// sound example
@@ -527,6 +532,65 @@ var verb = {
 //var myWord = 'مُرُوْءَة';
 //var myWord = 'رَءْس'
 var myWord = 'مَءَاذِن';
+;var verbApp = angular.module('verbApp');
+
+// General verb related helper data
+verbApp.constant('verbs', [
+
+    // sound
+    {
+        letter1: 'ك',
+        letter2: 'ت',
+        letter3: 'ب',
+        type: {
+            name: 'sound'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ'
+    },
+    {
+        letter1: 'د',
+        letter2: 'ر',
+        letter3: 'س',
+        type: {
+            name: 'sound'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ'
+    },
+    {
+        letter1: 'ع',
+        letter2: 'ر',
+        letter3: 'ف',
+        type: {
+            name: 'sound'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ِ'
+    },
+    {
+        letter1: 'ص',
+        letter2: 'ع',
+        letter3: 'ب',
+        type: {
+            name: 'sound'
+        },
+        perfectVowel: 'ُ',
+        imperfectVowel: 'ُ'
+    },
+    {
+        letter1: 'ش',
+        letter2: 'ر',
+        letter3: 'ب',
+        type: {
+            name: 'sound'
+        },
+        perfectVowel: 'ِ',
+        imperfectVowel: 'َ'
+    },
+
+
+])
 ;app.config(function($stateProvider) {
     // For any unmatched url, redirect to /state1
     //$urlRouterProvider.otherwise("/home");

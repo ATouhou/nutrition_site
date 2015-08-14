@@ -4,18 +4,17 @@
 
         <div ng-repeat="menuOption in menuOptions">
             <div>
-                <strong>{{menuOption.title}}</strong>
+                <strong>{{_.capitalize(menuOption.title)}}</strong>
             </div>
 
             <div ng-repeat="option in menuOption.options">
                 <input type="checkbox" ng-model="option.selected">
-                {{option.name}}
+                {{_.capitalize(option.name)}}
             </div>
         </div>
-
-
-
     </div>
+
+
     <div class="col-md-9 main-panel">
 
 
