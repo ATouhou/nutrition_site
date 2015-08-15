@@ -55,21 +55,21 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
 
     $scope.helperData = helperData;
 
-    $scope.menuOptions = menuOptions;
+    $scope.pronounList = helperData.pronounList;
 
     $scope.verbs = verbs;
 
     $scope.conjugator = conjugator;
 
+    _.forEach($scope.verbs, function(verb) {
+        verb.conjugations = conjugator.getConjugations(verb);
+    })
 
-    $scope.test = function() {
-        var persons;
-        _.filter($scope.helperData.pronounList, function(pronoun) {
-            persons = _.filter( _.findWhere($scope.menuOptions, {title: 'person'}).options, {selected: true} );
-        })
-        debugger;
+    $scope.checkSelected = function(item) {
+        var selectedPronouns = _.pluck(_.filter($scope.pronounList, {selected: true}), 'id');
+        var isSelected = _.contains(selectedPronouns, item.id);
+        return isSelected;
     }
-
 })
 
 ;var verbApp = angular.module('verbApp');
@@ -91,7 +91,6 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
 
     c.initialize = function(verb, options) {
         c.verb = verb;
-        c.options = options;
         c.list = getList();
     }
 
@@ -109,6 +108,11 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
         }
         name += ' ' + item.number
         return name.toLowerCase();
+    }
+
+    c.getConjugations = function(verb) {
+        c.verb = verb;
+        return getList();
     }
 
     //*******************************************
@@ -422,14 +426,15 @@ verbApp.value('helperData', {
     }
 );var verbApp = angular.module('verbApp');
 
-verbApp.value('menuOptions', [
-    {title: 'type', options: [{name: 'assimilated'}, {name: 'geminate'}, {name: 'hamzated'}, {name: 'hollow'}, {name: 'defective'}, {name: 'sound'}]},
-    {title: 'person', options: [{name: 'first person'}, {name: 'second person'}, {name: 'third person'}]},
-    {title: 'gender', options: [{name: 'masculine'}, {name: 'feminine'}]},
-    {title: 'number', options: [{name: 'singular'}, {name: 'dual'}, {name: 'plural'}]},
+verbApp.value('menuOptions', {
+    type: [{name: 'assimilated'}, {name: 'geminate'}, {name: 'hamzated'}, {name: 'hollow'}, {name: 'defective'}, {name: 'sound'}],
+    form: [{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]
+}
 
-    //{title: 'form', options: [{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]}
-])
+
+
+
+)
 
 ;// sound example
 var verb = {

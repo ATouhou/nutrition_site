@@ -17,7 +17,6 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
 
     c.initialize = function(verb, options) {
         c.verb = verb;
-        c.options = options;
         c.list = getList();
     }
 
@@ -35,6 +34,11 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
         }
         name += ' ' + item.number
         return name.toLowerCase();
+    }
+
+    c.getConjugations = function(verb) {
+        c.verb = verb;
+        return getList();
     }
 
     //*******************************************

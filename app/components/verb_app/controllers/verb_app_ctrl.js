@@ -4,20 +4,20 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
 
     $scope.helperData = helperData;
 
-    $scope.menuOptions = menuOptions;
+    $scope.pronounList = helperData.pronounList;
 
     $scope.verbs = verbs;
 
     $scope.conjugator = conjugator;
 
+    _.forEach($scope.verbs, function(verb) {
+        verb.conjugations = conjugator.getConjugations(verb);
+    })
 
-    $scope.test = function() {
-        var persons;
-        _.filter($scope.helperData.pronounList, function(pronoun) {
-            persons = _.filter( _.findWhere($scope.menuOptions, {title: 'person'}).options, {selected: true} );
-        })
-        debugger;
+    $scope.checkSelected = function(item) {
+        var selectedPronouns = _.pluck(_.filter($scope.pronounList, {selected: true}), 'id');
+        var isSelected = _.contains(selectedPronouns, item.id);
+        return isSelected;
     }
-
 })
 

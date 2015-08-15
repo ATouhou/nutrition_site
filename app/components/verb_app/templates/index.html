@@ -2,28 +2,41 @@
 
     <div class="col-md-3 left-panel">
 
-        <div ng-repeat="menuOption in menuOptions">
-            <div>
-                <strong>{{_.capitalize(menuOption.title)}}</strong>
-            </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox">
+                    </th>
+                    <th>Name</th>
+                    <th>Pronoun</th>
+                </tr>
+            </thead>
 
-            <div ng-repeat="option in menuOption.options">
-                <input type="checkbox" ng-model="option.selected" ng-change="test()">
-                {{_.capitalize(option.name)}}
-            </div>
-        </div>
+            <tbody>
+                <tr ng-repeat="item in pronounList">
+                    <td>
+                        <input type="checkbox" ng-model="item.selected">
+                    </td>
+                    <td>{{conjugator.getName(item)}}</td>
+                    <td class="large-font">{{item.pronoun}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
     </div>
 
 
-    <div class="col-md-9 main-panel">
+    <div class="col-md-9 main-panel large-font">
 
-       <!--<div ng-repeat="verb in verbs">-->
-           <!--{{verb.type.name}}-->
-       <!--</div>-->
-
-
-        <div ng-repeat="selection in menuOptions[3].options | filter:{selected:true}">
-            selection: {{selection.name}}
+        <div ng-repeat="verb in verbs">
+            <div class="huge-font">{{verb.conjugations[4].perfect}}</div>
+            <div ng-repeat="item in verb.conjugations">
+                <span ng-if="checkSelected(item)">
+                    {{item.perfect}}
+                </span>
+            </div>
         </div>
 
     </div>
