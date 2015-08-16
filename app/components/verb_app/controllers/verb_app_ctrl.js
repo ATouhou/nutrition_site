@@ -12,12 +12,18 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
 
     _.forEach($scope.verbs, function(verb) {
         verb.conjugations = conjugator.getConjugations(verb);
+        _.forEach(verb.conjugations, function(conjugation, index) {
+            conjugation.menuItem = $scope.pronounList[index];
+        })
     })
 
-    $scope.checkSelected = function(item) {
-        var selectedPronouns = _.pluck(_.filter($scope.pronounList, {selected: true}), 'id');
-        var isSelected = _.contains(selectedPronouns, item.id);
-        return isSelected;
+    $scope.isSelected = function(conjugation) {
+        if (conjugation.menuItem.selected === true) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 })
 

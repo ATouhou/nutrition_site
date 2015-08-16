@@ -63,12 +63,18 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
 
     _.forEach($scope.verbs, function(verb) {
         verb.conjugations = conjugator.getConjugations(verb);
+        _.forEach(verb.conjugations, function(conjugation, index) {
+            conjugation.menuItem = $scope.pronounList[index];
+        })
     })
 
-    $scope.checkSelected = function(item) {
-        var selectedPronouns = _.pluck(_.filter($scope.pronounList, {selected: true}), 'id');
-        var isSelected = _.contains(selectedPronouns, item.id);
-        return isSelected;
+    $scope.isSelected = function(conjugation) {
+        if (conjugation.menuItem.selected === true) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 })
 
@@ -553,7 +559,7 @@ var myWord = 'مَءَاذِن';
 // General verb related helper data
 verbApp.constant('verbs', [
 
-    // sound
+    // Sound
     {
         letter1: 'ك',
         letter2: 'ت',
@@ -563,26 +569,6 @@ verbApp.constant('verbs', [
         },
         perfectVowel: 'َ',
         imperfectVowel: 'ُ'
-    },
-    {
-        letter1: 'د',
-        letter2: 'ر',
-        letter3: 'س',
-        type: {
-            name: 'sound'
-        },
-        perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
-    },
-    {
-        letter1: 'ع',
-        letter2: 'ر',
-        letter3: 'ف',
-        type: {
-            name: 'sound'
-        },
-        perfectVowel: 'َ',
-        imperfectVowel: 'ِ'
     },
     {
         letter1: 'ص',
@@ -604,6 +590,29 @@ verbApp.constant('verbs', [
         perfectVowel: 'ِ',
         imperfectVowel: 'َ'
     },
+    // Geminate
+    {
+        letter1: 'د',
+        letter2: 'ل',
+        letter3: 'ل',
+        type: {
+            name: 'geminate'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ'
+    },
+    // Defective waaw example
+    {
+        letter1: 'د',
+        letter2: 'ع',
+        letter3: 'و',
+        type: {
+            name: 'defective',
+            type: 'waaw'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ'
+    }
 
 
 ])

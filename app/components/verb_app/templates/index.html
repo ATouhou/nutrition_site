@@ -28,17 +28,20 @@
     </div>
 
 
-    <div class="col-md-9 main-panel large-font">
+    <div class="col-md-7 col-md-offset-1 main-panel large-font">
 
-        <div ng-repeat="verb in verbs">
-            <div class="huge-font">{{verb.conjugations[4].perfect}}</div>
-            <div ng-repeat="item in verb.conjugations">
-                <span ng-if="checkSelected(item)">
-                    {{item.perfect}}
-                </span>
-            </div>
+        <div class="question-box">
+            <p>Center aligned text.</p>
         </div>
 
+        <div ng-repeat="verb in verbs">
+            <div ng-repeat="conjugation in verb.conjugations | filter:isSelected">
+                {{conjugation.perfect}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-1">
     </div>
 
 </div>

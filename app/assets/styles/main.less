@@ -1,6 +1,5 @@
 // put global variables here
 
-
 .full-height {
     height: 100%;
 }
@@ -10,8 +9,8 @@ html {
 }
 
 body {
-    font-family: helvetica, verdana, arial, sans-serif;
     .full-height;
+    font-family: helvetica, verdana, arial, sans-serif;
     padding-top: 50px;
 }
 
@@ -22,7 +21,20 @@ body {
 
 .main-panel {
     .full-height;
+    background-color: silver;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
 }
+
+.question-box {
+    background-color: lightgreen;
+    text-align: center;
+}
+
 
 @import 'margins_padding.less';
 @import 'typography.less';
