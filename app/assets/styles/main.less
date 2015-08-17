@@ -1,5 +1,4 @@
 // put global variables here
-
 .full-height {
     height: 100%;
 }
@@ -11,7 +10,7 @@ html {
 body {
     .full-height;
     font-family: helvetica, verdana, arial, sans-serif;
-    padding-top: 50px;
+//    padding-top: 50px;
 }
 
 .left-panel {
@@ -34,6 +33,44 @@ body {
     background-color: lightgreen;
     text-align: center;
 }
+
+
+// Layout stuff see holy grail layout: https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
+.HolyGrail {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.HolyGrail-body {
+    display: flex;
+    flex: 1;
+}
+.HolyGrail-content {
+    flex: 1;
+    background-color: lightcoral;
+}
+
+.HolyGrail-nav, .HolyGrail-ads {
+    /* 12em is the width of the columns */
+    flex: 0 0 12em;
+    background-color: lightsteelblue;
+}
+
+.HolyGrail-nav {
+    /* put the nav on the left */
+    order: -1;
+}
+
+.header {
+    background-color: lightseagreen;
+}
+
+.footer {
+    background-color: orange;
+}
+
+
 
 
 @import 'margins_padding.less';

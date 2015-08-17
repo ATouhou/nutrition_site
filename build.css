@@ -7,7 +7,6 @@ html {
 body {
   height: 100%;
   font-family: helvetica, verdana, arial, sans-serif;
-  padding-top: 50px;
 }
 .left-panel {
   height: 100%;
@@ -26,6 +25,35 @@ body {
 .question-box {
   background-color: lightgreen;
   text-align: center;
+}
+.HolyGrail {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.HolyGrail-body {
+  display: flex;
+  flex: 1;
+}
+.HolyGrail-content {
+  flex: 1;
+  background-color: lightcoral;
+}
+.HolyGrail-nav,
+.HolyGrail-ads {
+  /* 12em is the width of the columns */
+  flex: 0 0 12em;
+  background-color: lightsteelblue;
+}
+.HolyGrail-nav {
+  /* put the nav on the left */
+  order: -1;
+}
+.header {
+  background-color: lightseagreen;
+}
+.footer {
+  background-color: orange;
 }
 .large-font {
   font-size: 30px;
