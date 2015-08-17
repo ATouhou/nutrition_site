@@ -21,46 +21,50 @@ body {
 .main-panel {
     .full-height;
     background-color: silver;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
 }
 
 .question-box {
     background-color: lightgreen;
-    text-align: center;
+    order: 1;
+    flex: 0 0 auto;
+    align-self: auto;
+    min-width: 0;
+    padding: 20px;
+    border: solid 2px silver;
 }
 
-
 // Layout stuff see holy grail layout: https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
-.HolyGrail {
+.content-container {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
 
-.HolyGrail-body {
+.columns-container {
     display: flex;
     flex: 1;
 }
-.HolyGrail-content {
-    flex: 1;
-    background-color: lightcoral;
+.column2 {
+    flex: 3;
+    background-color: lightyellow;
+    display: flex;
+    flex-flow:  row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
-.HolyGrail-nav, .HolyGrail-ads {
+.column1, .column3 {
     /* 12em is the width of the columns */
-    flex: 0 0 12em;
+//    flex: 0 0 12em;
+    flex: 1;
     background-color: lightsteelblue;
 }
 
-.HolyGrail-nav {
-    /* put the nav on the left */
-    order: -1;
-}
+
+
+
+
 
 .header {
     background-color: lightseagreen;
@@ -69,8 +73,6 @@ body {
 .footer {
     background-color: orange;
 }
-
-
 
 
 @import 'margins_padding.less';
