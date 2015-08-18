@@ -12,7 +12,8 @@ verbApp.constant('verbs', [
             name: 'sound'
         },
         perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
+        imperfectVowel: 'ُ',
+        definition: 'to write'
     },
     {
         letter1: 'ص',
@@ -22,7 +23,8 @@ verbApp.constant('verbs', [
             name: 'sound'
         },
         perfectVowel: 'ُ',
-        imperfectVowel: 'ُ'
+        imperfectVowel: 'ُ',
+        definition: 'to be difficult'
     },
     {
         letter1: 'ش',
@@ -32,7 +34,8 @@ verbApp.constant('verbs', [
             name: 'sound'
         },
         perfectVowel: 'ِ',
-        imperfectVowel: 'َ'
+        imperfectVowel: 'َ',
+        definition: 'to drink'
     },
     // Geminate
     {
@@ -43,7 +46,8 @@ verbApp.constant('verbs', [
             name: 'geminate'
         },
         perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
+        imperfectVowel: 'ُ',
+        definition: 'to indicate'
     },
     // Defective waaw example
     {
@@ -55,7 +59,8 @@ verbApp.constant('verbs', [
             type: 'waaw'
         },
         perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
+        imperfectVowel: 'ُ',
+        definition: 'to call'
     }
 
 

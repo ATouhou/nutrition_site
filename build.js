@@ -52,6 +52,7 @@ verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, 
 ;var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuOptions, verbs) {
+    $scope.input = {};
 
     $scope.helperData = helperData;
 
@@ -61,21 +62,43 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
 
     $scope.conjugator = conjugator;
 
+    $scope.conjugations = [];
+
     _.forEach($scope.verbs, function(verb) {
-        verb.conjugations = conjugator.getConjugations(verb);
-        _.forEach(verb.conjugations, function(conjugation, index) {
-            conjugation.menuItem = $scope.pronounList[index];
+        var conjugationSet = conjugator.getConjugations(verb);
+        // Add the verb object to it's conjugation set
+        _.forEach(conjugationSet, function(cSet) {
+            cSet.verb = verb;
         })
+        $scope.conjugations = $scope.conjugations.concat(conjugationSet);
     })
 
-    $scope.isSelected = function(conjugation) {
-        if (conjugation.menuItem.selected === true) {
-            return true;
+    // Add pronoun so as to keep track of which conjugations are selected
+    _.forEach($scope.conjugations, function(conjugation, index) {
+        //conjugation.verb = _.findWhere($scope.verbs, {})
+        conjugation.menuItem = _.findWhere($scope.pronounList, {id: conjugation.id});
+    })
+
+    $scope.currentConjugation = $scope.conjugations[0];
+
+    $scope.submit = function(userAnswer, answer) {
+        if (userAnswer === answer) {
+            alert('correct');
         }
         else {
-            return false;
+            alert('wrong answer');
         }
     }
+
+    //$scope.isSelected = function(item) {
+    //    if (item.menuItem.selected) {
+    //        return true;
+    //    }
+    //    else {
+    //        return false;
+    //    }
+    //}
+
 })
 
 ;var verbApp = angular.module('verbApp');
@@ -568,7 +591,8 @@ verbApp.constant('verbs', [
             name: 'sound'
         },
         perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
+        imperfectVowel: 'ُ',
+        definition: 'to write'
     },
     {
         letter1: 'ص',
@@ -578,7 +602,8 @@ verbApp.constant('verbs', [
             name: 'sound'
         },
         perfectVowel: 'ُ',
-        imperfectVowel: 'ُ'
+        imperfectVowel: 'ُ',
+        definition: 'to be difficult'
     },
     {
         letter1: 'ش',
@@ -588,7 +613,8 @@ verbApp.constant('verbs', [
             name: 'sound'
         },
         perfectVowel: 'ِ',
-        imperfectVowel: 'َ'
+        imperfectVowel: 'َ',
+        definition: 'to drink'
     },
     // Geminate
     {
@@ -599,7 +625,8 @@ verbApp.constant('verbs', [
             name: 'geminate'
         },
         perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
+        imperfectVowel: 'ُ',
+        definition: 'to indicate'
     },
     // Defective waaw example
     {
@@ -611,7 +638,8 @@ verbApp.constant('verbs', [
             type: 'waaw'
         },
         perfectVowel: 'َ',
-        imperfectVowel: 'ُ'
+        imperfectVowel: 'ُ',
+        definition: 'to call'
     }
 
 

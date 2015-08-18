@@ -32,15 +32,23 @@
 
         <div class="column2">
 
-            <div class="question-box">
-                <p>Center aligned text.</p>
+            <div class="question-box large-font">
+
+                <div>Verb: {{currentConjugation.verb.letter1 + ' - ' + currentConjugation.verb.letter2 + ' - ' + currentConjugation.verb.letter3}}</div>
+                <div>Definition: {{currentConjugation.verb.definition}}</div>
+
+                <div dir="rtl">
+                    {{currentConjugation.pronoun}}
+                    <input ng-model="input.answer" type="text">
+                </div>
+
+                <br>
+                <button>Skip</button>
+                <button>Show Answer</button>
+                <button ng-click="submit(input.answer, currentConjugation.perfect)">Submit</button>
+
             </div>
 
-            <div ng-repeat="verb in verbs">
-                <div ng-repeat="conjugation in verb.conjugations | filter:isSelected">
-                    {{conjugation.perfect}}
-                </div>
-            </div>
 
         </div>
 
