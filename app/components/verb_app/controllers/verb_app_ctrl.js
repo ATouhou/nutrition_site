@@ -13,6 +13,10 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
 
     $scope.conjugations = [];
 
+    _.forEach($scope.pronounList, function(pronoun) {
+        pronoun.selected = true;
+    })
+
     _.forEach($scope.verbs, function(verb) {
         var conjugationSet = conjugator.getConjugations(verb);
         // Add the verb object to it's conjugation set
@@ -28,8 +32,16 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
         conjugation.menuItem = _.findWhere($scope.pronounList, {id: conjugation.id});
     })
 
+    // This is the function that basically filters the question set
+    $scope.selectedQuestions = function() {
+        return _.filter($scope.conjugations, function(item) {
+            return item.menuItem.selected === true;
+        })
+    }
+
+    // Set the current question
     var currentIndex = 0;
-    $scope.currentConjugation = $scope.conjugations[currentIndex];
+    $scope.currentConjugation = $scope.selectedQuestions()[currentIndex];
 
     $scope.submit = function(userAnswer, answer) {
         if (userAnswer === answer) {
@@ -43,7 +55,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
 
     $scope.next = function() {
         currentIndex += 1;
-        $scope.currentConjugation = $scope.conjugations[currentIndex];
+        $scope.currentConjugation = $scope.selectedQuestions()[currentIndex];
         $scope.input = {};
     }
 
@@ -51,14 +63,11 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
         input.answer = answer;
     }
 
-    //$scope.isSelected = function(item) {
-    //    if (item.menuItem.selected) {
-    //        return true;
-    //    }
-    //    else {
-    //        return false;
-    //    }
-    //}
+    // After any change to the filters
+    $scope.updateQuestions = function() {
+        currentIndex = 0;
+        $scope.currentConjugation = $scope.selectedQuestions()[currentIndex];
+    }
 
 })
 

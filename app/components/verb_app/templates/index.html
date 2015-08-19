@@ -20,7 +20,7 @@
                 <tbody>
                     <tr ng-repeat="item in pronounList">
                         <td>
-                            <input type="checkbox" ng-model="item.selected">
+                            <input type="checkbox" ng-model="item.selected" ng-change="updateQuestions()">
                         </td>
                         <td>{{conjugator.getName(item)}}</td>
                         <td class="large-font">{{item.pronoun}}</td>
@@ -36,6 +36,7 @@
 
                 <div>Verb: {{currentConjugation.verb.letter1 + ' - ' + currentConjugation.verb.letter2 + ' - ' + currentConjugation.verb.letter3}}</div>
                 <div>Definition: {{currentConjugation.verb.definition}}</div>
+                <div>Questions: {{selectedQuestions().length}}</div>
 
                 <div dir="rtl">
                     {{currentConjugation.pronoun}}
