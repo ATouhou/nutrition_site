@@ -55,6 +55,9 @@ body {
 .footer {
   background-color: orange;
 }
+.error {
+  color: red;
+}
 .large-font {
   font-size: 30px;
 }

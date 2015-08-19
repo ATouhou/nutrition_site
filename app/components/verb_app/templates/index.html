@@ -41,11 +41,11 @@
 
                 <div>Verb: {{currentConjugation.verb.letter1 + ' - ' + currentConjugation.verb.letter2 + ' - ' + currentConjugation.verb.letter3}}</div>
                 <div>Definition: {{currentConjugation.verb.definition}}</div>
-                <div>Questions: {{selectedQuestions().length}}</div>
+                <div>Questions: {{filteredQuestions().length}}</div>
 
                 <div dir="rtl">
                     {{currentConjugation.pronoun}}
-                    <input ng-model="input.answer" type="text">
+                    <input answer-progress user-answer="input.answer" answer="currentConjugation.perfect" ng-model="input.answer" type="text">
                 </div>
 
                 <br>

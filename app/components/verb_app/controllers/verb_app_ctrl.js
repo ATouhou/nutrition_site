@@ -31,21 +31,21 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     })
 
     // This is the function that basically filters the question set
-    $scope.selectedQuestions = function() {
+    $scope.filteredQuestions = function() {
         var pronounIds = _.pluck(_.filter($scope.filterOptions.pronounList, {selected: true}), 'id');
         var types = _.pluck(_.filter($scope.filterOptions.types, {selected: true}), 'name');
 
-        var selectedQuestions = _.filter($scope.conjugations, function(conjugation) {
+        var filteredQuestions = _.filter($scope.conjugations, function(conjugation) {
             if (_.contains(pronounIds, conjugation.id) && _.contains(types, conjugation.verb.type.name)) {
                 return true;
             }
         })
-        return selectedQuestions;
+        return filteredQuestions;
     }
 
     // Set the current question
     var currentIndex = 0;
-    $scope.currentConjugation = $scope.selectedQuestions()[currentIndex];
+    $scope.currentConjugation = $scope.filteredQuestions()[currentIndex];
 
     $scope.submit = function(userAnswer, answer) {
         if (userAnswer === answer) {
@@ -59,7 +59,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     $scope.next = function() {
         currentIndex += 1;
-        $scope.currentConjugation = $scope.selectedQuestions()[currentIndex];
+        $scope.currentConjugation = $scope.filteredQuestions()[currentIndex];
         $scope.input = {};
     }
 
@@ -70,7 +70,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     // After any change to the filters
     $scope.updateQuestions = function() {
         currentIndex = 0;
-        $scope.currentConjugation = $scope.selectedQuestions()[currentIndex];
+        $scope.currentConjugation = $scope.filteredQuestions()[currentIndex];
     }
 
 })
