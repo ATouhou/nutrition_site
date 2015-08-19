@@ -28,15 +28,27 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
         conjugation.menuItem = _.findWhere($scope.pronounList, {id: conjugation.id});
     })
 
-    $scope.currentConjugation = $scope.conjugations[0];
+    var currentIndex = 0;
+    $scope.currentConjugation = $scope.conjugations[currentIndex];
 
     $scope.submit = function(userAnswer, answer) {
         if (userAnswer === answer) {
             alert('correct');
+            $scope.next();
         }
         else {
             alert('wrong answer');
         }
+    }
+
+    $scope.next = function() {
+        currentIndex += 1;
+        $scope.currentConjugation = $scope.conjugations[currentIndex];
+        $scope.input = {};
+    }
+
+    $scope.showAnswer = function(input, answer) {
+        input.answer = answer;
     }
 
     //$scope.isSelected = function(item) {
