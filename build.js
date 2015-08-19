@@ -51,14 +51,12 @@ verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, 
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuOptions, verbs) {
+verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs) {
     $scope.input = {};
 
     $scope.helperData = helperData;
 
-    $scope.pronounList = helperData.pronounList;
-
-    $scope.menuOptions = menuOptions;
+    $scope.filterOptions = filterOptions;
 
     $scope.verbs = verbs;
 
@@ -66,8 +64,12 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
 
     $scope.conjugations = [];
 
-    _.forEach($scope.pronounList, function(pronoun) {
+    _.forEach($scope.filterOptions.pronounList, function(pronoun) {
         pronoun.selected = true;
+    })
+
+    _.forEach($scope.filterOptions.types, function(type) {
+        type.selected = true;
     })
 
     _.forEach($scope.verbs, function(verb) {
@@ -79,17 +81,17 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
         $scope.conjugations = $scope.conjugations.concat(conjugationSet);
     })
 
-    // Add pronoun so as to keep track of which conjugations are selected
-    _.forEach($scope.conjugations, function(conjugation, index) {
-        //conjugation.verb = _.findWhere($scope.verbs, {})
-        conjugation.menuItem = _.findWhere($scope.pronounList, {id: conjugation.id});
-    })
-
     // This is the function that basically filters the question set
     $scope.selectedQuestions = function() {
-        return _.filter($scope.conjugations, function(item) {
-            return item.menuItem.selected === true;
+        var pronounIds = _.pluck(_.filter($scope.filterOptions.pronounList, {selected: true}), 'id');
+        var types = _.pluck(_.filter($scope.filterOptions.types, {selected: true}), 'name');
+
+        var selectedQuestions = _.filter($scope.conjugations, function(conjugation) {
+            if (_.contains(pronounIds, conjugation.id) && _.contains(types, conjugation.verb.type.name)) {
+                return true;
+            }
         })
+        return selectedQuestions;
     }
 
     // Set the current question
@@ -478,15 +480,17 @@ verbApp.value('helperData', {
     }
 );var verbApp = angular.module('verbApp');
 
-verbApp.value('menuOptions', {
-    types: [{name: 'assimilated'}, {name: 'geminate'}, {name: 'hamzated'}, {name: 'hollow'}, {name: 'defective'}, {name: 'sound'}],
-    forms: [{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]
-}
+verbApp.factory('filterOptions', function(helperData) {
+    var menuOptions = {};
 
+    menuOptions.types = [{name: 'assimilated'}, {name: 'geminate'}, {name: 'hamzated'}, {name: 'hollow'}, {name: 'defective'}, {name: 'sound'}]
 
+    menuOptions.pronounList = angular.copy(helperData.pronounList);
 
+    menuOptions.forms = [{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]
 
-)
+    return menuOptions;
+})
 
 ;// sound example
 var verb = {

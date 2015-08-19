@@ -7,8 +7,8 @@
         <div class="column1">
 
             <strong>Types</strong>
-            <div ng-repeat="verbType in menuOptions.types">
-                <input type="checkbox" ng-model="verbType.selected">{{verbType.name}}
+            <div ng-repeat="verbType in filterOptions.types">
+                <input type="checkbox" ng-model="verbType.selected" ng-change="updateQuestions()">{{verbType.name}}
             </div>
 
             <table class="table">
@@ -23,7 +23,7 @@
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="item in pronounList">
+                    <tr ng-repeat="item in filterOptions.pronounList">
                         <td>
                             <input type="checkbox" ng-model="item.selected" ng-change="updateQuestions()">
                         </td>
