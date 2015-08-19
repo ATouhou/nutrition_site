@@ -6,6 +6,11 @@
     <div class="columns-container">
         <div class="column1">
 
+            <strong>Types</strong>
+            <div ng-repeat="verbType in menuOptions.types">
+                <input type="checkbox" ng-model="verbType.selected">{{verbType.name}}
+            </div>
+
             <table class="table">
                 <thead>
                     <tr>

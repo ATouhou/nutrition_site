@@ -7,6 +7,8 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, menuO
 
     $scope.pronounList = helperData.pronounList;
 
+    $scope.menuOptions = menuOptions;
+
     $scope.verbs = verbs;
 
     $scope.conjugator = conjugator;
