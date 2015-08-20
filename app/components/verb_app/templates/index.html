@@ -1,4 +1,4 @@
-<div class="content-container row">
+<div class="content-container">
 
     <header class="header">
         Arabic Verb App
@@ -6,9 +6,16 @@
     <div class="columns-container">
         <div class="column1">
 
-            <strong>Types</strong>
-            <div ng-repeat="verbType in filterOptions.types">
+            <div class="section-title">
+                Types
+            </div>
+
+            <div class="section" ng-repeat="verbType in filterOptions.types">
                 <input type="checkbox" ng-model="verbType.selected" ng-change="updateQuestions()">{{verbType.name}}
+            </div>
+
+            <div class="section-title">
+                Pronouns
             </div>
 
             <table class="table">

@@ -28,7 +28,7 @@ body {
 }
 .column2 {
   flex: 3;
-  background-color: lightyellow;
+  background-color: white;
   display: flex;
   flex-flow: row;
   justify-content: center;
@@ -39,8 +39,7 @@ body {
 .column3 {
   /* 12em is the width of the columns */
   flex: 1;
-  background-color: lightsteelblue;
-  padding: 10px;
+  background-color: #e4e9f1;
 }
 .header {
   background-color: lightseagreen;
@@ -50,6 +49,9 @@ body {
 }
 .error {
   color: red;
+}
+.medium-font {
+  font-size: 20px;
 }
 .large-font {
   font-size: 30px;
@@ -146,4 +148,15 @@ a.pure-button-primary,
 a.pure-button-selected {
   background-color: #0078e7;
   color: #fff;
+}
+.section-title {
+  background-color: #9eb0cb;
+  padding: 7px;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.section {
+  padding-left: 7px;
+  padding-right: 7px;
 }

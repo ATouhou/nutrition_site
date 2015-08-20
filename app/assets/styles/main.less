@@ -1,4 +1,8 @@
 // put global variables here
+@medium: #9EB0CB;
+@light: #E4E9F1;
+@dark: #476085;
+
 .full-height {
     height: 100%;
 }
@@ -36,7 +40,7 @@ body {
 }
 .column2 {
     flex: 3;
-    background-color: lightyellow;
+    background-color: white;
     display: flex;
     flex-flow:  row;
     justify-content: center;
@@ -48,8 +52,7 @@ body {
     /* 12em is the width of the columns */
 //    flex: 0 0 12em;
     flex: 1;
-    background-color: lightsteelblue;
-    padding: 10px;
+    background-color: @light;
 }
 
 .header {
@@ -64,7 +67,7 @@ body {
     color: red;
 }
 
-
 @import 'margins_padding.less';
 @import 'typography.less';
 @import 'pure_buttons.less';
+@import 'column1.less';
