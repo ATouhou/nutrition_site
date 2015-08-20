@@ -45,7 +45,7 @@
 
                 <div dir="rtl">
                     {{currentConjugation.pronoun}}
-                    <input answer-progress user-answer="input.answer" answer="currentConjugation.perfect" ng-model="input.answer" type="text">
+                    <input answer-progress user-input="input" ng-class="{'error': input.error}" answer="currentConjugation.perfect" ng-model="input.answer" type="text">
                 </div>
 
                 <br>
