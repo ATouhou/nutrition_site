@@ -139,6 +139,7 @@ verbApp.directive('answerProgress', function($timeout) {
         },
         link: function(scope, elem, attrs) {
             elem.bind('keyup', function(event) {
+                // Compare the number of chars input by the user with that many chars in the answer
                 var userLetters = scope.userInput.answer.split('');
                 var letters = scope.answer.split('').slice(0, userLetters.length);
                 $timeout(function() {
