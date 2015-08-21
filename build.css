@@ -17,6 +17,8 @@ body {
   min-width: 0;
   padding: 20px;
   border: solid 2px silver;
+  height: 100%;
+  margin-top: 100px;
 }
 .content-container {
   display: flex;
@@ -33,8 +35,6 @@ body {
   display: flex;
   flex-flow: row;
   justify-content: center;
-  align-content: center;
-  align-items: center;
 }
 .column1,
 .column3 {
