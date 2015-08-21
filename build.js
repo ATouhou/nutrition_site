@@ -68,7 +68,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     $scope.conjugations = [];
 
-    _.forEach($scope.filterOptions.pronounList, function(pronoun) {
+    _.forEach($scope.filterOptions.pronouns, function(pronoun) {
         pronoun.selected = true;
     })
 
@@ -87,7 +87,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     // This is the function that basically filters the question set
     $scope.filteredQuestions = function() {
-        var pronounIds = _.pluck(_.filter($scope.filterOptions.pronounList, {selected: true}), 'id');
+        var pronounIds = _.pluck(_.filter($scope.filterOptions.pronouns, {selected: true}), 'id');
         var types = _.pluck(_.filter($scope.filterOptions.types, {selected: true}), 'name');
 
         var filteredQuestions = _.filter($scope.conjugations, function(conjugation) {
@@ -344,6 +344,27 @@ String.prototype.replaceAt = function(index, character) {
 }
 ;var verbApp = angular.module('verbApp');
 
+verbApp.factory('filterOptions', function(helperData) {
+    var filterOptions = {};
+
+    filterOptions.types = [{name: 'assimilated'}, {name: 'geminate'}, {name: 'hamzated'}, {name: 'hollow'}, {name: 'defective'}, {name: 'sound'}]
+    filterOptions.pronouns = angular.copy(helperData.pronounList);
+    filterOptions.forms = [{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]
+
+    filterOptions.allTypes = true;
+    filterOptions.allPronouns = true;
+
+    filterOptions.toggleAll = function(type, value) {
+        _.forEach(this[type], function(item) {
+            item.selected = value;
+        })
+    }
+
+    return filterOptions;
+})
+
+;var verbApp = angular.module('verbApp');
+
 // Take any word with hamza and put it on the its correct seat
 verbApp.factory('hamzatedWord', function() {
     var factory = {};
@@ -512,21 +533,7 @@ verbApp.value('helperData', {
                 {name: 'sound'}]
 
     }
-);var verbApp = angular.module('verbApp');
-
-verbApp.factory('filterOptions', function(helperData) {
-    var menuOptions = {};
-
-    menuOptions.types = [{name: 'assimilated'}, {name: 'geminate'}, {name: 'hamzated'}, {name: 'hollow'}, {name: 'defective'}, {name: 'sound'}]
-
-    menuOptions.pronounList = angular.copy(helperData.pronounList);
-
-    menuOptions.forms = [{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]
-
-    return menuOptions;
-})
-
-;// sound example
+);// sound example
 var verb = {
     letter1: 'ك',
     letter2: 'ت',

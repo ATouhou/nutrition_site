@@ -13,7 +13,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     $scope.conjugations = [];
 
-    _.forEach($scope.filterOptions.pronounList, function(pronoun) {
+    _.forEach($scope.filterOptions.pronouns, function(pronoun) {
         pronoun.selected = true;
     })
 
@@ -32,7 +32,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     // This is the function that basically filters the question set
     $scope.filteredQuestions = function() {
-        var pronounIds = _.pluck(_.filter($scope.filterOptions.pronounList, {selected: true}), 'id');
+        var pronounIds = _.pluck(_.filter($scope.filterOptions.pronouns, {selected: true}), 'id');
         var types = _.pluck(_.filter($scope.filterOptions.types, {selected: true}), 'name');
 
         var filteredQuestions = _.filter($scope.conjugations, function(conjugation) {

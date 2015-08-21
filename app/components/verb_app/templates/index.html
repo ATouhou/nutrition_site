@@ -8,7 +8,7 @@
 
             <div>
                 <div class="section-title">
-                    Types
+                    <input type="checkbox" ng-model="filterOptions.allTypes" ng-change="filterOptions.toggleAll('types', filterOptions.allTypes)"> Types
                 </div>
 
                 <table class="pure-table pure-table-horizontal">
@@ -29,12 +29,12 @@
 
             <div>
                 <div class="section-title">
-                    Pronouns
+                    <input type="checkbox" ng-model="filterOptions.allPronouns" ng-change="filterOptions.toggleAll('pronouns', filterOptions.allPronouns)"> Pronouns
                 </div>
 
                 <table class="pure-table pure-table-horizontal">
                     <tbody>
-                        <tr ng-repeat="item in filterOptions.pronounList">
+                        <tr ng-repeat="item in filterOptions.pronouns">
                             <td>
                                 <input type="checkbox" ng-model="item.selected" ng-change="updateQuestions()">
                             </td>
