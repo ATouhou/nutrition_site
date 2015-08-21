@@ -41,6 +41,19 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
         return getList();
     }
 
+    // Just get a single verb
+    c.getVerb = function(verb, id) {
+        c.verb = verb;
+        var conjugatedVerb;
+        switch (c.verb.type.name) {
+            case 'sound': conjugatedVerb = getSoundVerb(id); break;
+            case 'geminate': conjugatedVerb = getGeminateVerb(id); break;
+            case 'hollow': conjugatedVerb = getHollowVerb(id); break;
+            case 'defective': conjugatedVerb = getDefectiveVerb(id); break;
+        }
+        return conjugatedVerb;
+    }
+
     //*******************************************
     // Private methods
     //*******************************************

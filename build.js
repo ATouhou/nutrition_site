@@ -93,7 +93,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     var currentIndex = 0;
     $scope.currentConjugation = $scope.filteredConjugations[currentIndex];
 
-    $scope.submit = function(userAnswer, answer) {
+    $scope.checkAnswer = function(userAnswer, answer) {
         if (userAnswer === answer) {
             alert('correct');
             $scope.next();
@@ -214,6 +214,19 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
     c.getConjugations = function(verb) {
         c.verb = verb;
         return getList();
+    }
+
+    // Just get a single verb
+    c.getVerb = function(verb, id) {
+        c.verb = verb;
+        var conjugatedVerb;
+        switch (c.verb.type.name) {
+            case 'sound': conjugatedVerb = getSoundVerb(id); break;
+            case 'geminate': conjugatedVerb = getGeminateVerb(id); break;
+            case 'hollow': conjugatedVerb = getHollowVerb(id); break;
+            case 'defective': conjugatedVerb = getDefectiveVerb(id); break;
+        }
+        return conjugatedVerb;
     }
 
     //*******************************************

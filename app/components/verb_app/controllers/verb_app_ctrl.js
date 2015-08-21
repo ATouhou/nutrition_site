@@ -38,7 +38,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     var currentIndex = 0;
     $scope.currentConjugation = $scope.filteredConjugations[currentIndex];
 
-    $scope.submit = function(userAnswer, answer) {
+    $scope.checkAnswer = function(userAnswer, answer) {
         if (userAnswer === answer) {
             alert('correct');
             $scope.next();

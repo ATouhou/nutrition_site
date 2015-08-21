@@ -53,7 +53,7 @@
 
             <div class="question-box large-font">
 
-                <div>Verb: {{currentConjugation.verb.letter1 + ' - ' + currentConjugation.verb.letter2 + ' - ' + currentConjugation.verb.letter3}}</div>
+                <div>Verb: {{conjugator.getVerb(currentConjugation.verb, 5)}}</div>
                 <div>Definition: {{currentConjugation.verb.definition}}</div>
                 <div>Questions: {{filteredConjugations.length}}</div>
 
@@ -65,7 +65,7 @@
                 <br>
                 <button class="pure-button" ng-click="next()">Skip</button>
                 <button class="pure-button" ng-click="showAnswer(input, currentConjugation.perfect)">Show Answer</button>
-                <button class="pure-button pure-button-primary" ng-click="submit(input.answer, currentConjugation.perfect)">Submit</button>
+                <button class="pure-button pure-button-primary" ng-click="checkAnswer(input.answer, currentConjugation.perfect)">Check Answer</button>
 
             </div>
 
