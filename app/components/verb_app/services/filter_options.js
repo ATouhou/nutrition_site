@@ -10,6 +10,7 @@ verbApp.factory('filterOptions', function(helperData) {
     filterOptions.allTypes = true;
     filterOptions.allPronouns = true;
 
+    // Select or deselect all options of a particular filter
     filterOptions.toggleAll = function(type, value) {
         _.forEach(this[type], function(item) {
             item.selected = value;

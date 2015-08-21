@@ -65,7 +65,6 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     $scope.verbs = verbs;
 
     $scope.conjugator = conjugator;
-
     $scope.conjugations = [];
 
     _.forEach($scope.filterOptions.pronouns, function(pronoun) {
@@ -85,22 +84,14 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         $scope.conjugations = $scope.conjugations.concat(conjugationSet);
     })
 
-    // This is the function that basically filters the question set
-    $scope.filteredQuestions = function() {
-        var pronounIds = _.pluck(_.filter($scope.filterOptions.pronouns, {selected: true}), 'id');
-        var types = _.pluck(_.filter($scope.filterOptions.types, {selected: true}), 'name');
+    // Create a shallow copy so that changes to filteredConjugations do not affect the original conjugation list
+    // filteredConjugations will be the deck used to display the questions
+    $scope.filteredConjugations = angular.copy($scope.conjugations);
 
-        var filteredQuestions = _.filter($scope.conjugations, function(conjugation) {
-            if (_.contains(pronounIds, conjugation.id) && _.contains(types, conjugation.verb.type.name)) {
-                return true;
-            }
-        })
-        return filteredQuestions;
-    }
 
     // Set the current question
     var currentIndex = 0;
-    $scope.currentConjugation = $scope.filteredQuestions()[currentIndex];
+    $scope.currentConjugation = $scope.filteredConjugations[currentIndex];
 
     $scope.submit = function(userAnswer, answer) {
         if (userAnswer === answer) {
@@ -114,7 +105,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     $scope.next = function() {
         currentIndex += 1;
-        $scope.currentConjugation = $scope.filteredQuestions()[currentIndex];
+        $scope.currentConjugation = $scope.filteredConjugations[currentIndex];
         $scope.input = {};
     }
 
@@ -122,10 +113,32 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         input.answer = answer;
     }
 
-    // After any change to the filters
+    // Reset question set to first question
     $scope.updateQuestions = function() {
         currentIndex = 0;
-        $scope.currentConjugation = $scope.filteredQuestions()[currentIndex];
+        $scope.currentConjugation = $scope.filteredConjugations[currentIndex];
+    }
+
+    // This is run if there is any change to any of the filters
+    $scope.$watch('filterOptions', function(newVal, oldVal) {
+        if (newVal !== oldVal) {
+            filterQuestions();
+        }
+    }, true)
+
+    // This is the function that basically filters the question set
+    function filterQuestions() {
+        var pronounIds = _.pluck(_.filter($scope.filterOptions.pronouns, {selected: true}), 'id');
+        var types = _.pluck(_.filter($scope.filterOptions.types, {selected: true}), 'name');
+
+        var filteredQuestions = _.filter($scope.conjugations, function(conjugation) {
+            if (_.contains(pronounIds, conjugation.id) && _.contains(types, conjugation.verb.type.name)) {
+                return true;
+            }
+        })
+
+        $scope.filteredConjugations = filteredQuestions;
+        $scope.updateQuestions();
     }
 
 })
@@ -354,6 +367,7 @@ verbApp.factory('filterOptions', function(helperData) {
     filterOptions.allTypes = true;
     filterOptions.allPronouns = true;
 
+    // Select or deselect all options of a particular filter
     filterOptions.toggleAll = function(type, value) {
         _.forEach(this[type], function(item) {
             item.selected = value;
