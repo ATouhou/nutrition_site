@@ -51,15 +51,18 @@
 
         <div class="column2">
 
-            <div class="question-box large-font">
+            <div class="question-box">
 
                 <div>Verb: {{conjugator.getVerb(currentConjugation.verb, 5)}}</div>
                 <div>Definition: {{currentConjugation.verb.definition}}</div>
                 <div>Questions: {{filteredConjugations.length}}</div>
 
-                <div dir="rtl">
+                <div dir="rtl" class="answer-input">
                     {{currentConjugation.pronoun}}
                     <input answer-progress user-input="input" ng-class="{'error': input.error}" answer="currentConjugation.perfect" ng-model="input.answer" type="text">
+                </div>
+                <div class="feedback">
+                    good job!
                 </div>
 
                 <br>

@@ -10,7 +10,6 @@ body {
   margin: 0;
 }
 .question-box {
-  background-color: lightgreen;
   order: 1;
   flex: 0 0 auto;
   align-self: auto;
@@ -50,6 +49,9 @@ body {
 }
 .error {
   color: red;
+}
+.answer-input {
+  font-size: 20px;
 }
 .padding-small {
   padding: 5px;
