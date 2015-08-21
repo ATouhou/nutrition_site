@@ -12,6 +12,10 @@ app.controller('rootCtrl', function($scope) {
 
 
 })
+
+String.prototype.capitalize = function() {
+    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
 ;var verbApp = angular.module('verbApp');
 
 verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, helperData) {

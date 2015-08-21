@@ -5,3 +5,7 @@ app.controller('rootCtrl', function($scope) {
 
 
 })
+
+String.prototype.capitalize = function() {
+    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};

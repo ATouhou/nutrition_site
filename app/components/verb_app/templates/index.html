@@ -6,39 +6,46 @@
     <div class="columns-container">
         <div class="column1">
 
-            <div class="section-title">
-                Types
+            <div>
+                <div class="section-title">
+                    Types
+                </div>
+
+                <table class="pure-table pure-table-horizontal">
+                    <tbody>
+                        <tr ng-repeat="verbType in filterOptions.types">
+                            <td class="checkbox">
+                                <input type="checkbox" ng-model="verbType.selected" ng-change="updateQuestions()">
+                            </td>
+                            <td colspan="2" class="full-width small-font">
+                                {{_.capitalize(verbType.name)}}
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
             </div>
 
-            <div class="section" ng-repeat="verbType in filterOptions.types">
-                <input type="checkbox" ng-model="verbType.selected" ng-change="updateQuestions()">{{verbType.name}}
+
+            <div>
+                <div class="section-title">
+                    Pronouns
+                </div>
+
+                <table class="pure-table pure-table-horizontal">
+                    <tbody>
+                        <tr ng-repeat="item in filterOptions.pronounList">
+                            <td>
+                                <input type="checkbox" ng-model="item.selected" ng-change="updateQuestions()">
+                            </td>
+                            <td class="small-font">{{conjugator.getName(item).capitalize()}}</td>
+                            <td class="large-font">{{item.pronoun}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
 
-            <div class="section-title">
-                Pronouns
-            </div>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            <input type="checkbox">
-                        </th>
-                        <th>Name</th>
-                        <th>Pronoun</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr ng-repeat="item in filterOptions.pronounList">
-                        <td>
-                            <input type="checkbox" ng-model="item.selected" ng-change="updateQuestions()">
-                        </td>
-                        <td>{{conjugator.getName(item)}}</td>
-                        <td class="large-font">{{item.pronoun}}</td>
-                    </tr>
-                </tbody>
-            </table>
 
         </div>
 
