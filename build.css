@@ -895,6 +895,7 @@ body {
   flex: 0 0 auto;
   align-self: auto;
   padding: 20px;
+  padding-bottom: 0;
   border: solid 2px silver;
   height: 100%;
   margin-top: 100px;
@@ -914,6 +915,16 @@ body {
   font-style: italic;
   font-size: 20px;
   color: darkred;
+}
+.button-container {
+  background-color: orange;
+}
+.normal-button {
+  width: 170px;
+  margin-bottom: 5px;
+}
+.background {
+  background-color: #00ff00;
 }
 .small-font {
   font-size: 13px !important;
@@ -941,4 +952,7 @@ td.full-width {
 }
 .align-right {
   text-align: right;
+}
+.align-left {
+  text-align: left;
 }
