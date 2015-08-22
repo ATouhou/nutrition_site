@@ -69,14 +69,15 @@
                             <input class="answer-input" answer-progress user-input="input" ng-class="{'error': input.error}" answer="currentConjugation.perfect" ng-model="input.answer" type="text">
                         </div>
                     </div>
-                    <div class="col-md-4 footer">
-                        explanation here
+                    <div dir="ltr" class="col-md-4 footer correct-answer">
+                        Correct!
                     </div>
                 </div>
 
                 <br>
+                <br>
 
-                <div class="align-right">
+                <div class="align-right medium-font">
                     <button class="pure-button" ng-click="next()">Skip</button>
                     <button class="pure-button" ng-click="showAnswer(input, currentConjugation.perfect)">Show Answer</button>
                     <button class="pure-button pure-button-primary" ng-click="checkAnswer(input.answer, currentConjugation.perfect)">Check Answer</button>

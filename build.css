@@ -9,16 +9,6 @@ body {
   font-family: helvetica, verdana, arial, sans-serif;
   margin: 0;
 }
-.question-box {
-  order: 1;
-  flex: 0 0 auto;
-  align-self: auto;
-  padding: 20px;
-  border: solid 2px silver;
-  height: 100%;
-  margin-top: 100px;
-  width: 620px;
-}
 .content-container {
   display: flex;
   min-height: 100vh;
@@ -40,10 +30,6 @@ body {
   /* 12em is the width of the columns */
   flex: 1;
   background-color: #e4e9f1;
-}
-.answer-input {
-  width: 300px;
-  font-size: 60px;
 }
 .error {
   color: red;
@@ -903,6 +889,31 @@ body {
     -ms-flex-order: 1;
     order: 1;
   }
+}
+.question-box {
+  order: 1;
+  flex: 0 0 auto;
+  align-self: auto;
+  padding: 20px;
+  border: solid 2px silver;
+  height: 100%;
+  margin-top: 100px;
+  width: 620px;
+}
+.answer-input {
+  width: 300px;
+  font-size: 60px;
+}
+.correct-answer {
+  color: darkgreen;
+  font-style: italic;
+  font-size: 20px;
+}
+.incorrect-answer {
+  color: darkgreen;
+  font-style: italic;
+  font-size: 20px;
+  color: darkred;
 }
 .small-font {
   font-size: 13px !important;
