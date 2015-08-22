@@ -21,11 +21,12 @@ body {
     order: 1;
     flex: 0 0 auto;
     align-self: auto;
-    min-width: 0;
+//    min-width: 0;
     padding: 20px;
     border: solid 2px silver;
     height: 100%;
     margin-top: 100px;
+    width: 620px;
 }
 
 // Layout stuff see holy grail layout: https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
@@ -57,22 +58,20 @@ body {
 }
 
 .answer-input {
+    width: 300px;
+    .largest-font;
 }
 
 .header {
-    background-color: lightseagreen;
+//    background-color: lightseagreen;
 }
 
 .footer {
-    background-color: orange;
+//    background-color: orange;
 }
 
 .error {
     color: red;
-}
-
-.answer-input {
-    font-size: 20px;
 }
 
 
@@ -80,3 +79,4 @@ body {
 @import 'margins_padding.less';
 @import 'typography.less';
 @import 'column1.less';
+@import 'alignment.less';
