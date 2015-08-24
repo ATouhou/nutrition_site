@@ -120,19 +120,6 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         $scope.data.currentQuestion = $scope.data.filteredQuestions[currentIndex];
     }
 
-    $scope.textToSpeech = function(text) {
-        //var url = 'http://translate.google.com/translate_tts?tl=en&q=yahoo&client=t';
-        //var source = $('#audio-source');
-        //$http.defaults.headers.common['Referer'] = 'http://translate.google.com/';
-        $http.defaults.headers["Referer"] = 'http://translate.google.com/';
-
-        var audio = $("#my-audio");
-        audio.attr('src', 'http://translate.google.com/translate_tts?tl=en&q=great&client=t');
-        audio.trigger('pause');
-        audio.trigger('load');
-        audio.trigger('play');
-    }
-
     // This is run if there is any change to any of the filters
     $scope.$watch('filterOptions', function(newVal, oldVal) {
         if (newVal !== oldVal) {
@@ -154,6 +141,14 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         $scope.data.filteredQuestions = filteredQuestions;
         $scope.updateQuestions();
     }
+
+    //$scope.textToSpeech = function(text) {
+    //    var audio = $("#my-audio");
+    //    audio.attr('src', 'http://translate.google.com/translate_tts?tl=en&q=great&client=t');
+    //    audio.trigger('pause');
+    //    audio.trigger('load');
+    //    audio.trigger('play');
+    //}
 
 })
 
