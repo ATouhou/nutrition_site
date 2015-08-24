@@ -53,7 +53,7 @@
 
             <div class="question-box">
 
-                <div class="background1 row">
+                <div class="row question-title">
                     <div class="col-md-6">
                         <div>Verb: {{conjugator.getVerb(data.currentQuestion.verb, 5)}}</div>
                         <div>Definition: {{data.currentQuestion.verb.definition}}</div>
@@ -64,14 +64,14 @@
                     </div>
                 </div>
 
-                <div class="row middle-md background">
+                <div class="row middle-md input-and-buttons">
 
                     <!--input area-->
                     <div class="col-md-8">
 
                         <div class="row middle-md message-div">
-                            <span class="correct-answer flip-in" ng-show="data.currentQuestion.isCorrect === false">Wrong Answer!</span>
-                            <span class="correct-answer flip-in" ng-show="data.currentQuestion.isCorrect === true">Correct Answer!</span>
+                            <div class="incorrect-answer" ng-if="data.currentQuestion.isCorrect === false">Wrong Answer!</div>
+                            <div class="correct-answer" ng-if="data.currentQuestion.isCorrect === true">Correct Answer!</div>
                         </div>
                         <div class="row middle-md" dir="rtl">
                             <div class="col-md-3 footer largest-font">

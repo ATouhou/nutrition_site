@@ -916,15 +916,28 @@ body {
   font-size: 18px;
   color: #a94442;
 }
+.top-bottom-padding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 .button-container {
   background-color: orange;
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.input-and-buttons {
+  background-color: lightsteelblue;
+}
+.question-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: lightgoldenrodyellow;
+}
 .normal-button {
   width: 170px;
   margin-top: 3px;
   margin-bottom: 3px;
+  opacity: 1 !important;
 }
 .background {
   background-color: lightsteelblue;
