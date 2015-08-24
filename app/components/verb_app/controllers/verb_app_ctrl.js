@@ -1,6 +1,6 @@
 var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionData) {
+verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionData, $http) {
     $scope.data = questionData;
 
     $scope.helperData = helperData;
@@ -39,7 +39,10 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     $scope.checkAnswer = function(userAnswer, answer) {
         if (userAnswer === answer) {
             $scope.data.currentQuestion.isCorrect = true;
-            //$scope.next();
+            if (currentIndex >= ($scope.data.filteredQuestions.length - 1)) {
+                alert('Great Job! You completed the set!');
+                $scope.updateQuestions();
+            }
         }
         else {
             $scope.data.currentQuestion.isCorrect = false;
@@ -60,6 +63,19 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     $scope.updateQuestions = function() {
         currentIndex = 0;
         $scope.data.currentQuestion = $scope.data.filteredQuestions[currentIndex];
+    }
+
+    $scope.textToSpeech = function(text) {
+        //var url = 'http://translate.google.com/translate_tts?tl=en&q=yahoo&client=t';
+        //var source = $('#audio-source');
+        //$http.defaults.headers.common['Referer'] = 'http://translate.google.com/';
+        $http.defaults.headers["Referer"] = 'http://translate.google.com/';
+
+        var audio = $("#my-audio");
+        audio.attr('src', 'http://translate.google.com/translate_tts?tl=en&q=great&client=t');
+        audio.trigger('pause');
+        audio.trigger('load');
+        audio.trigger('play');
     }
 
     // This is run if there is any change to any of the filters

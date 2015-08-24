@@ -97,9 +97,15 @@
                             <button class="normal-button pure-button pure-button-primary" ng-hide="data.currentQuestion.isCorrect" ng-click="checkAnswer(data.input.answer, data.currentQuestion.perfect)">Check Answer</button>
                             <button class="normal-button pure-button pure-button-primary" ng-show="data.currentQuestion.isCorrect" ng-click="nextQuestion()">Next Question</button>
                             <button class="normal-button pure-button" ng-disabled="data.currentQuestion.isCorrect" ng-click="showAnswer(data.input, data.currentQuestion.perfect)">Show Answer</button>
+                            <button class="normal-button pure-button" ng-disabled="data.currentQuestion.isCorrect"  ng-click="textToSpeech(data.input)">Listen</button>
                             <button class="normal-button pure-button" ng-disabled="data.currentQuestion.isCorrect"  ng-click="nextQuestion()">Skip</button>
                         </div>
                     </div>
+
+
+                    <audio controls="controls" id="my-audio">
+                        <source id="audio-source" src="http://translate.google.com/translate_tts?tl=en&q=hello&client=t" type="audio/mpeg">
+                    </audio>
 
 
                 </div>
