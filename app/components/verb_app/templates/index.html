@@ -55,13 +55,12 @@
 
                 <div class="background1 row">
                     <div class="col-md-6">
-                        <div>Verb: {{conjugator.getVerb(currentConjugation.verb, 5)}}</div>
-                        <div>Definition: {{currentConjugation.verb.definition}}</div>
-                        <div>Questions: {{filteredConjugations.length}}</div>
+                        <div>Verb: {{conjugator.getVerb(data.currentQuestion.verb, 5)}}</div>
+                        <div>Definition: {{data.currentQuestion.verb.definition}}</div>
+                        <div>Questions: {{data.filteredQuestions.length}}</div>
                     </div>
                     <div class="col-md-6 align-right">
                         Question 2 of 30
-                        <button ng-click="cool = !cool">show</button>
                     </div>
                 </div>
 
@@ -71,20 +70,21 @@
                     <div class="col-md-8">
 
                         <div class="row middle-md message-div">
-                            <span class="correct-answer flip-in" ng-show="cool===true">Wrong Answer!</span>
+                            <span class="correct-answer flip-in" ng-show="data.currentQuestion.isCorrect === false">Wrong Answer!</span>
+                            <span class="correct-answer flip-in" ng-show="data.currentQuestion.isCorrect === true">Correct Answer!</span>
                         </div>
                         <div class="row middle-md" dir="rtl">
                             <div class="col-md-3 footer largest-font">
-                                <span>{{currentConjugation.pronoun}}</span>
+                                <span>{{data.currentQuestion.pronoun}}</span>
                             </div>
                             <div class="col-md-9 header input-container">
                                 <div dir="rtl">
-                                    <input class="answer-input" answer-progress user-input="input" ng-class="{'error': input.error}" answer="currentConjugation.perfect" ng-model="input.answer" type="text">
+                                    <input class="answer-input" answer-progress user-input="data.input" ng-class="{'error': data.input.error}" answer="data.currentQuestion.perfect" ng-model="data.input.answer" type="text">
                                 </div>
                             </div>
                         </div>
                         <div class="row middle-md message-div">
-                            {{conjugator.getName(currentConjugation).capitalize()}}
+                            {{conjugator.getName(data.currentQuestion).capitalize()}}
                         </div>
 
 
@@ -94,9 +94,10 @@
                     <!--button area-->
                     <div class="col-md-4 button-container">
                         <div class="align-right medium-font">
-                            <button class="normal-button pure-button pure-button-primary" ng-click="checkAnswer(input.answer, currentConjugation.perfect)">Check Answer</button>
-                            <button class="normal-button pure-button" ng-click="showAnswer(input, currentConjugation.perfect)">Show Answer</button>
-                            <button class="normal-button pure-button" ng-click="next()">Skip</button>
+                            <button class="normal-button pure-button pure-button-primary" ng-hide="data.currentQuestion.isCorrect" ng-click="checkAnswer(data.input.answer, data.currentQuestion.perfect)">Check Answer</button>
+                            <button class="normal-button pure-button pure-button-primary" ng-show="data.currentQuestion.isCorrect" ng-click="nextQuestion()">Next Question</button>
+                            <button class="normal-button pure-button" ng-disabled="data.currentQuestion.isCorrect" ng-click="showAnswer(data.input, data.currentQuestion.perfect)">Show Answer</button>
+                            <button class="normal-button pure-button" ng-disabled="data.currentQuestion.isCorrect"  ng-click="nextQuestion()">Skip</button>
                         </div>
                     </div>
 
