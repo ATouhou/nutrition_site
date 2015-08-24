@@ -1,6 +1,6 @@
 var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionData, $http) {
+verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionData, alertService) {
     $scope.data = questionData;
 
     $scope.helperData = helperData;
@@ -40,8 +40,8 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         if (userAnswer === answer) {
             $scope.data.currentQuestion.isCorrect = true;
             if (currentIndex >= ($scope.data.filteredQuestions.length - 1)) {
-                alert('Great Job! You completed the set!');
                 $scope.updateQuestions();
+                alertService.show('You completed the question set!');
             }
         }
         else {

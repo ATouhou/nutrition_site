@@ -16,6 +16,7 @@ app.controller('rootCtrl', function($scope) {
 String.prototype.capitalize = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 };
+
 ;var verbApp = angular.module('verbApp');
 
 verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, helperData) {
@@ -55,7 +56,7 @@ verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, 
 })
 ;var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionData, $http) {
+verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionData, alertService) {
     $scope.data = questionData;
 
     $scope.helperData = helperData;
@@ -95,8 +96,8 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         if (userAnswer === answer) {
             $scope.data.currentQuestion.isCorrect = true;
             if (currentIndex >= ($scope.data.filteredQuestions.length - 1)) {
-                alert('Great Job! You completed the set!');
                 $scope.updateQuestions();
+                alertService.show('You completed the question set!');
             }
         }
         else {
@@ -787,4 +788,36 @@ verbApp.constant('verbs', [
             controller: 'conjugatorCtrl'
         })
 
+})
+;var arabicSite = angular.module('arabicSite');
+
+arabicSite.directive('appAlert', function(alertService) {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/shared/directives/app_alert/app_alert.html',
+        scope: {},
+        link: function (scope, elem, attrs) {
+            scope.alertService = alertService;
+
+            scope.hideModal = function() {
+                //scope.alertObj.visible = false;
+                scope.alertService.visible = false;
+            }
+        }
+
+    }
+});var arabicSite = angular.module('arabicSite');
+
+arabicSite.factory('alertService', function() {
+    var service = {};
+
+    service.message;
+    service.visible = false;
+
+    service.show = function(message) {
+        service.message = message;
+        service.visible = true;
+    }
+
+    return service;
 })
