@@ -41,7 +41,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
             $scope.data.currentQuestion.isCorrect = true;
             if (currentIndex >= ($scope.data.filteredQuestions.length - 1)) {
                 $scope.updateQuestions();
-                alertService.show('You completed the question set!');
+                alert('You completed the question set');
             }
         }
         else {

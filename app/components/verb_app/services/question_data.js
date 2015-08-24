@@ -10,5 +10,9 @@ verbApp.factory('questionData', function() {
     // List of initial unfiltered conjugations
     data.conjugations = [];
 
+    // Message mode is true, when the questions should not be displayed and, instead, a message should be displayed
+    data.alert = { visible: false, message: null };
+
+
     return data;
 })

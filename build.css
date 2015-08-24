@@ -954,6 +954,11 @@ body {
 .message-div {
   height: 30px;
 }
+.message-mode {
+  font-size: 30px !important;
+  text-align: center;
+  height: 244px;
+}
 .small-font {
   font-size: 13px !important;
 }
