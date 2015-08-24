@@ -3,6 +3,11 @@
 @light: #E4E9F1;
 @dark: #476085;
 
+@errorColor: #A94442;
+@errorBg: #ECCFCF;
+@successColor: #3C763D;
+@successBg: #D1E9C7;
+
 .full-height {
     height: 100%;
 }
@@ -55,7 +60,8 @@ body {
 }
 
 .error {
-    color: red;
+    color: @errorColor;
+    background-color: @errorBg;
 }
 
 @import 'margins_padding.less';
