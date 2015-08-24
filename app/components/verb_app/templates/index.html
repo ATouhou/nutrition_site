@@ -61,11 +61,18 @@
                     </div>
                     <div class="col-md-6 align-right">
                         Question 2 of 30
+                        <button ng-click="cool = !cool">show</button>
                     </div>
                 </div>
+
                 <div class="row middle-md background">
 
+                    <!--input area-->
                     <div class="col-md-8">
+
+                        <div class="row middle-md message-div">
+                            <span class="correct-answer flip-in" ng-show="cool===true">Wrong Answer!</span>
+                        </div>
                         <div class="row middle-md" dir="rtl">
                             <div class="col-md-3 footer largest-font">
                                 <span>{{currentConjugation.pronoun}}</span>
@@ -76,8 +83,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row middle-md message-div">
+                            {{conjugator.getName(currentConjugation).capitalize()}}
+                        </div>
+
+
+
                     </div>
 
+                    <!--button area-->
                     <div class="col-md-4 button-container">
                         <div class="align-right medium-font">
                             <button class="normal-button pure-button pure-button-primary" ng-click="checkAnswer(input.answer, currentConjugation.perfect)">Check Answer</button>
@@ -85,6 +99,7 @@
                             <button class="normal-button pure-button" ng-click="next()">Skip</button>
                         </div>
                     </div>
+
 
                 </div>
 

@@ -19,6 +19,6 @@
     "ui-router": "~0.2.15",
     "firebase": "~2.2.7",
     "lodash": "~3.9.3",
-    "fontawesome": "~4.4.0"
+    "angular-animate": "~1.4.4"
   }
 }
