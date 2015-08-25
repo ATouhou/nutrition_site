@@ -59,6 +59,8 @@ verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionData, alertService) {
     $scope.data = questionData;
 
+    $scope.alert = alertService;
+
     $scope.helperData = helperData;
 
     $scope.filterOptions = filterOptions;
@@ -89,15 +91,15 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     $scope.data.filteredQuestions = angular.copy($scope.data.conjugations);
 
     // Set the current question
-    var currentIndex = 0;
-    $scope.data.currentQuestion = $scope.data.filteredQuestions[currentIndex];
+    $scope.data.questionIndex = 0;
+    $scope.data.currentQuestion = $scope.data.filteredQuestions[$scope.data.questionIndex];
 
     $scope.checkAnswer = function(userAnswer, answer) {
         if (userAnswer === answer) {
             $scope.data.currentQuestion.isCorrect = true;
-            if (currentIndex >= ($scope.data.filteredQuestions.length - 1)) {
-                $scope.updateQuestions();
-                alert('You completed the question set');
+            if ($scope.data.questionIndex >= ($scope.data.filteredQuestions.length - 1)) {
+                $scope.resetQuestions();
+                $scope.alert.show('You have completed all the questions in the set!');
             }
         }
         else {
@@ -105,10 +107,12 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         }
     }
 
+    $scope.resetQuestions = function() {
+        $scope.alert.clear();
+    }
+
     $scope.nextQuestion = function() {
-        currentIndex += 1;
-        $scope.data.currentQuestion = $scope.data.filteredQuestions[currentIndex];
-        $scope.data.input = {};
+        $scope.data.nextQuestion();
     }
 
     $scope.showAnswer = function(input, answer) {
@@ -117,8 +121,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     // Reset question set to first question
     $scope.updateQuestions = function() {
-        currentIndex = 0;
-        $scope.data.currentQuestion = $scope.data.filteredQuestions[currentIndex];
+        $scope.data.updateQuestions();
     }
 
     // This is run if there is any change to any of the filters
@@ -139,8 +142,14 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
             }
         })
 
-        $scope.data.filteredQuestions = filteredQuestions;
-        $scope.updateQuestions();
+        if (filteredQuestions.length === 0) {
+            $scope.alert.show('There are no questions that match your selected filters. Modify your filters to see more questions.');
+        }
+        else {
+            $scope.alert.clear();
+            $scope.data.filteredQuestions = filteredQuestions;
+            $scope.updateQuestions();
+        }
     }
 
     //$scope.textToSpeech = function(text) {
@@ -576,15 +585,36 @@ verbApp.value('helperData', {
 verbApp.factory('questionData', function() {
     var data = {};
 
+    // Index of current question
+    data.questionIndex;
+
     // Object to represent user input
     data.input = {};
 
     // List of initial unfiltered conjugations
     data.conjugations = [];
 
-    // Message mode is true, when the questions should not be displayed and, instead, a message should be displayed
-    data.alert = { visible: false, message: null };
+    data.clearInput = function() {
+        data.input = {};
+    }
 
+    data.resetQuestions = function() {
+        data.clearInput();
+        data.currentQuestion.isCorrect = null;
+        data.questionIndex = 0;
+        data.currentQuestion = data.filteredQuestions[data.questionIndex];
+    }
+
+    data.nextQuestion = function() {
+        data.questionIndex += 1;
+        data.currentQuestion = data.filteredQuestions[data.questionIndex];
+        data.clearInput();
+    }
+
+    data.updateQuestions = function() {
+        data.questionIndex = 0;
+        data.currentQuestion = data.filteredQuestions[data.questionIndex];
+    }
 
     return data;
 })
@@ -821,6 +851,11 @@ arabicSite.factory('alertService', function() {
     service.show = function(message) {
         service.message = message;
         service.visible = true;
+    }
+
+    service.clear = function() {
+        service.message = null;
+        service.visible = false;
     }
 
     return service;

@@ -11,5 +11,10 @@ arabicSite.factory('alertService', function() {
         service.visible = true;
     }
 
+    service.clear = function() {
+        service.message = null;
+        service.visible = false;
+    }
+
     return service;
 })

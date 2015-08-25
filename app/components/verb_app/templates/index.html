@@ -55,7 +55,9 @@
 
                 <div class="row middle-md message-mode" ng-show="alert.visible">
                     <div class="col-md-12">
-                        Some sort of message
+                        {{alert.message}}
+                        <button class="pure-button pure-button-primary" ng-click="resetQuestions()">Start Over</button>
+
                     </div>
                 </div>
 

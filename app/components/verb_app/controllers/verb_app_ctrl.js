@@ -3,6 +3,8 @@ var verbApp = angular.module('verbApp');
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionData, alertService) {
     $scope.data = questionData;
 
+    $scope.alert = alertService;
+
     $scope.helperData = helperData;
 
     $scope.filterOptions = filterOptions;
@@ -33,15 +35,15 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     $scope.data.filteredQuestions = angular.copy($scope.data.conjugations);
 
     // Set the current question
-    var currentIndex = 0;
-    $scope.data.currentQuestion = $scope.data.filteredQuestions[currentIndex];
+    $scope.data.questionIndex = 0;
+    $scope.data.currentQuestion = $scope.data.filteredQuestions[$scope.data.questionIndex];
 
     $scope.checkAnswer = function(userAnswer, answer) {
         if (userAnswer === answer) {
             $scope.data.currentQuestion.isCorrect = true;
-            if (currentIndex >= ($scope.data.filteredQuestions.length - 1)) {
-                $scope.updateQuestions();
-                alert('You completed the question set');
+            if ($scope.data.questionIndex >= ($scope.data.filteredQuestions.length - 1)) {
+                $scope.resetQuestions();
+                $scope.alert.show('You have completed all the questions in the set!');
             }
         }
         else {
@@ -49,10 +51,12 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         }
     }
 
+    $scope.resetQuestions = function() {
+        $scope.alert.clear();
+    }
+
     $scope.nextQuestion = function() {
-        currentIndex += 1;
-        $scope.data.currentQuestion = $scope.data.filteredQuestions[currentIndex];
-        $scope.data.input = {};
+        $scope.data.nextQuestion();
     }
 
     $scope.showAnswer = function(input, answer) {
@@ -61,8 +65,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     // Reset question set to first question
     $scope.updateQuestions = function() {
-        currentIndex = 0;
-        $scope.data.currentQuestion = $scope.data.filteredQuestions[currentIndex];
+        $scope.data.updateQuestions();
     }
 
     // This is run if there is any change to any of the filters
@@ -83,8 +86,14 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
             }
         })
 
-        $scope.data.filteredQuestions = filteredQuestions;
-        $scope.updateQuestions();
+        if (filteredQuestions.length === 0) {
+            $scope.alert.show('There are no questions that match your selected filters. Modify your filters to see more questions.');
+        }
+        else {
+            $scope.alert.clear();
+            $scope.data.filteredQuestions = filteredQuestions;
+            $scope.updateQuestions();
+        }
     }
 
     //$scope.textToSpeech = function(text) {
