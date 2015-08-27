@@ -13,6 +13,8 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     $scope.conjugator = conjugator;
 
+    $scope.templateDirectory = '/app/components/verb_app/templates';
+
     _.forEach($scope.filterOptions.pronouns, function(pronoun) {
         pronoun.selected = true;
     })

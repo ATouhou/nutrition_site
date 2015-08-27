@@ -4,71 +4,34 @@
         Arabic Verb App
     </header>
     <div class="columns-container">
+
         <div class="column1">
-
-            <div>
-                <div class="section-title">
-                    <input type="checkbox" ng-model="filterOptions.allTypes" ng-change="filterOptions.toggleAll('types', filterOptions.allTypes)"> Types
-                </div>
-
-                <table class="pure-table pure-table-horizontal">
-                    <tbody>
-                        <tr ng-repeat="verbType in filterOptions.types">
-                            <td class="checkbox">
-                                <input type="checkbox" ng-model="verbType.selected" ng-change="questions.updateQuestions()">
-                            </td>
-                            <td colspan="2" class="full-width small-font">
-                                {{_.capitalize(verbType.name)}}
-                            </td>
-                        </tr>
-                    </tbody>
-
-                </table>
-            </div>
-
-
-            <div>
-                <div class="section-title">
-                    <input type="checkbox" ng-model="filterOptions.allPronouns" ng-change="filterOptions.toggleAll('pronouns', filterOptions.allPronouns)"> Pronouns
-                </div>
-
-                <table class="pure-table pure-table-horizontal">
-                    <tbody>
-                        <tr ng-repeat="item in filterOptions.pronouns">
-                            <td>
-                                <input type="checkbox" ng-model="item.selected" ng-change="questions.updateQuestions()">
-                            </td>
-                            <td class="small-font">{{conjugator.getName(item).capitalize()}}</td>
-                            <td class="large-font">{{item.pronoun}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-
+            <div ng-include="templateDirectory + '/column1.html'"></div>
         </div>
 
         <div class="column2">
 
             <div class="question-box">
 
-                <div class="row middle-md message-mode" ng-show="alert.visible">
+                <div class="row middle-md message-mode medium-font" ng-show="alert.visible">
                     <div class="col-md-12">
                         {{alert.message}}
-                        <button ng-if="alert.type === 'setComplete'" class="pure-button pure-button-primary" ng-click="resetQuestions()">Start Over</button>
+                        <br>
+                        <div>
+                            <button ng-if="alert.type === 'setCompleted'" class="pure-button pure-button-primary" ng-click="resetQuestions()">Start Over</button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="question-mode" ng-hide="alert.visible">
                     <div class="row question-title">
-                        <div class="col-md-6">
-                            <div>Verb: {{conjugator.getVerb(questions.currentQuestion.verb, 5)}}</div>
-                            <div>Definition: {{questions.currentQuestion.verb.definition}}</div>
-                            <div>Questions: {{questions.filteredQuestions.length}}</div>
+                        <div class="col-md-6 largest-font">
+                            <div>{{conjugator.getVerb(questions.currentQuestion.verb, 5)}}</div>
                         </div>
+
                         <div class="col-md-6 align-right">
-                            Question 2 of 30
+                            <div>Question {{questions.questionIndex + 1}} of {{questions.filteredQuestions.length}}</div>
+                            <div>Definition: {{questions.currentQuestion.verb.definition}}</div>
                         </div>
                     </div>
 

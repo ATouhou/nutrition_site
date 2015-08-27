@@ -26,6 +26,9 @@ verbApp.factory('questionsService', function(alertService) {
 
     service.nextQuestion = function() {
         service.questionIndex += 1;
+        if (service.questionIndex >= service.filteredQuestions.length) {
+            service.questionIndex = 0;
+        }
         service.currentQuestion = service.filteredQuestions[service.questionIndex];
         service.clearInput();
     }

@@ -69,6 +69,8 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     $scope.conjugator = conjugator;
 
+    $scope.templateDirectory = '/app/components/verb_app/templates';
+
     _.forEach($scope.filterOptions.pronouns, function(pronoun) {
         pronoun.selected = true;
     })
@@ -587,6 +589,9 @@ verbApp.factory('questionsService', function(alertService) {
 
     service.nextQuestion = function() {
         service.questionIndex += 1;
+        if (service.questionIndex >= service.filteredQuestions.length) {
+            service.questionIndex = 0;
+        }
         service.currentQuestion = service.filteredQuestions[service.questionIndex];
         service.clearInput();
     }

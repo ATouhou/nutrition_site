@@ -1,0 +1,39 @@
+<div>
+    <div class="section-title">
+        <input type="checkbox" ng-model="filterOptions.allTypes" ng-change="filterOptions.toggleAll('types', filterOptions.allTypes)"> Types
+    </div>
+
+    <table class="pure-table pure-table-horizontal">
+        <tbody>
+        <tr ng-repeat="verbType in filterOptions.types">
+            <td class="checkbox">
+                <input type="checkbox" ng-model="verbType.selected" ng-change="questions.updateQuestions()">
+            </td>
+            <td colspan="2" class="full-width small-font">
+                {{_.capitalize(verbType.name)}}
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+
+<div>
+    <div class="section-title">
+        <input type="checkbox" ng-model="filterOptions.allPronouns" ng-change="filterOptions.toggleAll('pronouns', filterOptions.allPronouns)"> Pronouns
+    </div>
+
+    <table class="pure-table pure-table-horizontal">
+        <tbody>
+        <tr ng-repeat="item in filterOptions.pronouns">
+            <td>
+                <input type="checkbox" ng-model="item.selected" ng-change="questions.updateQuestions()">
+            </td>
+            <td class="small-font">{{conjugator.getName(item).capitalize()}}</td>
+            <td class="large-font">{{item.pronoun}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
