@@ -15,7 +15,7 @@
                     <tbody>
                         <tr ng-repeat="verbType in filterOptions.types">
                             <td class="checkbox">
-                                <input type="checkbox" ng-model="verbType.selected" ng-change="updateQuestions()">
+                                <input type="checkbox" ng-model="verbType.selected" ng-change="questions.updateQuestions()">
                             </td>
                             <td colspan="2" class="full-width small-font">
                                 {{_.capitalize(verbType.name)}}
@@ -36,7 +36,7 @@
                     <tbody>
                         <tr ng-repeat="item in filterOptions.pronouns">
                             <td>
-                                <input type="checkbox" ng-model="item.selected" ng-change="updateQuestions()">
+                                <input type="checkbox" ng-model="item.selected" ng-change="questions.updateQuestions()">
                             </td>
                             <td class="small-font">{{conjugator.getName(item).capitalize()}}</td>
                             <td class="large-font">{{item.pronoun}}</td>
@@ -56,8 +56,7 @@
                 <div class="row middle-md message-mode" ng-show="alert.visible">
                     <div class="col-md-12">
                         {{alert.message}}
-                        <button class="pure-button pure-button-primary" ng-click="resetQuestions()">Start Over</button>
-
+                        <button ng-if="alert.type === 'setComplete'" class="pure-button pure-button-primary" ng-click="resetQuestions()">Start Over</button>
                     </div>
                 </div>
 
@@ -103,10 +102,10 @@
                         <!--button area-->
                         <div class="col-md-4 button-container">
                             <div class="align-right medium-font">
-                                <button class="normal-button pure-button pure-button-primary" ng-hide="questions.currentQuestion.isCorrect" ng-click="checkAnswer(questions.input.answer, questions.currentQuestion.perfect)">Check Answer</button>
-                                <button class="normal-button pure-button pure-button-primary" ng-show="questions.currentQuestion.isCorrect" ng-click="nextQuestion()">Next Question</button>
-                                <button class="normal-button pure-button" ng-disabled="questions.currentQuestion.isCorrect" ng-click="showAnswer(questions.input, questions.currentQuestion.perfect)">Show Answer</button>
-                                <button class="normal-button pure-button" ng-disabled="questions.currentQuestion.isCorrect"  ng-click="nextQuestion()">Skip</button>
+                                <button class="normal-button pure-button pure-button-primary" ng-hide="questions.currentQuestion.isCorrect" ng-click="questions.checkAnswer(questions.input.answer, questions.currentQuestion.perfect)">Check Answer</button>
+                                <button class="normal-button pure-button pure-button-primary" ng-show="questions.currentQuestion.isCorrect" ng-click="questions.nextQuestion()">Next Question</button>
+                                <button class="normal-button pure-button" ng-disabled="questions.currentQuestion.isCorrect" ng-click="questions.showAnswer(questions.input, questions.currentQuestion.perfect)">Show Answer</button>
+                                <button class="normal-button pure-button" ng-disabled="questions.currentQuestion.isCorrect"  ng-click="questions.nextQuestion()">Skip</button>
                             </div>
                         </div>
 

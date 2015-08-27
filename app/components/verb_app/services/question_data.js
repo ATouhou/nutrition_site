@@ -1,7 +1,7 @@
 var verbApp = angular.module('verbApp');
 
-// Handles all service related to question objects
-verbApp.factory('questionsService', function() {
+// The primary service which deals with handling questions, checking answers, etc
+verbApp.factory('questionsService', function(alertService) {
     var service = {};
 
     // Index of current question
@@ -30,9 +30,27 @@ verbApp.factory('questionsService', function() {
         service.clearInput();
     }
 
+    // Reset question set to first question
     service.updateQuestions = function() {
         service.questionIndex = 0;
         service.currentQuestion = service.filteredQuestions[service.questionIndex];
+    }
+
+    service.showAnswer = function(input, answer) {
+        input.answer = answer;
+    }
+
+    service.checkAnswer = function(userAnswer, answer) {
+        if (userAnswer === answer) {
+            service.currentQuestion.isCorrect = true;
+            if (service.questionIndex >= (service.filteredQuestions.length - 1)) {
+                service.resetQuestions();
+                alertService.set('setCompleted', 'You have completed all the questions in the set!');
+            }
+        }
+        else {
+            service.currentQuestion.isCorrect = false;
+        }
     }
 
     return service;

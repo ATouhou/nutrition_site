@@ -38,34 +38,8 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     $scope.questions.questionIndex = 0;
     $scope.questions.currentQuestion = $scope.questions.filteredQuestions[$scope.questions.questionIndex];
 
-    $scope.checkAnswer = function(userAnswer, answer) {
-        if (userAnswer === answer) {
-            $scope.questions.currentQuestion.isCorrect = true;
-            if ($scope.questions.questionIndex >= ($scope.questions.filteredQuestions.length - 1)) {
-                $scope.resetQuestions();
-                $scope.alert.show('You have completed all the questions in the set!');
-            }
-        }
-        else {
-            $scope.questions.currentQuestion.isCorrect = false;
-        }
-    }
-
     $scope.resetQuestions = function() {
-        $scope.alert.clear();
-    }
-
-    $scope.nextQuestion = function() {
-        $scope.questions.nextQuestion();
-    }
-
-    $scope.showAnswer = function(input, answer) {
-        input.answer = answer;
-    }
-
-    // Reset question set to first question
-    $scope.updateQuestions = function() {
-        $scope.questions.updateQuestions();
+        alertService.clear();
     }
 
     // This is run if there is any change to any of the filters
@@ -87,22 +61,28 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         })
 
         if (filteredQuestions.length === 0) {
-            $scope.alert.show('There are no questions that match your selected filters. Modify your filters to see more questions.');
+            alertService.set('noMatches', 'There are no questions that match your selected filters. Modify your filters to see more questions.');
         }
         else {
-            $scope.alert.clear();
+            alertService.clear();
+            $scope.questions.clearInput();
             $scope.questions.filteredQuestions = filteredQuestions;
-            $scope.updateQuestions();
+            $scope.questions.updateQuestions();
         }
     }
 
-    //$scope.textToSpeech = function(text) {
-    //    var audio = $("#my-audio");
-    //    audio.attr('src', 'http://translate.google.com/translate_tts?tl=en&q=great&client=t');
-    //    audio.trigger('pause');
-    //    audio.trigger('load');
-    //    audio.trigger('play');
-    //}
-
 })
+
+
+
+
+
+
+//$scope.textToSpeech = function(text) {
+//    var audio = $("#my-audio");
+//    audio.attr('src', 'http://translate.google.com/translate_tts?tl=en&q=great&client=t');
+//    audio.trigger('pause');
+//    audio.trigger('load');
+//    audio.trigger('play');
+//}
 
