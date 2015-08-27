@@ -1,39 +1,39 @@
 var verbApp = angular.module('verbApp');
 
-// Handles all data related to question objects
-verbApp.factory('questionData', function() {
-    var data = {};
+// Handles all service related to question objects
+verbApp.factory('questionsService', function() {
+    var service = {};
 
     // Index of current question
-    data.questionIndex;
+    service.questionIndex;
 
     // Object to represent user input
-    data.input = {};
+    service.input = {};
 
     // List of initial unfiltered conjugations
-    data.conjugations = [];
+    service.conjugations = [];
 
-    data.clearInput = function() {
-        data.input = {};
+    service.clearInput = function() {
+        service.input = {};
     }
 
-    data.resetQuestions = function() {
-        data.clearInput();
-        data.currentQuestion.isCorrect = null;
-        data.questionIndex = 0;
-        data.currentQuestion = data.filteredQuestions[data.questionIndex];
+    service.resetQuestions = function() {
+        service.clearInput();
+        service.currentQuestion.isCorrect = null;
+        service.questionIndex = 0;
+        service.currentQuestion = service.filteredQuestions[service.questionIndex];
     }
 
-    data.nextQuestion = function() {
-        data.questionIndex += 1;
-        data.currentQuestion = data.filteredQuestions[data.questionIndex];
-        data.clearInput();
+    service.nextQuestion = function() {
+        service.questionIndex += 1;
+        service.currentQuestion = service.filteredQuestions[service.questionIndex];
+        service.clearInput();
     }
 
-    data.updateQuestions = function() {
-        data.questionIndex = 0;
-        data.currentQuestion = data.filteredQuestions[data.questionIndex];
+    service.updateQuestions = function() {
+        service.questionIndex = 0;
+        service.currentQuestion = service.filteredQuestions[service.questionIndex];
     }
 
-    return data;
+    return service;
 })

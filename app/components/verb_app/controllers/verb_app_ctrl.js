@@ -1,7 +1,7 @@
 var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionData, alertService) {
-    $scope.data = questionData;
+verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionsService, alertService) {
+    $scope.questions = questionsService;
 
     $scope.alert = alertService;
 
@@ -27,27 +27,27 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         _.forEach(conjugationSet, function(cSet) {
             cSet.verb = verb;
         })
-        $scope.data.conjugations = $scope.data.conjugations.concat(conjugationSet);
+        $scope.questions.conjugations = $scope.questions.conjugations.concat(conjugationSet);
     })
 
     // Create a shallow copy so that changes to filteredQuestions do not affect the original conjugation list
     // filteredQuestions will be the deck used to display the questions
-    $scope.data.filteredQuestions = angular.copy($scope.data.conjugations);
+    $scope.questions.filteredQuestions = angular.copy($scope.questions.conjugations);
 
     // Set the current question
-    $scope.data.questionIndex = 0;
-    $scope.data.currentQuestion = $scope.data.filteredQuestions[$scope.data.questionIndex];
+    $scope.questions.questionIndex = 0;
+    $scope.questions.currentQuestion = $scope.questions.filteredQuestions[$scope.questions.questionIndex];
 
     $scope.checkAnswer = function(userAnswer, answer) {
         if (userAnswer === answer) {
-            $scope.data.currentQuestion.isCorrect = true;
-            if ($scope.data.questionIndex >= ($scope.data.filteredQuestions.length - 1)) {
+            $scope.questions.currentQuestion.isCorrect = true;
+            if ($scope.questions.questionIndex >= ($scope.questions.filteredQuestions.length - 1)) {
                 $scope.resetQuestions();
                 $scope.alert.show('You have completed all the questions in the set!');
             }
         }
         else {
-            $scope.data.currentQuestion.isCorrect = false;
+            $scope.questions.currentQuestion.isCorrect = false;
         }
     }
 
@@ -56,7 +56,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     }
 
     $scope.nextQuestion = function() {
-        $scope.data.nextQuestion();
+        $scope.questions.nextQuestion();
     }
 
     $scope.showAnswer = function(input, answer) {
@@ -65,7 +65,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     // Reset question set to first question
     $scope.updateQuestions = function() {
-        $scope.data.updateQuestions();
+        $scope.questions.updateQuestions();
     }
 
     // This is run if there is any change to any of the filters
@@ -80,7 +80,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         var pronounIds = _.pluck(_.filter($scope.filterOptions.pronouns, {selected: true}), 'id');
         var types = _.pluck(_.filter($scope.filterOptions.types, {selected: true}), 'name');
 
-        var filteredQuestions = _.filter($scope.data.conjugations, function(conjugation) {
+        var filteredQuestions = _.filter($scope.questions.conjugations, function(conjugation) {
             if (_.contains(pronounIds, conjugation.id) && _.contains(types, conjugation.verb.type.name)) {
                 return true;
             }
@@ -91,7 +91,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         }
         else {
             $scope.alert.clear();
-            $scope.data.filteredQuestions = filteredQuestions;
+            $scope.questions.filteredQuestions = filteredQuestions;
             $scope.updateQuestions();
         }
     }

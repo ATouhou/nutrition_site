@@ -64,9 +64,9 @@
                 <div class="question-mode" ng-hide="alert.visible">
                     <div class="row question-title">
                         <div class="col-md-6">
-                            <div>Verb: {{conjugator.getVerb(data.currentQuestion.verb, 5)}}</div>
-                            <div>Definition: {{data.currentQuestion.verb.definition}}</div>
-                            <div>Questions: {{data.filteredQuestions.length}}</div>
+                            <div>Verb: {{conjugator.getVerb(questions.currentQuestion.verb, 5)}}</div>
+                            <div>Definition: {{questions.currentQuestion.verb.definition}}</div>
+                            <div>Questions: {{questions.filteredQuestions.length}}</div>
                         </div>
                         <div class="col-md-6 align-right">
                             Question 2 of 30
@@ -79,21 +79,21 @@
                         <div class="col-md-8">
 
                             <div class="row middle-md message-div">
-                                <div class="incorrect-answer" ng-if="data.currentQuestion.isCorrect === false">Wrong Answer!</div>
-                                <div class="correct-answer" ng-if="data.currentQuestion.isCorrect === true">Correct Answer!</div>
+                                <div class="incorrect-answer" ng-if="questions.currentQuestion.isCorrect === false">Wrong Answer!</div>
+                                <div class="correct-answer" ng-if="questions.currentQuestion.isCorrect === true">Correct Answer!</div>
                             </div>
                             <div class="row middle-md" dir="rtl">
                                 <div class="col-md-3 footer largest-font">
-                                    <span>{{data.currentQuestion.pronoun}}</span>
+                                    <span>{{questions.currentQuestion.pronoun}}</span>
                                 </div>
                                 <div class="col-md-9 header input-container">
                                     <div dir="rtl">
-                                        <input class="answer-input" answer-progress user-input="data.input" ng-class="{'error': data.input.error}" answer="data.currentQuestion.perfect" ng-model="data.input.answer" type="text">
+                                        <input class="answer-input" answer-progress user-input="questions.input" ng-class="{'error': questions.input.error}" answer="questions.currentQuestion.perfect" ng-model="questions.input.answer" type="text">
                                     </div>
                                 </div>
                             </div>
                             <div class="row middle-md message-div">
-                                {{conjugator.getName(data.currentQuestion).capitalize()}}
+                                {{conjugator.getName(questions.currentQuestion).capitalize()}}
                             </div>
 
 
@@ -103,10 +103,10 @@
                         <!--button area-->
                         <div class="col-md-4 button-container">
                             <div class="align-right medium-font">
-                                <button class="normal-button pure-button pure-button-primary" ng-hide="data.currentQuestion.isCorrect" ng-click="checkAnswer(data.input.answer, data.currentQuestion.perfect)">Check Answer</button>
-                                <button class="normal-button pure-button pure-button-primary" ng-show="data.currentQuestion.isCorrect" ng-click="nextQuestion()">Next Question</button>
-                                <button class="normal-button pure-button" ng-disabled="data.currentQuestion.isCorrect" ng-click="showAnswer(data.input, data.currentQuestion.perfect)">Show Answer</button>
-                                <button class="normal-button pure-button" ng-disabled="data.currentQuestion.isCorrect"  ng-click="nextQuestion()">Skip</button>
+                                <button class="normal-button pure-button pure-button-primary" ng-hide="questions.currentQuestion.isCorrect" ng-click="checkAnswer(questions.input.answer, questions.currentQuestion.perfect)">Check Answer</button>
+                                <button class="normal-button pure-button pure-button-primary" ng-show="questions.currentQuestion.isCorrect" ng-click="nextQuestion()">Next Question</button>
+                                <button class="normal-button pure-button" ng-disabled="questions.currentQuestion.isCorrect" ng-click="showAnswer(questions.input, questions.currentQuestion.perfect)">Show Answer</button>
+                                <button class="normal-button pure-button" ng-disabled="questions.currentQuestion.isCorrect"  ng-click="nextQuestion()">Skip</button>
                             </div>
                         </div>
 
