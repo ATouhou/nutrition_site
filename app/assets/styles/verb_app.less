@@ -16,6 +16,13 @@
   .largest-font;
 }
 
+input.answer-input {
+  border: none;
+  border-bottom: solid;
+  outline: none;
+  padding: 5px;
+}
+
 .correct-answer {
   color: @successColor;
   font-style: italic;
@@ -33,17 +40,18 @@
 }
 
 .button-container {
-  background-color: orange;
+  background-color: @secondary;
   .top-bottom-padding;
 }
 
 .input-and-buttons {
-  background-color: lightsteelblue;
+  background-color: @light;
 }
 
 .question-title {
   .top-bottom-padding;
-  background-color: lightgoldenrodyellow;
+  background-color: @normal;
+  color: @light;
 }
 
 .normal-button {
@@ -51,14 +59,6 @@
   margin-top: 3px;
   margin-bottom: 3px;
   opacity: 1 !important;
-}
-
-.background {
-  background-color: lightsteelblue;
-}
-
-.background1 {
-  background-color: lightcyan;
 }
 
 .row {
@@ -78,6 +78,5 @@
   text-align: center;
   height: 244px;
 }
-
 
 

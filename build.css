@@ -9,6 +9,12 @@ body {
   font-family: helvetica, verdana, arial, sans-serif;
   margin: 0;
 }
+.header {
+  background-color: #665178;
+  color: #f1f1f1;
+  padding: 10px;
+  font-size: 20px;
+}
 .content-container {
   display: flex;
   min-height: 100vh;
@@ -29,7 +35,7 @@ body {
 .column3 {
   /* 12em is the width of the columns */
   flex: 1;
-  background-color: #e4e9f1;
+  background-color: #f1f1f1;
 }
 .error {
   color: #a94442;
@@ -905,6 +911,12 @@ body {
   width: 98%;
   font-size: 60px;
 }
+input.answer-input {
+  border: none;
+  border-bottom: solid;
+  outline: none;
+  padding: 5px;
+}
 .correct-answer {
   color: #3c763d;
   font-style: italic;
@@ -921,29 +933,24 @@ body {
   padding-bottom: 10px;
 }
 .button-container {
-  background-color: orange;
+  background-color: #a9cdc3;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 .input-and-buttons {
-  background-color: lightsteelblue;
+  background-color: #f1f1f1;
 }
 .question-title {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: lightgoldenrodyellow;
+  background-color: #665178;
+  color: #f1f1f1;
 }
 .normal-button {
   width: 170px;
   margin-top: 3px;
   margin-bottom: 3px;
   opacity: 1 !important;
-}
-.background {
-  background-color: lightsteelblue;
-}
-.background1 {
-  background-color: lightcyan;
 }
 .row {
   margin: 0;
@@ -972,7 +979,7 @@ body {
   font-size: 60px;
 }
 .section-title {
-  background-color: #9eb0cb;
+  background-color: #a9cdc3;
   padding: 7px;
   font-size: 20px !important;
 }

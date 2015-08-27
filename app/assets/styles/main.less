@@ -1,7 +1,7 @@
 // put global variables here
-@normal: #9EB0CB;
-@light: #E4E9F1;
-@dark: #476085;
+@normal: #665178;
+@secondary: #A9CDC3;
+@light: #f1f1f1;
 
 @errorColor: #A94442;
 @errorBg: #ECCFCF;
@@ -23,6 +23,12 @@ body {
     margin: 0;
 }
 
+.header {
+    background-color: @normal;
+    color: @light;
+    padding: 10px;
+    font-size: 20px;
+}
 
 // Layout stuff see holy grail layout: https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
 .content-container {
@@ -35,6 +41,7 @@ body {
     display: flex;
     flex: 1;
 }
+
 .column2 {
     flex: 3;
     background-color: white;
@@ -50,14 +57,6 @@ body {
 //    flex: 0 0 12em;
     flex: 1;
     background-color: @light;
-}
-
-.header {
-//    background-color: lightseagreen;
-}
-
-.footer {
-//    background-color: orange;
 }
 
 .error {
