@@ -1,7 +1,7 @@
 var verbApp = angular.module('verbApp');
 
 // The primary service which deals with handling questions, checking answers, etc
-verbApp.factory('questionsService', function(alertService) {
+verbApp.factory('questionsService', function(alertService, conjugator) {
     var service = {};
 
     // Index of current question
@@ -15,10 +15,7 @@ verbApp.factory('questionsService', function(alertService) {
     }
 
     service.resetQuestions = function() {
-        service.clearInput();
-        service.currentQuestion.isCorrect = null;
         service.questionIndex = 0;
-        service.currentQuestion = service.filteredQuestions[service.questionIndex];
     }
 
     service.nextQuestion = function() {
@@ -52,8 +49,8 @@ verbApp.factory('questionsService', function(alertService) {
     service.checkAnswer = function(userAnswer, answer) {
         if (userAnswer === answer) {
             service.currentQuestion.isCorrect = true;
-            if (service.questionIndex >= (service.filteredQuestions.length - 1)) {
-                service.resetQuestions();
+            // check if all are correct, if so, then show the alert!
+            if (_.every(service.filteredQuestions, {isCorrect: true})) {
                 alertService.set('setCompleted', 'You have completed all the questions in the set!');
             }
         }
