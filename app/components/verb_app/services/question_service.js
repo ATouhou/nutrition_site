@@ -1,7 +1,7 @@
 var verbApp = angular.module('verbApp');
 
 // The primary service which deals with handling questions, checking answers, etc
-verbApp.factory('questionsService', function(alertService, conjugator) {
+verbApp.factory('questionsService', function(alertService, filterOptions) {
     var service = {};
 
     // Index of current question
@@ -15,7 +15,11 @@ verbApp.factory('questionsService', function(alertService, conjugator) {
     }
 
     service.resetQuestions = function() {
+        alertService.clear();
         service.questionIndex = 0;
+        service.filteredQuestions = angular.copy(service.conjugations);
+        service.currentQuestion = service.filteredQuestions[0];
+        filterOptions.reset();
     }
 
     service.nextQuestion = function() {

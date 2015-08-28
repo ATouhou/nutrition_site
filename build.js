@@ -64,20 +64,13 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     $scope.helperData = helperData;
 
     $scope.filterOptions = filterOptions;
+    filterOptions.reset();
 
     $scope.verbs = verbs;
 
     $scope.conjugator = conjugator;
 
     $scope.templateDirectory = '/app/components/verb_app/templates';
-
-    _.forEach($scope.filterOptions.pronouns, function(pronoun) {
-        pronoun.selected = true;
-    })
-
-    _.forEach($scope.filterOptions.types, function(type) {
-        type.selected = true;
-    })
 
     _.forEach($scope.verbs, function(verb) {
         var conjugationSet = conjugator.getConjugations(verb);
@@ -95,10 +88,6 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
     // Set the current question
     $scope.questions.questionIndex = 0;
     $scope.questions.currentQuestion = $scope.questions.filteredQuestions[$scope.questions.questionIndex];
-
-    $scope.resetQuestions = function() {
-        alertService.clear();
-    }
 
     // This is run if there is any change to any of the filters
     $scope.$watch('filterOptions', function(newVal, oldVal) {
@@ -381,6 +370,17 @@ verbApp.factory('filterOptions', function(helperData) {
         })
     }
 
+    filterOptions.reset = function() {
+        _.forEach(filterOptions.pronouns, function(pronoun) {
+            pronoun.selected = true;
+        })
+        _.forEach(filterOptions.types, function(type) {
+            type.selected = true;
+        })
+        filterOptions.allTypes = true;
+        filterOptions.allPronouns = true;
+    }
+
     return filterOptions;
 })
 
@@ -557,7 +557,7 @@ verbApp.value('helperData', {
 );var verbApp = angular.module('verbApp');
 
 // The primary service which deals with handling questions, checking answers, etc
-verbApp.factory('questionsService', function(alertService, conjugator) {
+verbApp.factory('questionsService', function(alertService, filterOptions) {
     var service = {};
 
     // Index of current question
@@ -571,7 +571,11 @@ verbApp.factory('questionsService', function(alertService, conjugator) {
     }
 
     service.resetQuestions = function() {
+        alertService.clear();
         service.questionIndex = 0;
+        service.filteredQuestions = angular.copy(service.conjugations);
+        service.currentQuestion = service.filteredQuestions[0];
+        filterOptions.reset();
     }
 
     service.nextQuestion = function() {

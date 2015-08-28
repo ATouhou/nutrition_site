@@ -17,6 +17,17 @@ verbApp.factory('filterOptions', function(helperData) {
         })
     }
 
+    filterOptions.reset = function() {
+        _.forEach(filterOptions.pronouns, function(pronoun) {
+            pronoun.selected = true;
+        })
+        _.forEach(filterOptions.types, function(type) {
+            type.selected = true;
+        })
+        filterOptions.allTypes = true;
+        filterOptions.allPronouns = true;
+    }
+
     return filterOptions;
 })
 
