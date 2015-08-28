@@ -7,9 +7,6 @@ verbApp.factory('questionsService', function(alertService) {
     // Index of current question
     service.questionIndex;
 
-    // Object to represent user input
-    service.input = {};
-
     // List of initial unfiltered conjugations
     service.conjugations = [];
 
@@ -48,8 +45,8 @@ verbApp.factory('questionsService', function(alertService) {
         service.currentQuestion = service.filteredQuestions[service.questionIndex];
     }
 
-    service.showAnswer = function(input, answer) {
-        input.answer = answer;
+    service.showAnswer = function(question, answer) {
+        question.userAnswer = answer;
     }
 
     service.checkAnswer = function(userAnswer, answer) {

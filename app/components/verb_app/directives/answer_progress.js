@@ -7,21 +7,19 @@ verbApp.directive('answerProgress', function($timeout) {
         //templateUrl: '',
         scope: {
             answer: '=',
-            userInput: '='
+            questionObj: '='
         },
         link: function(scope, elem, attrs) {
             elem.bind('keyup', function(event) {
                 // Compare the number of chars input by the user with that many chars in the answer
-                var userLetters = scope.userInput.answer.split('');
+                var userLetters = scope.questionObj.userAnswer.split('');
                 var letters = scope.answer.split('').slice(0, userLetters.length);
                 $timeout(function() {
                     if (_.isEqual(userLetters, letters)) {
-                        console.log('correct');
-                        scope.userInput.error = false;
+                        scope.questionObj.userError = false;
                     }
                     else {
-                        console.log('error');
-                        scope.userInput.error = true;
+                        scope.questionObj.userError = true;
                     }
                 })
             })
