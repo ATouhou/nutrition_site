@@ -33,6 +33,15 @@ verbApp.factory('questionsService', function(alertService) {
         service.clearInput();
     }
 
+    service.previousQuestion = function() {
+        service.questionIndex -= 1;
+        if (service.questionIndex < 0) {
+            service.questionIndex = service.filteredQuestions.length - 1;
+        }
+        service.currentQuestion = service.filteredQuestions[service.questionIndex];
+        service.clearInput();
+    }
+
     // Reset question set to first question
     service.updateQuestions = function() {
         service.questionIndex = 0;

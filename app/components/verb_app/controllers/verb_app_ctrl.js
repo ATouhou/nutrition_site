@@ -75,11 +75,6 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
 })
 
-
-
-
-
-
 //$scope.textToSpeech = function(text) {
 //    var audio = $("#my-audio");
 //    audio.attr('src', 'http://translate.google.com/translate_tts?tl=en&q=great&client=t');

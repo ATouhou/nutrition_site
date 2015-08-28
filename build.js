@@ -131,11 +131,6 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
 })
 
-
-
-
-
-
 //$scope.textToSpeech = function(text) {
 //    var audio = $("#my-audio");
 //    audio.attr('src', 'http://translate.google.com/translate_tts?tl=en&q=great&client=t');
@@ -591,6 +586,15 @@ verbApp.factory('questionsService', function(alertService) {
         service.questionIndex += 1;
         if (service.questionIndex >= service.filteredQuestions.length) {
             service.questionIndex = 0;
+        }
+        service.currentQuestion = service.filteredQuestions[service.questionIndex];
+        service.clearInput();
+    }
+
+    service.previousQuestion = function() {
+        service.questionIndex -= 1;
+        if (service.questionIndex < 0) {
+            service.questionIndex = service.filteredQuestions.length - 1;
         }
         service.currentQuestion = service.filteredQuestions[service.questionIndex];
         service.clearInput();
