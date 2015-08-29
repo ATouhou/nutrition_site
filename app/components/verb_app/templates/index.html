@@ -72,7 +72,7 @@
                                 <div class="col-md-9 input-container">
                                     <div dir="rtl">
                                         <input class="answer-input" ng-disabled="question.isCorrect" answer-progress question-obj="question"
-                                               ng-class="{'error': question.userError}" answer="question.perfect" ng-model="question.userAnswer" type="text">
+                                               ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.perfect)" answer="question.perfect" ng-model="question.userAnswer" type="text">
                                     </div>
                                 </div>
                             </div>
