@@ -56,8 +56,14 @@
                         <div class="col-md-8">
 
                             <div class="row middle-md message-div">
-                                <div class="incorrect-answer" ng-if="question.isCorrect === false">Wrong Answer!</div>
-                                <div class="correct-answer" ng-if="question.isCorrect === true">Correct Answer!</div>
+                                <div class="incorrect-answer" ng-if="question.isCorrect === false">
+                                    <i class="fa fa-times-circle fa-lg"></i>
+                                    Incorrect
+                                </div>
+                                <div class="correct-answer" ng-if="question.isCorrect === true">
+                                    <i class="fa fa-check-circle fa-lg"></i>
+                                    Correct
+                                </div>
                             </div>
                             <div class="row middle-md" dir="rtl">
                                 <div class="col-md-3 footer largest-font">
@@ -65,7 +71,7 @@
                                 </div>
                                 <div class="col-md-9 input-container">
                                     <div dir="rtl">
-                                        <input class="answer-input" answer-progress question-obj="question"
+                                        <input class="answer-input" ng-disabled="question.isCorrect" answer-progress question-obj="question"
                                                ng-class="{'error': question.userError}" answer="question.perfect" ng-model="question.userAnswer" type="text">
                                     </div>
                                 </div>

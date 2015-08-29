@@ -41,6 +41,9 @@ body {
   color: #a94442;
   background-color: #eccfcf;
 }
+.success-bg {
+  background-color: #d1e9c7;
+}
 .pointer {
   cursor: pointer;
 }

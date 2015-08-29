@@ -27,7 +27,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     // Create a shallow copy so that changes to filteredQuestions do not affect the original conjugation list
     // filteredQuestions will be the deck used to display the questions
-    $scope.questions.filteredQuestions = angular.copy($scope.questions.conjugations);
+    $scope.questions.filteredQuestions = $scope.questions.conjugations;
 
     // Set the current question
     $scope.questions.questionIndex = 0;
@@ -56,7 +56,6 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         }
         else {
             alertService.clear();
-            $scope.questions.clearInput();
             $scope.questions.filteredQuestions = filteredQuestions;
             $scope.questions.updateQuestions();
         }
