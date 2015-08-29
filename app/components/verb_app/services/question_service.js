@@ -55,6 +55,7 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
     service.checkAnswer = function(userAnswer, answer) {
         if (userAnswer === answer) {
             this.currentQuestion.isCorrect = true;
+            this.currentQuestion.userError = false;
             // check if all are correct, if so, then show the alert!
             if (_.every(this.filteredQuestions, {isCorrect: true})) {
                 alertService.set('setCompleted', 'You have completed all the questions in the set!');
