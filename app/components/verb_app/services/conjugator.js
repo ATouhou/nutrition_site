@@ -50,6 +50,7 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
             case 'geminate': conjugatedVerb = getGeminateVerb(id); break;
             case 'hollow': conjugatedVerb = getHollowVerb(id); break;
             case 'defective': conjugatedVerb = getDefectiveVerb(id); break;
+            case 'hamzated': conjugatedVerb = getSoundVerb(pronoun.id); break;
         }
         return conjugatedVerb;
     }
@@ -65,7 +66,7 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
                 case 'geminate': pronoun.perfect = getGeminateVerb(pronoun.id); break;
                 case 'hollow': pronoun.perfect = getHollowVerb(pronoun.id); break;
                 case 'defective': pronoun.perfect = getDefectiveVerb(pronoun.id); break;
-                //case 'hamzated': pronoun.perfect = getHamzatedVerb(pronoun.id); break;
+                case 'hamzated': pronoun.perfect = getSoundVerb(pronoun.id); break;
             }
             if (anyHamzas()) {
                 pronoun.perfect = hamzatedWord.getWord(pronoun.perfect);
