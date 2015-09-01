@@ -17,13 +17,6 @@ html {
     margin: 0;
 }
 
-.container-fluid {
-    padding-right: 0 !important; /*15px in bootstrap.css*/
-    padding-left: 0 !important;  /*idem*/
-    margin-right: auto;
-    margin-left: auto;
-}
-
 body {
     .full-height;
     font-family: helvetica, verdana, arial, sans-serif;
@@ -31,8 +24,30 @@ body {
     margin: 0;
 }
 
+.show-scrollbar {
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 6px;
+        background-color: @secondary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: @normal;
+        -webkit-box-shadow: 0 0 1px @normal;
+    }
+}
+
 .column1 {
     background-color: @light;
+    height:100vh;
+    overflow-y: scroll;
+    .show-scrollbar;
+}
+
+.column2 {
+    background-color: lightsteelblue;
+    height:100vh;
 }
 
 .error {
@@ -54,11 +69,11 @@ body {
     -ms-user-select: none; /* IE10+ */
 }
 
-@import 'margins_padding.less';
-@import 'verb_app.less';
 @import 'typography.less';
-@import 'column1.less';
-@import 'alignment.less';
-@import 'css_animations.less';
-@import 'app_alert.less';
+//@import 'margins_padding.less';
+//@import 'verb_app.less';
+//@import 'column1.less';
+//@import 'alignment.less';
+//@import 'css_animations.less';
+//@import 'app_alert.less';
 
