@@ -3,10 +3,10 @@
         <input type="checkbox" ng-model="filterOptions.allTypes" ng-change="filterOptions.toggleAll('types', filterOptions.allTypes)"> Types
     </div>
 
-    <table class="pure-table pure-table-horizontal">
+    <table class="table">
         <tbody>
         <tr ng-repeat="verbType in filterOptions.types">
-            <td class="checkbox">
+            <td>
                 <input type="checkbox" ng-model="verbType.selected" ng-change="questions.updateQuestions()">
             </td>
             <td colspan="2" class="full-width small-font">
@@ -24,7 +24,7 @@
         <input type="checkbox" ng-model="filterOptions.allPronouns" ng-change="filterOptions.toggleAll('pronouns', filterOptions.allPronouns)"> Pronouns
     </div>
 
-    <table class="pure-table pure-table-horizontal">
+    <table class="table">
         <tbody>
         <tr ng-repeat="item in filterOptions.pronouns">
             <td>
@@ -42,7 +42,7 @@
         <input type="checkbox" disabled> Forms
     </div>
 
-    <table class="pure-table pure-table-horizontal">
+    <table class="table">
         <tbody>
             <tr ng-repeat="item in filterOptions.forms">
                 <td>
@@ -62,7 +62,7 @@
         <input type="checkbox" disabled> Tenses
     </div>
 
-    <table class="pure-table pure-table-horizontal">
+    <table class="table">
         <tbody>
         <tr ng-repeat="item in filterOptions.tenses">
             <td>
@@ -81,7 +81,7 @@
         <input type="checkbox" disabled> Voice
     </div>
 
-    <table class="pure-table pure-table-horizontal">
+    <table class="table">
         <tbody>
         <tr ng-repeat="item in filterOptions.voices">
             <td>
@@ -100,7 +100,7 @@
         <input type="checkbox" disabled> Moods
     </div>
 
-    <table class="pure-table pure-table-horizontal">
+    <table class="table">
         <tbody>
         <tr ng-repeat="item in filterOptions.moods">
             <td>

@@ -14,6 +14,14 @@
 
 html {
     .full-height;
+    margin: 0;
+}
+
+.container-fluid {
+    padding-right: 0 !important; /*15px in bootstrap.css*/
+    padding-left: 0 !important;  /*idem*/
+    margin-right: auto;
+    margin-left: auto;
 }
 
 body {
@@ -23,39 +31,7 @@ body {
     margin: 0;
 }
 
-.header {
-    background-color: @normal;
-    color: @light;
-    padding: 10px;
-    font-size: 20px;
-}
-
-// Layout stuff see holy grail layout: https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
-.content-container {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-.columns-container {
-    display: flex;
-    flex: 1;
-}
-
-.column2 {
-    flex: 3;
-    background-color: white;
-    display: flex;
-    flex-flow:  row;
-    justify-content: center;
-//    align-content: center;
-//    align-items: center;
-}
-
-.column1, .column3 {
-    /* 12em is the width of the columns */
-//    flex: 0 0 12em;
-    flex: 1;
+.column1 {
     background-color: @light;
 }
 

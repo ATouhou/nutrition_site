@@ -1,105 +1,97 @@
-<div class="content-container">
-
-    <header class="header">
-        StudyArabic.com
-    </header>
-
-    <div class="columns-container">
-
-        <div class="column1">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 column1">
             <div ng-include="templateDirectory + '/column1.html'"></div>
         </div>
 
-        <div class="column2">
+        <!--<div class="column2">-->
 
-            <div class="question-box" ng-repeat="question in questions.filteredQuestions" ng-if="question === questions.currentQuestion">
-                <div class="row middle-md message-mode medium-font" ng-show="alert.visible">
-                    <div class="col-md-12">
-                        {{alert.message}}
-                        <br>
-                        <br>
-                        <div>
-                            <button ng-if="alert.type === 'setCompleted'" class="pure-button pure-button-primary" ng-click="questions.resetQuestions()">Start Over</button>
-                        </div>
-                    </div>
-                </div>
+            <!--<div class="question-box" ng-repeat="question in questions.filteredQuestions" ng-if="question === questions.currentQuestion">-->
+                <!--<div class="row middle-md message-mode medium-font" ng-show="alert.visible">-->
+                    <!--<div class="col-md-12">-->
+                        <!--{{alert.message}}-->
+                        <!--<br>-->
+                        <!--<br>-->
+                        <!--<div>-->
+                            <!--<button ng-if="alert.type === 'setCompleted'" class="pure-button pure-button-primary" ng-click="questions.resetQuestions()">Start Over</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
-                <div class="question-mode" ng-hide="alert.visible">
-                    <!--question header-->
-                    <div class="row question-title">
-                        <div class="col-md-6 largest-font">
-                            <div>{{conjugator.getVerb(question.verb, 5)}}</div>
-                        </div>
+                <!--<div class="question-mode" ng-hide="alert.visible">-->
+                    <!--&lt;!&ndash;question header&ndash;&gt;-->
+                    <!--<div class="row question-title">-->
+                        <!--<div class="col-md-6 largest-font">-->
+                            <!--<div>{{conjugator.getVerb(question.verb, 5)}}</div>-->
+                        <!--</div>-->
 
-                        <div class="col-md-6 align-right">
-                            <div>Question {{questions.questionIndex + 1}} of {{questions.filteredQuestions.length}}</div>
-                            <div>Definition: {{question.verb.definition}}</div>
-                            <div class="no-highlight">
-                                <span class="pointer" ng-click="questions.previousQuestion()">
-                                    <i class="fa fa-arrow-circle-left"></i>
-                                    Previous
-                                </span>
+                        <!--<div class="col-md-6 align-right">-->
+                            <!--<div>Question {{questions.questionIndex + 1}} of {{questions.filteredQuestions.length}}</div>-->
+                            <!--<div>Definition: {{question.verb.definition}}</div>-->
+                            <!--<div class="no-highlight">-->
+                                <!--<span class="pointer" ng-click="questions.previousQuestion()">-->
+                                    <!--<i class="fa fa-arrow-circle-left"></i>-->
+                                    <!--Previous-->
+                                <!--</span>-->
 
-                                <strong>|</strong>
+                                <!--<strong>|</strong>-->
 
-                                <span class="pointer" ng-click="questions.nextQuestion()">
-                                    Next
-                                    <i class="fa fa-arrow-circle-right"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                                <!--<span class="pointer" ng-click="questions.nextQuestion()">-->
+                                    <!--Next-->
+                                    <!--<i class="fa fa-arrow-circle-right"></i>-->
+                                <!--</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
-                    <div class="row middle-md input-and-buttons">
+                    <!--<div class="row middle-md input-and-buttons">-->
 
-                        <!--input area-->
-                        <div class="col-md-8">
+                        <!--&lt;!&ndash;input area&ndash;&gt;-->
+                        <!--<div class="col-md-8">-->
 
-                            <div class="row middle-md message-div">
-                                <div class="incorrect-answer" ng-if="question.isCorrect === false">
-                                    <i class="fa fa-times-circle fa-lg"></i>
-                                    Incorrect
-                                </div>
-                                <div class="correct-answer" ng-if="question.isCorrect === true">
-                                    <i class="fa fa-check-circle fa-lg"></i>
-                                    Correct
-                                </div>
-                            </div>
-                            <div class="row middle-md" dir="rtl">
-                                <div class="col-md-3 footer largest-font">
-                                    <span>{{question.pronoun}}</span>
-                                </div>
-                                <div class="col-md-9 input-container">
-                                    <div dir="rtl">
-                                        <input class="answer-input" ng-disabled="question.isCorrect" answer-progress question-obj="question"
-                                               ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.perfect)" answer="question.perfect" ng-model="question.userAnswer" type="text">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row middle-md message-div">
-                                {{conjugator.getName(question).capitalize()}}
-                            </div>
+                            <!--<div class="row middle-md message-div">-->
+                                <!--<div class="incorrect-answer" ng-if="question.isCorrect === false">-->
+                                    <!--<i class="fa fa-times-circle fa-lg"></i>-->
+                                    <!--Incorrect-->
+                                <!--</div>-->
+                                <!--<div class="correct-answer" ng-if="question.isCorrect === true">-->
+                                    <!--<i class="fa fa-check-circle fa-lg"></i>-->
+                                    <!--Correct-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row middle-md" dir="rtl">-->
+                                <!--<div class="col-md-3 footer largest-font">-->
+                                    <!--<span>{{question.pronoun}}</span>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-9 input-container">-->
+                                    <!--<div dir="rtl">-->
+                                        <!--<input class="answer-input" ng-disabled="question.isCorrect" answer-progress question-obj="question"-->
+                                               <!--ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.perfect)" answer="question.perfect" ng-model="question.userAnswer" type="text">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row middle-md message-div">-->
+                                <!--{{conjugator.getName(question).capitalize()}}-->
+                            <!--</div>-->
 
-                        </div>
+                        <!--</div>-->
 
-                        <!--button area-->
-                        <div class="col-md-4 button-container">
-                            <div class="align-right medium-font">
-                                <button class="normal-button pure-button pure-button-primary" ng-hide="question.isCorrect" ng-click="questions.checkAnswer(question.userAnswer, question.perfect)">Check Answer</button>
-                                <button class="normal-button pure-button pure-button-primary" ng-show="question.isCorrect" ng-click="questions.nextQuestion()">Next Question</button>
-                                <button class="normal-button pure-button" ng-disabled="question.isCorrect" ng-click="questions.showAnswer(question, question.perfect)">Show Answer</button>
-                                <button class="normal-button pure-button" ng-disabled="question.isCorrect"  ng-click="questions.nextQuestion()">Skip</button>
-                            </div>
-                        </div>
+                        <!--&lt;!&ndash;button area&ndash;&gt;-->
+                        <!--<div class="col-md-4 button-container">-->
+                            <!--<div class="align-right medium-font">-->
+                                <!--<button class="normal-button pure-button pure-button-primary" ng-hide="question.isCorrect" ng-click="questions.checkAnswer(question.userAnswer, question.perfect)">Check Answer</button>-->
+                                <!--<button class="normal-button pure-button pure-button-primary" ng-show="question.isCorrect" ng-click="questions.nextQuestion()">Next Question</button>-->
+                                <!--<button class="normal-button pure-button" ng-disabled="question.isCorrect" ng-click="questions.showAnswer(question, question.perfect)">Show Answer</button>-->
+                                <!--<button class="normal-button pure-button" ng-disabled="question.isCorrect"  ng-click="questions.nextQuestion()">Skip</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                    </div>
+                    <!--</div>-->
 
-                </div>
+                <!--</div>-->
 
-            </div>
-
-
-        </div>
+            <!--</div>-->
+        <!--</div>-->
 
         <!--<div class="column3"></div>-->
 
