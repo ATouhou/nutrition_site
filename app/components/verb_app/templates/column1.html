@@ -35,5 +35,81 @@
         </tr>
         </tbody>
     </table>
+</div>
 
+<div>
+    <div class="section-title">
+        <input type="checkbox" disabled> Forms
+    </div>
+
+    <table class="pure-table pure-table-horizontal">
+        <tbody>
+            <tr ng-repeat="item in filterOptions.forms">
+                <td>
+                    <input disabled type="checkbox" ng-model="item.selected">
+                </td>
+                <td colspan="2" class="small-font full-width">
+                    {{item.name}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    <div class="section-title">
+        <input type="checkbox" disabled> Tenses
+    </div>
+
+    <table class="pure-table pure-table-horizontal">
+        <tbody>
+        <tr ng-repeat="item in filterOptions.tenses">
+            <td>
+                <input disabled type="checkbox" ng-model="item.selected">
+            </td>
+            <td colspan="2" class="small-font full-width">
+                {{item.name.capitalize()}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <div class="section-title">
+        <input type="checkbox" disabled> Voice
+    </div>
+
+    <table class="pure-table pure-table-horizontal">
+        <tbody>
+        <tr ng-repeat="item in filterOptions.voices">
+            <td>
+                <input disabled type="checkbox" ng-model="item.selected">
+            </td>
+            <td colspan="2" class="small-font full-width">
+                {{item.name.capitalize()}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <div class="section-title">
+        <input type="checkbox" disabled> Moods
+    </div>
+
+    <table class="pure-table pure-table-horizontal">
+        <tbody>
+        <tr ng-repeat="item in filterOptions.moods">
+            <td>
+                <input disabled type="checkbox" ng-model="item.selected">
+            </td>
+            <td colspan="2" class="small-font full-width">
+                {{item.name.capitalize()}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
