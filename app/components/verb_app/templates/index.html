@@ -50,7 +50,7 @@
 
                         <div class="row input-and-buttons">
                             <!--input area-->
-                            <div class="col-md-8">
+                            <div class="col-md-6 input-container">
                                 <div class="incorrect-answer" ng-if="question.isCorrect === false">
                                     <i class="fa fa-times-circle fa-lg"></i>
                                     Incorrect
@@ -62,9 +62,8 @@
                                 </div>
 
                                 <div dir="rtl">
-                                    <div class="input-container">
+                                    <div>
                                         <div dir="rtl">
-                                            <span class="largest-font">{{question.pronoun}}</span>
                                             <input class="answer-input" ng-disabled="question.isCorrect" answer-progress question-obj="question"
                                                    ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.perfect)" answer="question.perfect" ng-model="question.userAnswer" type="text">
                                         </div>
@@ -74,12 +73,14 @@
                                 <div dir="rtl">
                                     {{conjugator.getName(question).capitalize()}}
                                 </div>
-
                             </div>
 
+                            <div class="col-md-3 pronoun-container">
+                                <span class="largest-font">{{question.pronoun}}</span>
+                            </div>
 
                             <!--button area-->
-                            <div class="col-md-4 button-container">
+                            <div class="col-md-3 button-container">
                                 <div class="align-right medium-font">
                                     <button class="btn btn-default" ng-hide="question.isCorrect" ng-click="questions.checkAnswer(question.userAnswer, question.perfect)">Check Answer</button>
                                     <button class="btn btn-default" ng-show="question.isCorrect" ng-click="questions.nextQuestion()">Next Question</button>

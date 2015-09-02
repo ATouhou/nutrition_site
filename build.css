@@ -94,17 +94,23 @@ input.answer-input {
 }
 .input-and-buttons {
   background-color: #f1f1f1;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-.input-container {
-  padding-left: 0;
 }
 .message-mode {
   font-size: 30px !important;
 }
 .question-details {
   background-color: yellow;
+}
+.button-container {
+  background-color: orange;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.input-container {
+  padding-top: 30px;
+}
+.pronoun-container {
+  padding-top: 30px;
 }
 .padding-small {
   padding: 5px;
