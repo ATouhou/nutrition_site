@@ -14,13 +14,21 @@ input.answer-input {
   .largest-font;
 }
 
+.answer {
+  position: absolute;
+  left: 18%;
+  top: 15px;
+}
+
 .correct-answer {
+  .answer;
   color: @successColor;
   font-style: italic;
   font-size: 18px;
 }
 
 .incorrect-answer {
+  .answer;
   .correct-answer;
   color: @errorColor;
 }
@@ -40,12 +48,12 @@ input.answer-input {
 
 .button-container {
   background-color: orange;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .input-container {
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
 .pronoun-container {

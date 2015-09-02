@@ -81,12 +81,23 @@ input.answer-input {
   width: 85%;
   font-size: 60px;
 }
+.answer {
+  position: absolute;
+  left: 18%;
+  top: 15px;
+}
 .correct-answer {
+  position: absolute;
+  left: 18%;
+  top: 15px;
   color: #3c763d;
   font-style: italic;
   font-size: 18px;
 }
 .incorrect-answer {
+  position: absolute;
+  left: 18%;
+  top: 15px;
   color: #3c763d;
   font-style: italic;
   font-size: 18px;
@@ -103,14 +114,14 @@ input.answer-input {
 }
 .button-container {
   background-color: orange;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 .input-container {
-  padding-top: 30px;
+  padding-top: 40px;
 }
 .pronoun-container {
-  padding-top: 30px;
+  padding-top: 40px;
 }
 .padding-small {
   padding: 5px;
