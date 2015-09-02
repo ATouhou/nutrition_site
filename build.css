@@ -75,6 +75,12 @@ body {
 .question-mode {
   background-color: lightgreen;
 }
+.message-mode {
+  background-color: white;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 input.answer-input {
   border: none;
   outline: none;
@@ -105,9 +111,6 @@ input.answer-input {
 }
 .input-and-buttons {
   background-color: #f1f1f1;
-}
-.message-mode {
-  font-size: 30px !important;
 }
 .question-details {
   background-color: yellow;

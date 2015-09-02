@@ -7,16 +7,16 @@
         <div class="col-sm-9 column2">
             <div class="question-box" ng-repeat="question in questions.filteredQuestions" ng-if="question === questions.currentQuestion">
 
-                <!--<div class="row middle-md message-mode medium-font" ng-show="alert.visible">-->
-                    <!--<div class="col-md-12">-->
-                        <!--{{alert.message}}-->
-                        <!--<br>-->
-                        <!--<br>-->
-                        <!--<div>-->
-                            <!--<button ng-if="alert.type === 'setCompleted'" class="pure-button pure-button-primary" ng-click="questions.resetQuestions()">Start Over</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="row medium-font" ng-show="alert.visible">
+                    <div class="col-md-8 col-md-offset-2 message-mode">
+                        {{alert.message}}
+                        <br>
+                        <br>
+                        <div>
+                            <button ng-if="alert.type === 'setCompleted'" class="pure-button pure-button-primary" ng-click="questions.resetQuestions()">Start Over</button>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 question-mode" ng-hide="alert.visible">
