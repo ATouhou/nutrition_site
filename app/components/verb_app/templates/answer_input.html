@@ -1,0 +1,19 @@
+<div dir="rtl">
+    <div class="incorrect-answer" ng-if="question.isCorrect === false">
+        <i class="fa fa-times-circle fa-lg"></i>
+        Incorrect
+    </div>
+
+    <div class="correct-answer" ng-if="question.isCorrect === true">
+        <i class="fa fa-check-circle fa-lg"></i>
+        Correct
+    </div>
+    <input class="answer-input" ng-disabled="question.isCorrect" answer-progress question-obj="question"
+           ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.perfect)" answer="question.perfect" ng-model="question.userAnswer" type="text">
+</div>
+
+<div class="margin-top-large">
+    <span class="label label-default medium-font1 secondary-background">
+        {{conjugator.getName(question).capitalize()}}
+    </span>
+</div>

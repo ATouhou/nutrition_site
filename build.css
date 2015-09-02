@@ -46,6 +46,9 @@ body {
 .success-bg {
   background-color: #d1e9c7;
 }
+.secondary-background {
+  background-color: #a9cdc3;
+}
 .pointer {
   cursor: pointer;
 }
@@ -58,13 +61,16 @@ body {
   /* IE10+ */
 }
 .small-font {
-  font-size: 13px !important;
+  font-size: 13px;
+}
+.medium-font1 {
+  font-size: 15px;
 }
 .medium-font {
-  font-size: 20px !important;
+  font-size: 20px;
 }
 .large-font {
-  font-size: 30px !important;
+  font-size: 30px;
 }
 .largest-font {
   font-size: 60px;
@@ -73,7 +79,7 @@ body {
   margin-top: 150px;
 }
 .question-mode {
-  background-color: lightgreen;
+  background-color: #665178;
 }
 .message-mode {
   background-color: white;
@@ -84,17 +90,17 @@ body {
 input.answer-input {
   border: none;
   outline: none;
-  width: 85%;
+  width: 100%;
   font-size: 60px;
 }
 .answer {
   position: absolute;
-  left: 18%;
+  left: 5%;
   top: 15px;
 }
 .correct-answer {
   position: absolute;
-  left: 18%;
+  left: 5%;
   top: 15px;
   color: #3c763d;
   font-style: italic;
@@ -102,7 +108,7 @@ input.answer-input {
 }
 .incorrect-answer {
   position: absolute;
-  left: 18%;
+  left: 5%;
   top: 15px;
   color: #3c763d;
   font-style: italic;
@@ -112,11 +118,11 @@ input.answer-input {
 .input-and-buttons {
   background-color: #f1f1f1;
 }
-.question-details {
-  background-color: yellow;
+.question-title {
+  color: #f1f1f1;
 }
 .button-container {
-  background-color: orange;
+  background-color: #a9cdc3;
   padding-top: 40px;
   padding-bottom: 40px;
 }
@@ -188,7 +194,7 @@ input.answer-input {
 }
 .section-title {
   background-color: #a9cdc3;
-  font-size: 20px !important;
+  font-size: 20px;
 }
 .align-right {
   text-align: right;

@@ -1,0 +1,23 @@
+<div class="col-md-6 largest-font">
+    <div>{{conjugator.getVerb(question.verb, 5)}}</div>
+</div>
+
+<div class="col-md-6 question-details">
+    <div class="align-right">
+        <div>Question {{questions.questionIndex + 1}} of {{questions.filteredQuestions.length}}</div>
+        <div>Definition: {{question.verb.definition}}</div>
+        <div class="no-highlight">
+            <span class="pointer" ng-click="questions.previousQuestion()">
+                <i class="fa fa-arrow-circle-left"></i>
+                Previous
+            </span>
+
+            <strong>|</strong>
+
+            <span class="pointer" ng-click="questions.nextQuestion()">
+                Next
+                <i class="fa fa-arrow-circle-right"></i>
+            </span>
+        </div>
+    </div>
+</div>

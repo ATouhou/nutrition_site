@@ -13,7 +13,7 @@
                         <br>
                         <br>
                         <div>
-                            <button ng-if="alert.type === 'setCompleted'" class="pure-button pure-button-primary" ng-click="questions.resetQuestions()">Start Over</button>
+                            <button ng-if="alert.type === 'setCompleted'" class="btn btn-default" ng-click="questions.resetQuestions()">Start Over</button>
                         </div>
                     </div>
                 </div>
@@ -22,53 +22,14 @@
                     <div class="col-md-8 col-md-offset-2 question-mode" ng-hide="alert.visible">
                         
                         <div class="row question-title">
-                            <div class="col-md-6 largest-font">
-                                <div>{{conjugator.getVerb(question.verb, 5)}}</div>
-                            </div>
-
-                            <div class="col-md-6 question-details">
-                                <div class="align-right">
-                                    <div>Question {{questions.questionIndex + 1}} of {{questions.filteredQuestions.length}}</div>
-                                    <div>Definition: {{question.verb.definition}}</div>
-                                    <div class="no-highlight">
-                                        <span class="pointer" ng-click="questions.previousQuestion()">
-                                            <i class="fa fa-arrow-circle-left"></i>
-                                            Previous
-                                        </span>
-
-                                        <strong>|</strong>
-
-                                        <span class="pointer" ng-click="questions.nextQuestion()">
-                                            Next
-                                            <i class="fa fa-arrow-circle-right"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <div ng-include="templateDirectory + '/question_title.html'"></div>
                         </div>
 
 
                         <div class="row input-and-buttons">
                             <!--input area-->
                             <div class="col-md-6 input-container">
-
-                                <div dir="rtl">
-                                    <div class="incorrect-answer" ng-if="question.isCorrect === false">
-                                        <i class="fa fa-times-circle fa-lg"></i>
-                                        Incorrect
-                                    </div>
-
-                                    <div class="correct-answer" ng-if="question.isCorrect === true">
-                                        <i class="fa fa-check-circle fa-lg"></i>
-                                        Correct
-                                    </div>
-                                    <input class="answer-input" ng-disabled="question.isCorrect" answer-progress question-obj="question"
-                                           ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.perfect)" answer="question.perfect" ng-model="question.userAnswer" type="text">
-                                </div>
-
-                                <div dir="rtl">
-                                    {{conjugator.getName(question).capitalize()}}
-                                </div>
+                                <div ng-include="templateDirectory + '/answer_input.html'"></div>
                             </div>
 
                             <div class="col-md-2 pronoun-container">
