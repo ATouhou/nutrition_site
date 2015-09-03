@@ -2,7 +2,6 @@
 <html lang="en" ng-app="arabicSite">
 
     <head>
-
         <!--twitter bootstrap-->
         <!--<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -20,9 +19,18 @@
         <link rel="stylesheet" href="../build.css">
     </head>
 
-    <body>
+    <body full-height>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" id="home-link" href="#">StudyArabic.com</a>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                </ul>
+            </div>
+        </nav>
 
-        <div ui-view class="full-height"></div>
+        <div ui-view class="full-height content"></div>
 
     </body>
 

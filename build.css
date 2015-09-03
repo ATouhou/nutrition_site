@@ -9,6 +9,7 @@ body {
   height: 100%;
   font-family: helvetica, verdana, arial, sans-serif;
   margin: 0;
+  padding-top: 50px;
 }
 .show-scrollbar::-webkit-scrollbar {
   -webkit-appearance: none;
@@ -209,4 +210,20 @@ input.answer-input {
 }
 .align-center {
   text-align: center;
+}
+.navbar {
+  background-color: #665178;
+}
+.navbar-default .navbar-brand {
+  color: #f1f1f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #f1f1f1 !important;
+}
+.navbar-default .navbar-nav > .active > a {
+  background-color: #c3b6cd !important;
+  color: black !important;
+}
+a#home-link {
+  color: #f1f1f1 !important;
 }
