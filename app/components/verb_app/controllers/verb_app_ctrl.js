@@ -1,6 +1,6 @@
 var verbApp = angular.module('verbApp');
 
-verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionsService, alertService) {
+verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionsService, alertService, verbAppConstants) {
     $scope.questions = questionsService;
 
     $scope.alert = alertService;
@@ -14,7 +14,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
 
     $scope.conjugator = conjugator;
 
-    $scope.templateDirectory = '/app/components/verb_app/templates';
+    $scope.templateDirectory = verbAppConstants.templateDirectory;
 
     _.forEach($scope.verbs, function(verb) {
         var conjugationSet = conjugator.getConjugations(verb);

@@ -80,6 +80,7 @@ body {
 }
 .question-mode {
   background-color: #665178;
+  padding-top: 10px;
 }
 .message-mode {
   background-color: white;
@@ -131,6 +132,9 @@ input.answer-input {
 }
 .pronoun-container {
   padding-top: 40px;
+}
+.table tbody > tr > td {
+  vertical-align: middle;
 }
 .padding-small {
   padding: 5px;
@@ -194,6 +198,7 @@ input.answer-input {
 }
 .section-title {
   background-color: #a9cdc3;
+  padding-left: 10px;
   font-size: 20px;
 }
 .align-right {

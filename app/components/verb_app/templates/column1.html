@@ -1,33 +1,14 @@
-<div>
-    <div class="section-title">
-        <input type="checkbox" ng-model="filterOptions.allTypes" ng-change="filterOptions.toggleAll('types', filterOptions.allTypes)"> Types
-    </div>
-
-    <table class="table">
-        <tbody>
-        <tr ng-repeat="verbType in filterOptions.types">
-            <td>
-                <input type="checkbox" ng-model="verbType.selected" ng-change="questions.updateQuestions()">
-            </td>
-            <td colspan="2" class="full-width small-font">
-                {{_.capitalize(verbType.name)}}
-            </td>
-        </tr>
-        </tbody>
-
-    </table>
-</div>
-
+<filter-section options="filterOptions.types" title="Types"></filter-section>
 
 <div>
-    <div class="section-title">
+    <div class="section-title row">
         <input type="checkbox" ng-model="filterOptions.allPronouns" ng-change="filterOptions.toggleAll('pronouns', filterOptions.allPronouns)"> Pronouns
     </div>
 
     <table class="table">
         <tbody>
         <tr ng-repeat="item in filterOptions.pronouns">
-            <td>
+            <td class="col-md-1">
                 <input type="checkbox" ng-model="item.selected" ng-change="questions.updateQuestions()">
             </td>
             <td class="small-font">{{conjugator.getName(item).capitalize()}}</td>
@@ -37,79 +18,7 @@
     </table>
 </div>
 
-<div>
-    <div class="section-title">
-        <input type="checkbox" disabled> Forms
-    </div>
-
-    <table class="table">
-        <tbody>
-            <tr ng-repeat="item in filterOptions.forms">
-                <td>
-                    <input disabled type="checkbox" ng-model="item.selected">
-                </td>
-                <td colspan="2" class="small-font full-width">
-                    {{item.name}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-
-<div>
-    <div class="section-title">
-        <input type="checkbox" disabled> Tenses
-    </div>
-
-    <table class="table">
-        <tbody>
-        <tr ng-repeat="item in filterOptions.tenses">
-            <td>
-                <input disabled type="checkbox" ng-model="item.selected">
-            </td>
-            <td colspan="2" class="small-font full-width">
-                {{item.name.capitalize()}}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div>
-    <div class="section-title">
-        <input type="checkbox" disabled> Voice
-    </div>
-
-    <table class="table">
-        <tbody>
-        <tr ng-repeat="item in filterOptions.voices">
-            <td>
-                <input disabled type="checkbox" ng-model="item.selected">
-            </td>
-            <td colspan="2" class="small-font full-width">
-                {{item.name.capitalize()}}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div>
-    <div class="section-title">
-        <input type="checkbox" disabled> Moods
-    </div>
-
-    <table class="table">
-        <tbody>
-        <tr ng-repeat="item in filterOptions.moods">
-            <td>
-                <input disabled type="checkbox" ng-model="item.selected">
-            </td>
-            <td colspan="2" class="small-font full-width">
-                {{item.name.capitalize()}}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<filter-section options="filterOptions.forms" disabled="true" title="Forms"></filter-section>
+<filter-section options="filterOptions.tenses" disabled="true" title="Tenses"></filter-section>
+<filter-section options="filterOptions.voices" disabled="true" title="Voice"></filter-section>
+<filter-section options="filterOptions.moods" disabled="true" title="Moods"></filter-section>

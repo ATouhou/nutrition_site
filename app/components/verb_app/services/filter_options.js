@@ -5,7 +5,7 @@ verbApp.factory('filterOptions', function(helperData) {
 
     filterOptions.types = [{name: 'assimilated'}, {name: 'geminate'}, {name: 'hamzated'}, {name: 'hollow'}, {name: 'defective'}, {name: 'sound'}]
     filterOptions.pronouns = angular.copy(helperData.pronounList);
-    filterOptions.forms = [{name: 1, selected: true}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]
+    filterOptions.forms = [{name: '1', selected: true}, {name: '2'}, {name: '3'}, {name: '4'}, {name: '5'}, {name: '6'}, {name: '7'}, {name: '8'}, {name: '9'}, {name: '10'}]
     filterOptions.tenses = [{name: 'perfect', selected: true}, {name: 'imperfect'}];
     filterOptions.voices = [{name: 'active', selected: true}, {name: 'passive'}];
     filterOptions.moods = [{name: 'indicative', selected: true}, {name: 'subjunctive'}, {name: 'jussive'}, {name: 'imperative'}];
