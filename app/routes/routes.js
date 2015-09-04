@@ -21,7 +21,8 @@ app.config(function($stateProvider) {
 
         .state('main.typingTutor', {
             url: '^/typing_tutor',
-            templateUrl: '/app/components/typing_tutor/typing_tutor.html'
+            templateUrl: '/app/components/typing_tutor/typing_tutor.html',
+            controller: 'typingTutorCtrl'
         })
 
         .state('main.about', {

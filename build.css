@@ -233,3 +233,123 @@ input.answer-input {
 a#home-link {
   color: #f1f1f1 !important;
 }
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+canvas {
+  display: block;
+}
+body {
+  font-family: sans-serif;
+  font-size: 18px;
+}
+#menu-table td {
+  border: 1px solid #007974;
+  padding: 8px;
+}
+#menu-table #pause-button-cell {
+  width: 65px;
+  text-align: right;
+  border: none;
+}
+#menu-table #keyboard-button-cell {
+  width: 65px;
+  text-align: right;
+  border: none;
+  width: 275px;
+}
+#menu-table #difficulty-level-div {
+  width: 110px;
+}
+.center-align {
+  text-align: center;
+}
+.left-align {
+  text-align: left;
+  width: 150px;
+}
+.right-align {
+  text-align: right;
+  width: 150px;
+}
+#game-header {
+  background: #bfdddc;
+  padding: 10px;
+  height: 50px;
+}
+#gameContainer {
+  border: solid 1px;
+  height: 603px;
+}
+#gameCanvas {
+  position: absolute;
+  z-index: 1;
+}
+#game-start {
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+  position: relative;
+  height: 100px;
+  width: 200px;
+  z-index: 2;
+  background: #bfdddc;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  top: 90px;
+  text-align: center;
+}
+#start-numbers-container {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 50px;
+}
+#canvas-container {
+  position: relative;
+}
+#levels-div {
+  z-index: 2;
+  position: relative;
+  top: 57px;
+}
+#levelColumn {
+  background-color: silver;
+  font-family: sans-serif;
+}
+.currentLevel {
+  border: solid 3px #007974 !important;
+}
+.completedLevel {
+  background-color: #bfdddc;
+}
+#level-table td {
+  text-align: center;
+  width: 100px;
+  cursor: pointer;
+}
+.level-font {
+  font-size: 20px;
+  color: #007974;
+}
+.level-font-large {
+  font-size: 20px;
+  color: #007974;
+  font-size: 30px;
+}
+div[class="tooltip-inner"] {
+  font-size: 20px;
+}
+#arabic-keyboard {
+  border: solid 5px;
+  z-index: -10;
+  position: relative;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  /* For IE8 and earlier */
+  display: block;
+  margin: auto;
+  top: 30px;
+}
