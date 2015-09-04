@@ -14,12 +14,12 @@ body {
 .show-scrollbar::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 6px;
-  background-color: #a9cdc3;
+  background-color: #d6d6d6;
 }
 .show-scrollbar::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: #665178;
-  -webkit-box-shadow: 0 0 1px #665178;
+  background-color: #a3a3a3;
+  -webkit-box-shadow: 0 0 1px #a3a3a3;
 }
 .column1 {
   background-color: #f1f1f1;
@@ -29,12 +29,12 @@ body {
 .column1::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 6px;
-  background-color: #a9cdc3;
+  background-color: #d6d6d6;
 }
 .column1::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: #665178;
-  -webkit-box-shadow: 0 0 1px #665178;
+  background-color: #a3a3a3;
+  -webkit-box-shadow: 0 0 1px #a3a3a3;
 }
 .column2 {
   background-color: white;
@@ -75,6 +75,9 @@ body {
 }
 .largest-font {
   font-size: 60px;
+}
+.bold {
+  font-weight: bold;
 }
 .question-box {
   margin-top: 150px;
@@ -200,7 +203,10 @@ input.answer-input {
 .section-title {
   background-color: #a9cdc3;
   padding-left: 10px;
-  font-size: 20px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: bold;
 }
 .align-right {
   text-align: right;

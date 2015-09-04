@@ -51,6 +51,7 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
             case 'hollow': conjugatedVerb = getHollowVerb(id); break;
             case 'defective': conjugatedVerb = getDefectiveVerb(id); break;
             case 'hamzated': conjugatedVerb = getSoundVerb(pronoun.id); break;
+            case 'assimilated': conjugatedVerb = getSoundVerb(pronoun.id); break;
         }
         return conjugatedVerb;
     }
@@ -67,6 +68,7 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
                 case 'hollow': pronoun.perfect = getHollowVerb(pronoun.id); break;
                 case 'defective': pronoun.perfect = getDefectiveVerb(pronoun.id); break;
                 case 'hamzated': pronoun.perfect = getSoundVerb(pronoun.id); break;
+                case 'assimilated': pronoun.perfect = getSoundVerb(pronoun.id); break;
             }
             if (anyHamzas()) {
                 pronoun.perfect = hamzatedWord.getWord(pronoun.perfect);
@@ -189,8 +191,3 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
     return c;
 })
 
-
-// Method to replace a char in a string by index
-String.prototype.replaceAt = function(index, character) {
-    return this.substr(0, index) + character + this.substr(index+character.length);
-}
