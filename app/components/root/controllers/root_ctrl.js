@@ -3,7 +3,7 @@ var app = angular.module('arabicSite');
 app.controller('rootCtrl', function($scope) {
     $scope._ = _;
 
-
+    console.log('helloo');
 })
 
 String.prototype.capitalize = function() {

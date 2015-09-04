@@ -37,7 +37,7 @@ body {
   -webkit-box-shadow: 0 0 1px #665178;
 }
 .column2 {
-  background-color: lightsteelblue;
+  background-color: white;
   height: 100vh;
 }
 .error {
@@ -90,7 +90,7 @@ body {
   padding-bottom: 20px;
 }
 input.answer-input {
-  border: none;
+  border: solid #808080 2px;
   outline: none;
   width: 100%;
   font-size: 60px;
