@@ -544,22 +544,13 @@ verbApp.controller('typingTutorCtrl', function($scope) {
                     showKeyboardButton.hide();
                     hideKeyboardButton.hide();
 
-                    $("#start-numbers-container div").hide();
-                    $( "#start-3" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
-                        $( "#start-2" ).fadeIn(delay).delay("slow").fadeOut(delay, function() {
-                            $( "#start-1" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
-                                $( "#start-go" ).fadeIn(delay).delay(500).fadeOut(delay, function() {
-                                    // set paused to false
-                                    $("#game-start").css("z-index", -1);
-                                    paused = false;
-                                    clickableLevels = true;
-                                    stopButton.show();
-                                    showKeyboardButton.show();
-                                    runGame();
-                                });
-                            });
-                        });
-                    });
+                    // set paused to false
+                    $("#game-start").css("z-index", -1);
+                    paused = false;
+                    clickableLevels = true;
+                    stopButton.show();
+                    showKeyboardButton.show();
+                    runGame();
 
                     startButton.click(function(){
                         $(this).hide();
