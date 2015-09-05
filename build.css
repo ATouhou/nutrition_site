@@ -277,11 +277,14 @@ body {
 #game-header {
   background: #bfdddc;
   padding: 10px;
-  height: 50px;
+  height: 75px;
 }
 #gameContainer {
-  border: solid 1px;
   height: 603px;
+  width: 938px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 100px;
 }
 #gameCanvas {
   position: absolute;
@@ -313,6 +316,7 @@ body {
   z-index: 2;
   position: relative;
   top: 57px;
+  width: 938px;
 }
 #levelColumn {
   background-color: silver;

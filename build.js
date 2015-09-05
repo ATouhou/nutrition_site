@@ -348,7 +348,7 @@ verbApp.controller('typingTutorCtrl', function($scope) {
                     this.initialY = canvasHeight;
                     this.y = this.initialY;
                     this.boundary = sentenceClearBoundary;
-                    this.levelToSpeed = {"Beginner": 0.2, "Intermediate": 1, "Advanced": 2}
+                    this.levelToSpeed = {"Beginner": 0.1, "Intermediate": 0.3, "Advanced": 0.6}
                     this.speed = this.levelToSpeed["Beginner"];
 
                     this.setState = function() {
@@ -459,7 +459,7 @@ verbApp.controller('typingTutorCtrl', function($scope) {
                         var currentOptionElement = $(".current-option")
                         var currentOption = currentOptionElement.attr("id");
 
-                        currentOptionElement.html(newOption + '<span class="caret"></span>');
+                        currentOptionElement.html(newOption + ' <span class="caret"></span>');
                         currentOptionElement.attr("id", newOption);
 
                         newOptionElement.attr("id", currentOption);
