@@ -298,23 +298,16 @@ body {
   height: 100px;
   width: 200px;
   z-index: 2;
-  background: #bfdddc;
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
   top: 90px;
   text-align: center;
 }
-#alert-container {
-  position: relative;
-  height: 100px;
-  width: 200px;
-  z-index: 2;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px;
-  top: 90px;
-  text-align: center;
+#message-div {
+  background-color: #bfdddc;
+  border-radius: 7px;
+  padding: 10px;
 }
 #start-numbers-container {
   display: inline-block;

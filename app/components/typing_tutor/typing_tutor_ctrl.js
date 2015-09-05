@@ -274,8 +274,9 @@ verbApp.controller('typingTutorCtrl', function($scope) {
                         var _this = this;
                         startButton.hide();
                         stopButton.hide();
-                        var message = message + '<br /><br /><button class="btn_custom" type="button" id="okay">' + buttonMessage + '</button>'
-                        this.alertDiv.html(message);
+                        var message = message + '<br /><br /><button class="btn btn-default" type="button" id="okay">' + buttonMessage + '</button>'
+                        $('#message-div').show();
+                        $('#message-div').html(message);
                         this.alertDiv.css("z-index", 10);
                         gameElements.game.pauseGame();
                         clickableLevels = false;
@@ -286,6 +287,7 @@ verbApp.controller('typingTutorCtrl', function($scope) {
                     }
 
                     this.moveAlertBack = function() {
+                        $('#message-div').hide();
                         this.alertDiv.css("z-index", -2);
                         paused = false;
                         clickableLevelLevels = true;
@@ -522,6 +524,7 @@ verbApp.controller('typingTutorCtrl', function($scope) {
 
                     // set paused to false
                     $("#game-start").css("z-index", -1);
+                    $('#message-div').hide();
                     //$("#game-start").hide();
                     paused = false;
                     clickableLevels = true;
