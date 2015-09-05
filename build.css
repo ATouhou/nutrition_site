@@ -246,7 +246,7 @@ body {
   font-size: 18px;
 }
 #menu-table td {
-  border: 1px solid #007974;
+  border: 1px solid #665178;
   padding: 8px;
 }
 #menu-table #pause-button-cell {
@@ -275,7 +275,7 @@ body {
   width: 150px;
 }
 #game-header {
-  background: #bfdddc;
+  background: #a9cdc3;
   padding: 10px;
   height: 75px;
 }
@@ -306,7 +306,7 @@ body {
   text-align: center;
 }
 #message-div {
-  background-color: #bfdddc;
+  background-color: #a9cdc3;
   border-radius: 7px;
   padding: 10px;
 }
@@ -329,10 +329,10 @@ body {
   font-family: sans-serif;
 }
 .currentLevel {
-  border: solid 3px #007974 !important;
+  border: solid 3px #665178 !important;
 }
 .completedLevel {
-  background-color: #bfdddc;
+  background-color: #a9cdc3;
 }
 #level-table {
   margin-top: 18px;
@@ -344,11 +344,11 @@ body {
 }
 .level-font {
   font-size: 20px;
-  color: #007974;
+  color: #665178;
 }
 .level-font-large {
   font-size: 20px;
-  color: #007974;
+  color: #665178;
   font-size: 30px;
 }
 div[class="tooltip-inner"] {

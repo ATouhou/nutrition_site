@@ -1,6 +1,3 @@
-@lightColor: #BFDDDC;
-@mainColor: #007974;
-
 html, body { height: 100%; width: 100%; }
 canvas { display: block; }
 
@@ -13,7 +10,7 @@ body {
 {
   td
   {
-    border: 1px solid @mainColor;
+    border: 1px solid @main;
     padding: 8px;
   }
 
@@ -56,7 +53,7 @@ body {
 
 #game-header
 {
-  background: @lightColor;
+  background: @secondary;
   padding: 10px;
   height: 75px;
 }
@@ -96,7 +93,7 @@ body {
 }
 
 #message-div {
-  background-color: @lightColor;
+  background-color: @secondary;
   border-radius: 7px;
   padding: 10px;
 }
@@ -130,12 +127,12 @@ body {
 
 .currentLevel
 {
-  border: solid 3px @mainColor !important;
+  border: solid 3px @main !important;
 }
 
 .completedLevel
 {
-  background-color: @lightColor;
+  background-color: @secondary;
 }
 
 #level-table {
@@ -152,7 +149,7 @@ body {
 .level-font
 {
   font-size: 20px;
-  color: @mainColor;
+  color: @main;
 }
 
 .level-font-large
