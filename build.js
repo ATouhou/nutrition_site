@@ -26,7 +26,6 @@ String.prototype.capitalize = function() {
 ;var verbApp = angular.module('verbApp');
 
 verbApp.controller('typingTutorCtrl', function($scope, $document) {
-    console.log('wooooooooo!');
     $scope.letterGroups = ["ا - ل", "ت - ب", "ن - ي", "م - س", "ط - ك - ش", "غ - ف", "ع - ق", "ه - ث", "خ - ص", "ح - ض",
         "د - ج", "ى - ذ", "ة - ر", "و - ؤ", "ز - ء", "ظ - ئ", "أ - إ - آ", "-َ -ِ -ُ"]
 
@@ -36,7 +35,6 @@ verbApp.controller('typingTutorCtrl', function($scope, $document) {
     angular.element($document).ready(function () {
         $scope.globals.count += 1;
         console.log($scope.globals.count);
-        console.log('jquery code');
 
         if ($("#gameCanvas").length === 1)
         {
