@@ -25,7 +25,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 // The files to concatenate
-                src: ['app/main.js', 'app/components/verb_app/verb_app.js', 'app/**/*.js'],
+                src: ['main.js', 'components/verb_app/verb_app.js', 'components/**/*.js', 'routes/*.js', 'shared/**/*.js'],
                 // the location of the resulting JS file
                 dest: 'build.js'
             }
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         less: {
             development: {
                 files: {
-                    "build.css": "app/assets/styles/main.less"
+                    "build.css": "assets/styles/main.less"
                 }
             }
         },
@@ -43,11 +43,11 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 // files to watch
-                files: ['app/**/*.js'],
+                files: ['**/*.js'],
                 tasks: ['concat']
             },
             styles: {
-                files: ['app/assets/styles/*.less'],
+                files: ['assets/styles/*.less'],
                 tasks: ['less']
             }
         }

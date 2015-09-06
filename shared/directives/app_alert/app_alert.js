@@ -3,7 +3,7 @@ var arabicSite = angular.module('arabicSite');
 arabicSite.directive('appAlert', function(alertService) {
     return {
         restrict: 'E',
-        templateUrl: '/app/shared/directives/app_alert/app_alert.html',
+        templateUrl: '/shared/directives_alert_alert.html',
         scope: {},
         link: function (scope, elem, attrs) {
             scope.alertService = alertService;

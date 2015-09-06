@@ -8,9 +8,6 @@ verbApp.controller('typingTutorCtrl', function($scope, $document) {
     $scope.range2 = _.range(10, 18);
 
     angular.element($document).ready(function () {
-        $scope.globals.count += 1;
-        console.log($scope.globals.count);
-
         if ($("#gameCanvas").length === 1)
         {
 
@@ -47,7 +44,7 @@ verbApp.controller('typingTutorCtrl', function($scope, $document) {
                 this.getSentences = function(level) {
                     // lines is an array of sentences
                     var result = false;
-                    var textFile = "/app/static/typing_tutor/level" + level + ".html";
+                    var textFile = "/static/typing_tutor/level" + level + ".html";
                     $.ajax({
                         url: textFile,
                         success: function(text) { result = text; },
@@ -490,12 +487,9 @@ verbApp.controller('typingTutorCtrl', function($scope, $document) {
 
                 if (!paused)
                 {
-                    console.log('binding handler!')
                     gameElements.sentence.redraw();
                     $(window).keypress(function(e) {
                         var letter = gameElements.game.getUserLetter(e);
-
-                        console.log(letter + ' was pressed');
 
                         // prevent scrolling when space bar is hit
                         if (letter === " ")

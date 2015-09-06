@@ -9,30 +9,30 @@ app.config(function($stateProvider) {
         // This is the root state. Every other state is a child of this state (directly or indirectly).
         .state('main', {
             url: '/',
-            templateUrl: '/app/components/root/templates/index.html',
+            templateUrl: '/components/root/templates/index.html',
             controller: 'rootCtrl'
         })
 
         .state('main.conjugationPractice', {
             url: '^/conjugation_practice',
-            templateUrl: '/app/components/verb_app/templates/index.html',
+            templateUrl: '/components/verb_app/templates/index.html',
             controller: 'verbAppCtrl'
         })
 
         .state('main.typingTutor', {
             url: '^/typing_tutor',
-            templateUrl: '/app/components/typing_tutor/typing_tutor.html',
+            templateUrl: '/components/typing_tutor/typing_tutor.html',
             controller: 'typingTutorCtrl'
         })
 
         .state('main.about', {
             url: '^/about',
-            templateUrl: '/app/static/about.html'
+            templateUrl: '/static/about.html'
         })
 
         .state('main.conjugation', {
             url: '^/conjugation',
-            templateUrl: '/app/components/verb_app/templates/conjugation.html',
+            templateUrl: '/components/verb_app/templates/conjugation.html',
             controller: 'conjugatorCtrl'
         })
 

@@ -33,9 +33,6 @@ verbApp.controller('typingTutorCtrl', function($scope, $document) {
     $scope.range2 = _.range(10, 18);
 
     angular.element($document).ready(function () {
-        $scope.globals.count += 1;
-        console.log($scope.globals.count);
-
         if ($("#gameCanvas").length === 1)
         {
 
@@ -72,7 +69,7 @@ verbApp.controller('typingTutorCtrl', function($scope, $document) {
                 this.getSentences = function(level) {
                     // lines is an array of sentences
                     var result = false;
-                    var textFile = "/app/static/typing_tutor/level" + level + ".html";
+                    var textFile = "/static/typing_tutor/level" + level + ".html";
                     $.ajax({
                         url: textFile,
                         success: function(text) { result = text; },
@@ -515,12 +512,9 @@ verbApp.controller('typingTutorCtrl', function($scope, $document) {
 
                 if (!paused)
                 {
-                    console.log('binding handler!')
                     gameElements.sentence.redraw();
                     $(window).keypress(function(e) {
                         var letter = gameElements.game.getUserLetter(e);
-
-                        console.log(letter + ' was pressed');
 
                         // prevent scrolling when space bar is hit
                         if (letter === " ")
@@ -1211,7 +1205,7 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
 ;var verbApp = angular.module('verbApp');
 
 verbApp.constant('verbAppConstants', {
-        templateDirectory: '/app/components/verb_app/templates'
+        templateDirectory: '/components/verb_app/templates'
     }
 )
 ;// sound example
@@ -1404,30 +1398,30 @@ app.config(function($stateProvider) {
         // This is the root state. Every other state is a child of this state (directly or indirectly).
         .state('main', {
             url: '/',
-            templateUrl: '/app/components/root/templates/index.html',
+            templateUrl: '/components/root/templates/index.html',
             controller: 'rootCtrl'
         })
 
         .state('main.conjugationPractice', {
             url: '^/conjugation_practice',
-            templateUrl: '/app/components/verb_app/templates/index.html',
+            templateUrl: '/components/verb_app/templates/index.html',
             controller: 'verbAppCtrl'
         })
 
         .state('main.typingTutor', {
             url: '^/typing_tutor',
-            templateUrl: '/app/components/typing_tutor/typing_tutor.html',
+            templateUrl: '/components/typing_tutor/typing_tutor.html',
             controller: 'typingTutorCtrl'
         })
 
         .state('main.about', {
             url: '^/about',
-            templateUrl: '/app/static/about.html'
+            templateUrl: '/static/about.html'
         })
 
         .state('main.conjugation', {
             url: '^/conjugation',
-            templateUrl: '/app/components/verb_app/templates/conjugation.html',
+            templateUrl: '/components/verb_app/templates/conjugation.html',
             controller: 'conjugatorCtrl'
         })
 
@@ -1439,7 +1433,7 @@ app.config(function($stateProvider) {
 arabicSite.directive('appAlert', function(alertService) {
     return {
         restrict: 'E',
-        templateUrl: '/app/shared/directives/app_alert/app_alert.html',
+        templateUrl: '/shared/directives_alert_alert.html',
         scope: {},
         link: function (scope, elem, attrs) {
             scope.alertService = alertService;
