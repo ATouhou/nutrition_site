@@ -4,7 +4,7 @@ module.exports = function(grunt) {
         // Bower_concat creates a single file out of all the bower_component files that are specified as main files in the bower.json of the project
         bower_concat: {
             all: {
-                dest: 'bower.js',
+                dest: 'public/bower.js',
                 cssDest: 'bower.css',
                 // Checks if there is minified version in which case it uses that one
                 callback: function(mainFiles, component) {
@@ -27,13 +27,13 @@ module.exports = function(grunt) {
                 // The files to concatenate
                 src: ['main.js', 'components/verb_app/verb_app.js', 'components/**/*.js', 'routes/*.js', 'shared/**/*.js'],
                 // the location of the resulting JS file
-                dest: 'build.js'
+                dest: 'public/build.js'
             }
         },
         less: {
             development: {
                 files: {
-                    "build.css": "assets/styles/main.less"
+                    "public/build.css": "assets/styles/main.less"
                 }
             }
         },
