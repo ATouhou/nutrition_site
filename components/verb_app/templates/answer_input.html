@@ -13,7 +13,16 @@
 </div>
 
 <div class="margin-top-large">
-    <span class="label label-default medium-font1 secondary-background">
-        {{conjugator.getName(question).capitalize()}}
-    </span>
+    <div class="medium-font1 well">
+        <!--<i class="fa fa-circle"></i> Type: {{question.verb.type.name.capitalize()}}-->
+        <!--<br>-->
+        <!--<i class="fa fa-arrow-right"></i> {{conjugator.getName(question).capitalize()}}-->
+        <ul class="fa-ul">
+            <li><i class="fa-li fa fa-arrow-right"></i>Type: {{question.verb.type.name.capitalize()}}</li>
+            <li><i class="fa-li fa fa-arrow-right"></i>Person: {{conjugator.getName(question).capitalize()}}</li>
+            <li><i class="fa-li fa fa-arrow-right"></i>Form: I</li>
+            <li><i class="fa-li fa fa-arrow-right"></i>Tense: Perfect</li>
+            <li><i class="fa-li fa fa-arrow-right"></i>Voice: Active</li>
+        </ul>
+    </div>
 </div>

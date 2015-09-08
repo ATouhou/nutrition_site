@@ -8,6 +8,7 @@ app.config(function($urlRouterProvider) {
     // This redirects to the conjugator app when the base url is entered
     $urlRouterProvider.when('', '/conjugation_practice');
 })
+
 ;var verbApp = angular.module('verbApp', [])
 
 ;var app = angular.module('arabicSite');
@@ -1359,6 +1360,29 @@ verbApp.constant('verbs', [
         imperfectVowel: 'َ',
         definition: 'to drink'
     },
+    {
+        letter1: 'ع',
+        letter2: 'م',
+        letter3: 'ل',
+        type: {
+            name: 'sound'
+        },
+        perfectVowel: 'ِ',
+        imperfectVowel: 'َ',
+        definition: 'to work'
+    },
+    {
+        letter1: 'د',
+        letter2: 'ر',
+        letter3: 'س',
+        type: {
+            name: 'sound'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ',
+        definition: 'to study'
+    },
+
     // Geminate
     {
         letter1: 'د',
@@ -1371,6 +1395,52 @@ verbApp.constant('verbs', [
         imperfectVowel: 'ُ',
         definition: 'to indicate'
     },
+    {
+        letter1: 'ظ',
+        letter2: 'ن',
+        letter3: 'ن',
+        type: {
+            name: 'geminate'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ُ',
+        definition: 'to think, believe'
+    },
+    {
+        letter1: 'ت',
+        letter2: 'م',
+        letter3: 'م',
+        type: {
+            name: 'geminate'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'ِ',
+        definition: 'to be complete'
+    },
+    {
+        letter1: 'و',
+        letter2: 'د',
+        letter3: 'د',
+        type: {
+            name: 'geminate'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'َ',
+        definition: 'to want, to like'
+    },
+    {
+        letter1: 'ظ',
+        letter2: 'ل',
+        letter3: 'ل',
+        type: {
+            name: 'geminate'
+        },
+        perfectVowel: 'َ',
+        imperfectVowel: 'َ',
+        definition: 'to continue doing'
+    },
+
+
     // Defective waaw example
     {
         letter1: 'د',
