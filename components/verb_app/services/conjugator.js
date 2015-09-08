@@ -50,8 +50,8 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
             case 'geminate': conjugatedVerb = getGeminateVerb(id); break;
             case 'hollow': conjugatedVerb = getHollowVerb(id); break;
             case 'defective': conjugatedVerb = getDefectiveVerb(id); break;
-            case 'hamzated': conjugatedVerb = getSoundVerb(pronoun.id); break;
-            case 'assimilated': conjugatedVerb = getSoundVerb(pronoun.id); break;
+            case 'hamzated': conjugatedVerb = getSoundVerb(id); break;
+            case 'assimilated': conjugatedVerb = getSoundVerb(id); break;
         }
         return conjugatedVerb;
     }
