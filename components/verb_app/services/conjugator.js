@@ -53,6 +53,9 @@ verbApp.factory('conjugator', function(helperData, hamzatedWord) {
             case 'hamzated': conjugatedVerb = getSoundVerb(id); break;
             case 'assimilated': conjugatedVerb = getSoundVerb(id); break;
         }
+        if (anyHamzas()) {
+            conjugatedVerb = hamzatedWord.getWord(conjugatedVerb);
+        }
         return conjugatedVerb;
     }
 
