@@ -6,7 +6,7 @@
 
                 <div class="question-heading medium-font1 row">
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 medium-font">
                         Question {{$index + 1}} of {{questionsService.questions.length}}
                         <br>
                         Chapter 18
@@ -39,17 +39,7 @@
                 <div class="buttons-container row">
 
                     <div class="col-sm-6">
-                        <div class="no-highlight question-navigation">
-                            <span class="pointer" ng-click="questions.previousQuestion()">
-                                <i class="fa fa-arrow-circle-left"></i>
-                                Previous
-                            </span>
-                            <strong>|</strong>
-                            <span class="pointer" ng-click="questions.nextQuestion()">
-                                Next
-                                <i class="fa fa-arrow-circle-right"></i>
-                            </span>
-                        </div>
+                        <prev-next></prev-next>
                     </div>
 
                     <div class="col-sm-6 align-right">

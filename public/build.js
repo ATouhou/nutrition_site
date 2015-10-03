@@ -756,7 +756,19 @@ verbApp.directive('filterSection', function($timeout, verbAppConstants, filterOp
     }
 })
 
-;var verbApp = angular.module('verbApp');
+;var app = angular.module('verbApp');
+
+verbApp.directive('prevNext', function(verbAppConstants, questionsService) {
+    return {
+        restrict: 'E',
+        scope: {},
+        templateUrl: verbAppConstants.templateDirectory + '/prev_next.html',
+        link: function(scope, elem, attrs) {
+            scope.questionsService = questionsService;
+
+        }
+    }
+});var verbApp = angular.module('verbApp');
 
 verbApp.factory('conjugator', function(helperData, hamzatedWord) {
     //c stands for conjugator
