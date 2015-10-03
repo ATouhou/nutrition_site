@@ -619,6 +619,12 @@ verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, 
         }
     }
 })
+;var app = angular.module('verbApp');
+
+app.controller('exercisesCtrl', function($scope, questionsService) {
+
+})
+
 ;var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionsService, alertService, verbAppConstants) {
@@ -1735,6 +1741,12 @@ app.config(function($stateProvider) {
             controller: 'typingTutorCtrl'
         })
 
+        .state('main.exercises', {
+            url: '^/exercises',
+            templateUrl: '/components/verb_app/templates/exercises.html',
+            controller: 'exercisesCtrl'
+        })
+
         .state('main.about', {
             url: '^/about',
             templateUrl: '/static/about.html'
@@ -1745,6 +1757,8 @@ app.config(function($stateProvider) {
             templateUrl: '/components/verb_app/templates/conjugation.html',
             controller: 'conjugatorCtrl'
         })
+
+
 
 
 

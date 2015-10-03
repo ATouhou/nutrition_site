@@ -25,6 +25,12 @@ app.config(function($stateProvider) {
             controller: 'typingTutorCtrl'
         })
 
+        .state('main.exercises', {
+            url: '^/exercises',
+            templateUrl: '/components/verb_app/templates/exercises.html',
+            controller: 'exercisesCtrl'
+        })
+
         .state('main.about', {
             url: '^/about',
             templateUrl: '/static/about.html'
@@ -35,6 +41,8 @@ app.config(function($stateProvider) {
             templateUrl: '/components/verb_app/templates/conjugation.html',
             controller: 'conjugatorCtrl'
         })
+
+
 
 
 
