@@ -38,9 +38,10 @@
 
                 <div class="buttons-container align-right row">
 
-                    <button class="btn btn-default standard-btn">Skip</button>
-                    <button class="btn btn-default standard-btn">Show Answer</button>
-                    <button class="btn btn-default standard-btn" ng-click="questionsService.checkAnswer(question.userAnswer, question.answer)">Check Answer</button>
+                    <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.nextQuestion()">Skip</button>
+                    <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.showAnswer(question, question.answer)">Show Answer</button>
+                    <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.checkAnswer(question.userAnswer, question.answer)">Check Answer</button>
+                    <button class="btn btn-default standard-btn" ng-show="question.isCorrect" ng-click="questionsService.nextQuestion()">Next Question</button>
 
                 </div>
 
