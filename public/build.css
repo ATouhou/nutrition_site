@@ -383,3 +383,6 @@ div[class="tooltip-inner"] {
   font-size: 30px;
   padding: 10px;
 }
+.exercises .incorrect-answer {
+  position: static;
+}
