@@ -1,28 +1,33 @@
-<div class="container-fluid margin-top-large">
+<div class="container-fluid exercises">
     <div class="row">
-        <div class="col-sm-12" dir="rtl">
+        <div class="col-sm-12 question-box">
 
-            <div class="col-md-8 col-md-offset-2 question-mode" ng-repeat="question in questionsService.questions" ng-if="question === questionsService.currentQuestion">
-                <div class="question-title large-font">
-                    {{question.question}}
+
+            <div class="col-md-8 col-md-offset-2" ng-repeat="question in questionsService.questions" ng-if="question === questionsService.currentQuestion">
+
+                <div class="question-heading medium-font1">
+                    Question 1 of 12
                 </div>
 
-                <hr>
-                <div class="user-input-container">
-                    <div class="incorrect-answer" ng-if="question.isCorrect === false">
-                        <i class="fa fa-times-circle fa-lg"></i>
-                        Incorrect
-                    </div>
+                <div class="question-answer" dir="rtl">
+                    <input class="answer-input-small" ng-model="question.question" disabled>
 
-                    <div class="correct-answer" ng-if="question.isCorrect === true">
-                        <i class="fa fa-check-circle fa-lg"></i>
-                        Correct
-                    </div>
+                    <div class="user-input-container">
 
-                    <input class="answer-input-small" answer-progress question-obj="question"
-                           ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.answer)"
-                           answer="question.answer" ng-model="question.userAnswer" type="text">
+                        <input class="answer-input-small" answer-progress question-obj="question"
+                               ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.answer)"
+                               answer="question.answer" ng-model="question.userAnswer" type="text">
+                    </div>
                 </div>
+
+                <div class="buttons-container align-right">
+
+                    <button class="btn btn-default standard-btn">Skip</button>
+                    <button class="btn btn-default standard-btn">Show Answer</button>
+                    <button class="btn btn-default standard-btn">Check Answer</button>
+
+                </div>
+
             </div>
 
         </div>

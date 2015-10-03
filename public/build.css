@@ -98,13 +98,6 @@ body {
   width: 100%;
   font-size: 60px;
 }
-.answer-input-small {
-  border: solid #808080 2px;
-  outline: none;
-  width: 100%;
-  font-size: 60px;
-  font-size: 30px;
-}
 .answer {
   position: absolute;
   left: 5%;
@@ -366,4 +359,27 @@ div[class="tooltip-inner"] {
   display: block;
   margin: auto;
   top: 30px;
+}
+.exercises .question-heading {
+  background-color: #665178;
+  color: #f5f5f5;
+  padding: 10px;
+}
+.exercises .question-answer {
+  background-color: #f5f5f5;
+}
+.exercises .buttons-container {
+  background-color: #665178;
+  padding: 10px;
+}
+.exercises .standard-btn {
+  width: 150px;
+}
+.exercises .answer-input-small {
+  border: solid #808080 2px;
+  outline: none;
+  width: 100%;
+  font-size: 60px;
+  font-size: 30px;
+  padding: 10px;
 }
