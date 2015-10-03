@@ -7,8 +7,8 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
     // Index of current question
     service.questionIndex;
 
-    // List of initial unfiltered conjugations
-    service.conjugations = [];
+    // List of initial unfiltered questions
+    service.questions = [];
 
     service.filteredQuestions = [];
 
@@ -17,12 +17,12 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
         filterOptions.reset();
         this.questionIndex = 0;
 
-        this.conjugations = _.map(this.conjugations, function(item) {
+        this.questions = _.map(this.questions, function(item) {
             // This gets rid the of those two properties which need to be cleared when user resets the questions
             return _.omit(item, ['isCorrect', 'userAnswer']);
         })
 
-        this.filteredQuestions = this.conjugations;
+        this.filteredQuestions = this.questions;
         this.currentQuestion = this.filteredQuestions[this.questionIndex];
     }
 

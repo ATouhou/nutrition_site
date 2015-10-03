@@ -92,11 +92,18 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-input.answer-input {
+.answer-input {
   border: solid #808080 2px;
   outline: none;
   width: 100%;
   font-size: 60px;
+}
+.answer-input-small {
+  border: solid #808080 2px;
+  outline: none;
+  width: 100%;
+  font-size: 60px;
+  font-size: 30px;
 }
 .answer {
   position: absolute;

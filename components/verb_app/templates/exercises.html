@@ -1,1 +1,30 @@
-<h1>Exercises!</h1>
+<div class="container-fluid margin-top-large">
+    <div class="row">
+        <div class="col-sm-12" dir="rtl">
+
+            <div class="col-md-8 col-md-offset-2 question-mode" ng-repeat="question in questionsService.questions" ng-if="question === questionsService.currentQuestion">
+                <div class="question-title large-font">
+                    {{question.question}}
+                </div>
+
+                <hr>
+                <div class="user-input-container">
+                    <div class="incorrect-answer" ng-if="question.isCorrect === false">
+                        <i class="fa fa-times-circle fa-lg"></i>
+                        Incorrect
+                    </div>
+
+                    <div class="correct-answer" ng-if="question.isCorrect === true">
+                        <i class="fa fa-check-circle fa-lg"></i>
+                        Correct
+                    </div>
+
+                    <input class="answer-input-small" answer-progress question-obj="question"
+                           ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.answer)"
+                           answer="question.answer" ng-model="question.userAnswer" type="text">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

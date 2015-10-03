@@ -22,12 +22,12 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         _.forEach(conjugationSet, function(cSet) {
             cSet.verb = verb;
         })
-        $scope.questions.conjugations = $scope.questions.conjugations.concat(conjugationSet);
+        $scope.questions.questions = $scope.questions.questions.concat(conjugationSet);
     })
 
     // Create a shallow copy so that changes to filteredQuestions do not affect the original conjugation list
     // filteredQuestions will be the deck used to display the questions
-    $scope.questions.filteredQuestions = $scope.questions.conjugations;
+    $scope.questions.filteredQuestions = $scope.questions.questions;
 
     // Set the current question
     $scope.questions.questionIndex = 0;
@@ -45,7 +45,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         var pronounIds = _.pluck(_.filter($scope.filterOptions.pronouns, {selected: true}), 'id');
         var types = _.pluck(_.filter($scope.filterOptions.types, {selected: true}), 'name');
 
-        var filteredQuestions = _.filter($scope.questions.conjugations, function(conjugation) {
+        var filteredQuestions = _.filter($scope.questions.questions, function(conjugation) {
             if (_.contains(pronounIds, conjugation.id) && _.contains(types, conjugation.verb.type.name)) {
                 return true;
             }

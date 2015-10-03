@@ -621,8 +621,19 @@ verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, 
 })
 ;var app = angular.module('verbApp');
 
-app.controller('exercisesCtrl', function($scope, questionsService) {
+app.controller('exercisesCtrl', function($scope, questionsService, thackstonExercises) {
 
+    $scope.questionsService = questionsService;
+
+    questionsService.questions = thackstonExercises;
+
+    // Create a shallow copy so that changes to filteredQuestions do not affect the original conjugation list
+    // filteredQuestions will be the deck used to display the questions
+    questionsService.filteredQuestions = questionsService.questions;
+
+    // Set the current question
+    questionsService.questionIndex = 0;
+    questionsService.currentQuestion = questionsService.filteredQuestions[questionsService.questionIndex];
 })
 
 ;var verbApp = angular.module('verbApp');
@@ -649,12 +660,12 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         _.forEach(conjugationSet, function(cSet) {
             cSet.verb = verb;
         })
-        $scope.questions.conjugations = $scope.questions.conjugations.concat(conjugationSet);
+        $scope.questions.questions = $scope.questions.questions.concat(conjugationSet);
     })
 
     // Create a shallow copy so that changes to filteredQuestions do not affect the original conjugation list
     // filteredQuestions will be the deck used to display the questions
-    $scope.questions.filteredQuestions = $scope.questions.conjugations;
+    $scope.questions.filteredQuestions = $scope.questions.questions;
 
     // Set the current question
     $scope.questions.questionIndex = 0;
@@ -672,7 +683,7 @@ verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filte
         var pronounIds = _.pluck(_.filter($scope.filterOptions.pronouns, {selected: true}), 'id');
         var types = _.pluck(_.filter($scope.filterOptions.types, {selected: true}), 'name');
 
-        var filteredQuestions = _.filter($scope.questions.conjugations, function(conjugation) {
+        var filteredQuestions = _.filter($scope.questions.questions, function(conjugation) {
             if (_.contains(pronounIds, conjugation.id) && _.contains(types, conjugation.verb.type.name)) {
                 return true;
             }
@@ -1151,8 +1162,8 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
     // Index of current question
     service.questionIndex;
 
-    // List of initial unfiltered conjugations
-    service.conjugations = [];
+    // List of initial unfiltered questions
+    service.questions = [];
 
     service.filteredQuestions = [];
 
@@ -1161,12 +1172,12 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
         filterOptions.reset();
         this.questionIndex = 0;
 
-        this.conjugations = _.map(this.conjugations, function(item) {
+        this.questions = _.map(this.questions, function(item) {
             // This gets rid the of those two properties which need to be cleared when user resets the questions
             return _.omit(item, ['isCorrect', 'userAnswer']);
         })
 
-        this.filteredQuestions = this.conjugations;
+        this.filteredQuestions = this.questions;
         this.currentQuestion = this.filteredQuestions[this.questionIndex];
     }
 
@@ -1212,6 +1223,25 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
 
     return service;
 })
+;var app = angular.module('verbApp');
+
+// General verb related helper data
+app.constant('thackstonExercises', [
+
+    {
+        question: 'قال له إني آتيك بما أمرتني به قبل أن تقوم من مقامك',
+        answer: 'قالَ لَهُ إنِّي آتِيكَ بِما أَمَرْتْني بِهِ قَبْلَ أَنْ تُقُومَ مِنْ مَقامِكَ'
+    },
+    {
+        question: 'السلام عليكم يا أخي',
+        answer: 'السَلامُ عَلَيْكُمْ يا أَخِي'
+    },
+    {
+        question: 'كن في الدنيا كأنك غريب أو عابر سبيل',
+        answer: 'كُنْ في الدُنْيا كَأنَّكَ غَريب أَوْ عابِر سَبيل'
+    }
+
+])
 ;var verbApp = angular.module('verbApp');
 
 verbApp.constant('verbAppConstants', {
