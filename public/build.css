@@ -385,4 +385,9 @@ div[class="tooltip-inner"] {
 }
 .exercises .incorrect-answer {
   position: static;
+  color: #eccfcf;
+}
+.exercises .correct-answer {
+  position: static;
+  color: #d1e9c7;
 }

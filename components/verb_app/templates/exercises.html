@@ -1,25 +1,31 @@
 <div class="container-fluid exercises">
-    <div class="row">
-        <div class="col-sm-12 question-box">
+    <div class="row margin-top-large">
 
 
-            <div class="col-md-8 col-md-offset-2" ng-repeat="question in questionsService.questions" ng-if="question === questionsService.currentQuestion">
+            <div class="col-sm-8 col-sm-offset-2" ng-repeat="question in questionsService.questions" ng-if="question === questionsService.currentQuestion">
 
-                <div class="question-heading medium-font1">
-                    Question 1 of 12
-                    <div class="incorrect-answer align-right" ng-if="question.isCorrect === false">
-                        <i class="fa fa-times-circle fa-lg"></i>
-                        Incorrect
+                <div class="question-heading medium-font1 row">
+
+                    <div class="col-sm-6">
+                        Question 1 of 12
+                        <br>
+                        Chapter 18
                     </div>
+                    <div class="col-sm-6">
+                        <div class="incorrect-answer align-right" ng-if="question.isCorrect === false">
+                            <i class="fa fa-times-circle fa-lg"></i>
+                            Incorrect
+                        </div>
 
-                    <div class="correct-answer" ng-if="question.isCorrect === true">
-                        <i class="fa fa-check-circle fa-lg"></i>
-                        Correct
+                        <div class="correct-answer align-right" ng-if="question.isCorrect === true">
+                            <i class="fa fa-check-circle fa-lg"></i>
+                            Correct
+                        </div>
                     </div>
 
                 </div>
 
-                <div class="question-answer" dir="rtl">
+                <div class="question-answer row" dir="rtl">
                     <input class="answer-input-small" ng-model="question.question" disabled>
 
                     <div class="user-input-container">
@@ -30,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class="buttons-container align-right">
+                <div class="buttons-container align-right row">
 
                     <button class="btn btn-default standard-btn">Skip</button>
                     <button class="btn btn-default standard-btn">Show Answer</button>
@@ -40,6 +46,5 @@
 
             </div>
 
-        </div>
     </div>
 </div>
