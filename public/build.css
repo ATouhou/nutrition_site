@@ -391,3 +391,7 @@ div[class="tooltip-inner"] {
   position: static;
   color: #d1e9c7;
 }
+.exercises .question-navigation {
+  color: #f5f5f5;
+  font-size: 20px;
+}

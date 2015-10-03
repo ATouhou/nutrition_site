@@ -7,7 +7,7 @@
                 <div class="question-heading medium-font1 row">
 
                     <div class="col-sm-6">
-                        Question 1 of 12
+                        Question {{$index + 1}} of {{questionsService.questions.length}}
                         <br>
                         Chapter 18
                     </div>
@@ -36,12 +36,27 @@
                     </div>
                 </div>
 
-                <div class="buttons-container align-right row">
+                <div class="buttons-container row">
 
-                    <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.nextQuestion()">Skip</button>
-                    <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.showAnswer(question, question.answer)">Show Answer</button>
-                    <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.checkAnswer(question.userAnswer, question.answer)">Check Answer</button>
-                    <button class="btn btn-default standard-btn" ng-show="question.isCorrect" ng-click="questionsService.nextQuestion()">Next Question</button>
+                    <div class="col-sm-6">
+                        <div class="no-highlight question-navigation">
+                            <span class="pointer" ng-click="questions.previousQuestion()">
+                                <i class="fa fa-arrow-circle-left"></i>
+                                Previous
+                            </span>
+                            <strong>|</strong>
+                            <span class="pointer" ng-click="questions.nextQuestion()">
+                                Next
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 align-right">
+                        <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.showAnswer(question, question.answer)">Show Answer</button>
+                        <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.checkAnswer(question.userAnswer, question.answer)">Check Answer</button>
+                        <button class="btn btn-default standard-btn" ng-show="question.isCorrect" ng-click="questionsService.nextQuestion()">Next Question</button>
+                    </div>
 
                 </div>
 
