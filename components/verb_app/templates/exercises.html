@@ -10,6 +10,14 @@
                         Question {{$index + 1}} of {{questionsService.questions.length}}
                         <br>
                         Chapter 18
+
+                        <!--<ui-select ng-model="chapterData.selectedChapter" reset-search-input="true" theme="select2" class="flight-list-select">-->
+                            <!--<ui-select-match>{{$select.selected.name}}</ui-select-match>-->
+                            <!--<ui-select-choices repeat="chapter in chapterData.chapters | filter: $select.search">-->
+                                <!--<div ng-bind-html="chapter.name | highlight: $select.search"></div>-->
+                            <!--</ui-select-choices>-->
+                        <!--</ui-select>-->
+
                     </div>
                     <div class="col-sm-6">
                         <div class="incorrect-answer align-right" ng-if="question.isCorrect === false">

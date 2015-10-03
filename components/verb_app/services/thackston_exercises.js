@@ -1,19 +1,36 @@
 var app = angular.module('verbApp');
 
 // General verb related helper data
-app.constant('thackstonExercises', [
+app.factory('thackstonExercises', function() {
 
-    {
-        question: 'قال له إني آتيك بما أمرتني به قبل أن تقوم من مقامك',
-        answer: 'قالَ لَهُ إنِّي آتِيكَ بِما أَمَرْتْني بِهِ قَبْلَ أَنْ تُقُومَ مِنْ مَقامِكَ'
-    },
-    {
-        question: 'السلام عليكم يا أخي',
-        answer: 'السَلامُ عَلَيْكُمْ يا أَخِي'
-    },
-    {
-        question: 'كن في الدنيا كأنك غريب أو عابر سبيل',
-        answer: 'كُنْ في الدُنْيا كَأنَّكَ غَريب أَوْ عابِر سَبيل'
+    var data = {};
+
+    data.exercises =   [
+        {
+            question: 'قال له إني آتيك بما أمرتني به قبل أن تقوم من مقامك',
+            answer: 'قالَ لَهُ إنِّي آتِيكَ بِما أَمَرْتْني بِهِ قَبْلَ أَنْ تُقُومَ مِنْ مَقامِكَ',
+            chapter: 1
+        },
+        {
+            question: 'السلام عليكم يا أخي',
+            answer: 'السَلامُ عَلَيْكُمْ يا أَخِي',
+            chapter: 1
+        },
+        {
+            question: 'كن في الدنيا كأنك غريب أو عابر سبيل',
+            answer: 'كُنْ في الدُنْيا كَأنَّكَ غَريب أَوْ عابِر سَبيل',
+            chapter: 2
+        }
+    ]
+
+    data.chapters = getChapters();
+
+    function getChapters() {
+        var nums = _.range(18,41);
+        return _.map(nums, function(num) {
+            return {name: num};
+        })
     }
 
-])
+    return data;
+})

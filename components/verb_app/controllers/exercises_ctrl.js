@@ -4,7 +4,11 @@ app.controller('exercisesCtrl', function($scope, questionsService, thackstonExer
 
     $scope.questionsService = questionsService;
 
-    questionsService.questions = thackstonExercises;
+    $scope.chapterData = {}
+    $scope.chapterData.chapters = thackstonExercises.chapters;
+    $scope.chapterData.selectedChapter = $scope.chapterData.chapters;
+
+    questionsService.questions = thackstonExercises.exercises;
 
     // Create a shallow copy so that changes to filteredQuestions do not affect the original conjugation list
     // filteredQuestions will be the deck used to display the questions
