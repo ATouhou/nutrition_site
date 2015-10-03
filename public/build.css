@@ -382,6 +382,8 @@ div[class="tooltip-inner"] {
   font-size: 60px;
   font-size: 30px;
   padding: 10px;
+  padding-right: 24px;
+  padding-left: 24px;
 }
 .exercises .incorrect-answer {
   position: static;
