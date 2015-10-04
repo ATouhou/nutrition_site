@@ -9,10 +9,10 @@
                         <div class="form-inline">
                             <div class="form-group">
                                 Lesson:
-                                <select class="form-control" ng-options="chapter as chapter.name for chapter in chapterData.chapters" ng-model="chapterData.selectedChapter"></select>
+                                <select ng-change="setFilter()" class="form-control" ng-options="chapter as chapter.name for chapter in chapterData.chapters" ng-model="chapterData.selectedChapter"></select>
                             </div>
                         </div>
-                        Question {{$index + 1}} of {{questionsService.questions.length}}
+                        Question {{questionsService.questionIndex + 1}} of {{questionsService.filteredQuestions.length}}
                     </div>
                     <div class="col-sm-6">
                         <div class="incorrect-answer align-right" ng-if="question.isCorrect === false">

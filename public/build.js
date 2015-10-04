@@ -638,6 +638,13 @@ app.controller('exercisesCtrl', function($scope, questionsService, thackstonExer
     // Set the current question
     questionsService.questionIndex = 0;
     questionsService.currentQuestion = questionsService.filteredQuestions[questionsService.questionIndex];
+
+    $scope.setFilter = function() {
+        questionsService.filteredQuestions = _.filter(questionsService.questions, {'chapter': $scope.chapterData.selectedChapter.name});
+        questionsService.updateQuestions();
+    }
+
+    $scope.setFilter();
 })
 
 ;var verbApp = angular.module('verbApp');
