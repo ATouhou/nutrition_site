@@ -1264,6 +1264,7 @@ app.factory('thackstonExercises', function() {
         }
     ]
 
+    // Will result in [{name: 1}, {name: 2}...]
     data.chapters = getChapters();
 
     function getChapters() {

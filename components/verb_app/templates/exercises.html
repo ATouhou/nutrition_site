@@ -1,6 +1,5 @@
 <div class="container-fluid exercises">
-    <div class="row margin-top-large">
-
+    <div class="row question-box">
 
             <div class="col-sm-8 col-sm-offset-2" ng-repeat="question in questionsService.questions" ng-if="question === questionsService.currentQuestion">
 
@@ -33,8 +32,7 @@
                     <input class="answer-input-small" ng-model="question.question" disabled>
 
                     <div class="user-input-container">
-
-                        <input class="answer-input-small" answer-progress question-obj="question"
+                        <input ng-disabled="question.isCorrect" class="answer-input-small" answer-progress question-obj="question"
                                ng-class="{'error': question.userError}" ng-keypress="$event.which === 13 && questions.checkAnswer(question.userAnswer, question.answer)"
                                answer="question.answer" ng-model="question.userAnswer" type="text">
                     </div>
