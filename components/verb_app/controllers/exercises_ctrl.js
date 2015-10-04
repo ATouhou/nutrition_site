@@ -6,7 +6,7 @@ app.controller('exercisesCtrl', function($scope, questionsService, thackstonExer
 
     $scope.chapterData = {}
     $scope.chapterData.chapters = thackstonExercises.chapters;
-    $scope.chapterData.selectedChapter = $scope.chapterData.chapters;
+    $scope.chapterData.selectedChapter = $scope.chapterData.chapters[0];
 
     questionsService.questions = thackstonExercises.exercises;
 
