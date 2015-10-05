@@ -13,7 +13,7 @@ app.config(function($urlRouterProvider) {
 
 ;var app = angular.module('arabicSite');
 
-app.controller('rootCtrl', function($scope) {
+app.controller('rootCtrl', function($scope, $state) {
     $scope._ = _;
 
     $scope.globals = {};
@@ -1397,7 +1397,8 @@ app.factory('thackstonExercises', function() {
     data.chapters = getChapters();
 
     function getChapters() {
-        var nums = _.range(18,41);
+        //var nums = _.range(18,41);
+        var nums = _.range(18,20);
         return _.map(nums, function(num) {
             return {name: num};
         })

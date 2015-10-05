@@ -1,6 +1,6 @@
 var app = angular.module('arabicSite');
 
-app.controller('rootCtrl', function($scope) {
+app.controller('rootCtrl', function($scope, $state) {
     $scope._ = _;
 
     $scope.globals = {};
