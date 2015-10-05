@@ -622,8 +622,8 @@ verbApp.controller('conjugatorCtrl', function($scope, conjugator, hamzatedWord, 
 ;var app = angular.module('verbApp');
 
 app.controller('exercisesCtrl', function($scope, questionsService, thackstonExercises) {
-
     $scope.questionsService = questionsService;
+    questionsService.initialize();
 
     $scope.chapterData = {}
     $scope.chapterData.chapters = thackstonExercises.chapters;
@@ -651,6 +651,7 @@ app.controller('exercisesCtrl', function($scope, questionsService, thackstonExer
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionsService, alertService, verbAppConstants) {
     $scope.questions = questionsService;
+    $scope.questions.initialize();
 
     $scope.alert = alertService;
 
@@ -1187,8 +1188,14 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
 
     // List of initial unfiltered questions
     service.questions = [];
-
     service.filteredQuestions = [];
+
+    service.initialize = function() {
+        service.questionIndex = 0;
+        service.currentQuestion = undefined;
+        service.questions = [];
+        service.filteredQuestions = [];
+    }
 
     service.resetQuestions = function() {
         alertService.clear();

@@ -9,8 +9,14 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
 
     // List of initial unfiltered questions
     service.questions = [];
-
     service.filteredQuestions = [];
+
+    service.initialize = function() {
+        service.questionIndex = 0;
+        service.currentQuestion = undefined;
+        service.questions = [];
+        service.filteredQuestions = [];
+    }
 
     service.resetQuestions = function() {
         alertService.clear();

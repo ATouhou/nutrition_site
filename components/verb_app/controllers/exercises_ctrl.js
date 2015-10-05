@@ -1,8 +1,8 @@
 var app = angular.module('verbApp');
 
 app.controller('exercisesCtrl', function($scope, questionsService, thackstonExercises) {
-
     $scope.questionsService = questionsService;
+    questionsService.initialize();
 
     $scope.chapterData = {}
     $scope.chapterData.chapters = thackstonExercises.chapters;

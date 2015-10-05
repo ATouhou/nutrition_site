@@ -2,6 +2,7 @@ var verbApp = angular.module('verbApp');
 
 verbApp.controller('verbAppCtrl', function($scope, conjugator, helperData, filterOptions, verbs, questionsService, alertService, verbAppConstants) {
     $scope.questions = questionsService;
+    $scope.questions.initialize();
 
     $scope.alert = alertService;
 
