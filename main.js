@@ -1,7 +1,9 @@
 var app = angular.module('arabicSite', ['ui.router', 'ngAnimate', 'verbApp']);
 
-app.run(function ($rootScope) {
+app.run(function ($rootScope, $state) {
     $rootScope._ = window._;
+
+    $rootScope.$state = $state;
 });
 
 app.config(function($urlRouterProvider) {

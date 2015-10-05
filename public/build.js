@@ -1,7 +1,9 @@
 var app = angular.module('arabicSite', ['ui.router', 'ngAnimate', 'verbApp']);
 
-app.run(function ($rootScope) {
+app.run(function ($rootScope, $state) {
     $rootScope._ = window._;
+
+    $rootScope.$state = $state;
 });
 
 app.config(function($urlRouterProvider) {
@@ -13,7 +15,7 @@ app.config(function($urlRouterProvider) {
 
 ;var app = angular.module('arabicSite');
 
-app.controller('rootCtrl', function($scope, $state) {
+app.controller('rootCtrl', function($scope) {
     $scope._ = _;
 
     $scope.globals = {};
@@ -1936,7 +1938,7 @@ app.config(function($stateProvider) {
         })
 
         .state('main.exercises', {
-            url: '^/exercises',
+            url: '^/thackston_book_exercises',
             templateUrl: '/components/verb_app/templates/exercises.html',
             controller: 'exercisesCtrl'
         })

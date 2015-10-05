@@ -1,11 +1,13 @@
-<!--<nav class="navbar navbar-default navbar-fixed-top">-->
-    <!--<div class="container-fluid">-->
-        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
-        <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="#">Arabic Verb Practice</a>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</nav>-->
+<nav class="navbar navbar-default navbar-fixed-top" ng-hide="$state.current.name === 'main.exercises'">
+    <div class="container-fluid">
+        <a class="navbar-brand" id="home-link" ui-sref="main.conjugationPractice">StudyArabic.com</a>
+        <ul class="nav navbar-nav">
+            <li ui-sref-active="active"><a ui-sref="main.conjugationPractice">Conjugation Practice</a></li>
+            <li ui-sref-active="active"><a ui-sref="main.typingTutor">Typing Tutor</a></li>
+            <li ui-sref-active="active"><a ui-sref="main.about">About</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div>
 

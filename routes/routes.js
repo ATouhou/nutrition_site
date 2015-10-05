@@ -26,7 +26,7 @@ app.config(function($stateProvider) {
         })
 
         .state('main.exercises', {
-            url: '^/exercises',
+            url: '^/thackston_book_exercises',
             templateUrl: '/components/verb_app/templates/exercises.html',
             controller: 'exercisesCtrl'
         })
