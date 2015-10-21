@@ -735,18 +735,26 @@ verbApp.directive('answerProgress', function($timeout) {
             questionObj: '='
         },
         link: function(scope, elem, attrs) {
-            elem.bind('keyup', function(event) {
-                // Compare the number of chars input by the user with that many chars in the answer
-                var userLetters = scope.questionObj.userAnswer.split('');
-                var letters = scope.answer.split('').slice(0, userLetters.length);
-                $timeout(function() {
-                    if (_.isEqual(userLetters, letters)) {
-                        scope.questionObj.userError = false;
-                    }
-                    else {
-                        scope.questionObj.userError = true;
-                    }
-                })
+            //elem.bind('keyup', function(event) {
+                //checkAnswer();
+            //})
+            scope.$watch('questionObj.userAnswer', function() {
+                if (scope.questionObj.userAnswer) {
+                    // Compare the number of chars input by the user with that many chars in the answer
+                    var userLetters = scope.questionObj.userAnswer.split('');
+                    var letters = scope.answer.split('').slice(0, userLetters.length);
+                    $timeout(function() {
+                        if (_.isEqual(userLetters, letters)) {
+                            scope.questionObj.userError = false;
+                        }
+                        else {
+                            scope.questionObj.userError = true;
+                        }
+                    })
+                }
+                else {
+                    scope.questionObj.userError = false;
+                }
             })
         }
     }
@@ -1250,6 +1258,27 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
         }
         else {
             this.currentQuestion.isCorrect = false;
+        }
+    }
+
+    service.showNextLetter = function(question) {
+        // If nothing has been entered
+        if (!question.userAnswer) {
+            question.userAnswer = question.answer[0];
+        }
+        else {
+            var userAnswer = question.userAnswer.split('');
+            var answer = question.answer.split('');
+
+            var userCorrect = [];
+            _.forEach(userAnswer, function(userLetter, index) {
+                if (userLetter === answer[index]) {
+                    userCorrect.push(userLetter);
+                }
+            })
+
+            userCorrect.push(answer[userCorrect.length]);
+            question.userAnswer = userCorrect.join('');
         }
     }
 

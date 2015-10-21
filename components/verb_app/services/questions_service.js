@@ -72,5 +72,26 @@ verbApp.factory('questionsService', function(alertService, filterOptions) {
         }
     }
 
+    service.showNextLetter = function(question) {
+        // If nothing has been entered
+        if (!question.userAnswer) {
+            question.userAnswer = question.answer[0];
+        }
+        else {
+            var userAnswer = question.userAnswer.split('');
+            var answer = question.answer.split('');
+
+            var userCorrect = [];
+            _.forEach(userAnswer, function(userLetter, index) {
+                if (userLetter === answer[index]) {
+                    userCorrect.push(userLetter);
+                }
+            })
+
+            userCorrect.push(answer[userCorrect.length]);
+            question.userAnswer = userCorrect.join('');
+        }
+    }
+
     return service;
 })

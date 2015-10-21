@@ -40,12 +40,13 @@
 
                 <div class="buttons-container row">
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <prev-next></prev-next>
                     </div>
 
-                    <div class="col-sm-6 align-right">
+                    <div class="col-sm-8 align-right">
                         <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.showAnswer(question, question.answer)">Show Answer</button>
+                        <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.showNextLetter(question)">Show Next Letter</button>
                         <button class="btn btn-default standard-btn" ng-hide="question.isCorrect" ng-click="questionsService.checkAnswer(question.userAnswer, question.answer)">Check Answer</button>
                         <button class="btn btn-default standard-btn" ng-show="question.isCorrect" ng-click="questionsService.nextQuestion()">Next Question</button>
                     </div>
