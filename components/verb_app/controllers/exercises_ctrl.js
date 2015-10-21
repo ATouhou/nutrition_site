@@ -1,6 +1,6 @@
 var app = angular.module('verbApp');
 
-app.controller('exercisesCtrl', function($scope, questionsService, thackstonExercises) {
+app.controller('exercisesCtrl', function($scope, questionsService, thackstonExercises, $http) {
     $scope.questionsService = questionsService;
     questionsService.initialize();
 
@@ -24,5 +24,22 @@ app.controller('exercisesCtrl', function($scope, questionsService, thackstonExer
     }
 
     $scope.setFilter();
+
+    // todo: write these results to a file
+    //$http.get('/static/thackston_exercises.txt')
+    //    .success(function(data) {
+    //        var lines = data.split("\n");
+    //
+    //        for (var i = 0; i < lines.length; i = i + 2) {
+    //            console.log(
+    //                JSON.stringify({
+    //                    question: lines[i],
+    //                    answer: lines[i+1],
+    //                    chapter: 1
+    //                })
+    //            );
+    //        }
+    //    })
+
 })
 
