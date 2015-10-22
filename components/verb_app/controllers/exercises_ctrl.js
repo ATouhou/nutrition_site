@@ -29,15 +29,14 @@ app.controller('exercisesCtrl', function($scope, questionsService, thackstonExer
     //$http.get('/static/thackston_exercises.txt')
     //    .success(function(data) {
     //        var lines = data.split("\n");
+    //        $scope.lines = [];
     //
     //        for (var i = 0; i < lines.length; i = i + 2) {
-    //            console.log(
-    //                JSON.stringify({
-    //                    question: lines[i],
-    //                    answer: lines[i+1],
-    //                    chapter: 1
-    //                })
-    //            );
+    //            $scope.lines.push(JSON.stringify({
+    //                question: lines[i],
+    //                answer: lines[i+1],
+    //                chapter: 1
+    //            }))
     //        }
     //    })
 
