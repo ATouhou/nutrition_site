@@ -25,7 +25,6 @@ app.controller('exercisesCtrl', function($scope, questionsService, thackstonExer
 
     $scope.setFilter();
 
-    // todo: write these results to a file
     //$http.get('/static/thackston_exercises.txt')
     //    .success(function(data) {
     //        var lines = data.split("\n");
