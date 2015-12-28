@@ -94,28 +94,29 @@ verbApp.constant('verbs', [
         imperfectVowel: 'ِ',
         definition: 'to be complete'
     },
-    {
-        letter1: 'و',
-        letter2: 'د',
-        letter3: 'د',
-        type: {
-            name: 'geminate'
-        },
-        perfectVowel: 'َ',
-        imperfectVowel: 'َ',
-        definition: 'to want, to like'
-    },
-    {
-        letter1: 'ظ',
-        letter2: 'ل',
-        letter3: 'ل',
-        type: {
-            name: 'geminate'
-        },
-        perfectVowel: 'َ',
-        imperfectVowel: 'َ',
-        definition: 'to continue, remain'
-    },
+    // todo: Rember write logic to handle these cases
+    //{
+    //    letter1: 'و',
+    //    letter2: 'د',
+    //    letter3: 'د',
+    //    type: {
+    //        name: 'geminate'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'َ',
+    //    definition: 'to want, to like'
+    //},
+    //{
+    //    letter1: 'ظ',
+    //    letter2: 'ل',
+    //    letter3: 'ل',
+    //    type: {
+    //        name: 'geminate'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'َ',
+    //    definition: 'to continue, remain'
+    //},
 
 
     // Defective waaw

@@ -11,7 +11,10 @@ app.config(function($urlRouterProvider) {
     $urlRouterProvider.when('', '/conjugation_practice');
 })
 
-;var verbApp = angular.module('verbApp', [])
+;// comment test
+
+
+var verbApp = angular.module('verbApp', [])
 
 ;var app = angular.module('arabicSite');
 
@@ -1011,7 +1014,7 @@ verbApp.factory('filterOptions', function(helperData) {
     filterOptions.forms = [{name: '1', selected: true}, {name: '2'}, {name: '3'}, {name: '4'}, {name: '5'}, {name: '6'}, {name: '7'}, {name: '8'}, {name: '9'}, {name: '10'}]
     filterOptions.tenses = [{name: 'perfect', selected: true}, {name: 'imperfect'}];
     filterOptions.voices = [{name: 'active', selected: true}, {name: 'passive'}];
-    filterOptions.moods = [{name: 'indicative', selected: true}, {name: 'subjunctive'}, {name: 'jussive'}, {name: 'imperative'}];
+    filterOptions.moods = [{name: 'indicative'}, {name: 'subjunctive'}, {name: 'jussive'}, {name: 'imperative'}];
 
     filterOptions.allTypes = true;
     filterOptions.allPronouns = true;
@@ -1307,7 +1310,7 @@ app.factory('thackstonExercises', function() {
     var data = {};
 
     data.exercises =   [
-        {"question":"قال له إني آتيك بما أمرتني به قبل أن تقوم من مقامك","answer":"قَالَ لَهُ إِنِّي آتِيكَ بِمَا أَمَرْتَنِي بِهِ قَبْلَ أَنْ تُقُومَ مِنْ مَقَامِكَ","chapter":18},
+        {"question":"قال له إني آتيك بما أمرتني به قبل أن تقوم من مقامك","answer":"الَ لَهُ إِنِّي آتِيكَ بِمَا أَمَرْتَنِي بِهِ قَبْلَ أَنْ تَقُومَ مِنْ مَقَامِكَ","chapter":18},
         {"question":"ما كان لنفس أن تموت إلا بإذن الله","answer":"مَا كَانَ لِنفسٍ أَنْ تَمُوتَ إِلََّا بِإِذْنِ اللهِ","chapter":18},
         {"question":"فقال الملك لمريم أنا رسول ربك لأهب لك ولدًا","answer":"فَقَالَ الْمَلَكُ لِمَرْيَمَ أَنَا رَسُولُ رَبِّكِ لِأَهِبَ لَكِ وَلَدًا","chapter":18},
         {"question":"أيودّ أحدكم أن تكون له جنة من نخيل وأعناب","answer":"أَيَوَدُّ أَحَدُكُمْ أَنْ تَكُونَ لَهُ جَنَّةٌ مِنْ نَخِيلٍ وَأَعْنَابٍ","chapter":18},
@@ -1806,28 +1809,29 @@ verbApp.constant('verbs', [
         imperfectVowel: 'ِ',
         definition: 'to be complete'
     },
-    {
-        letter1: 'و',
-        letter2: 'د',
-        letter3: 'د',
-        type: {
-            name: 'geminate'
-        },
-        perfectVowel: 'َ',
-        imperfectVowel: 'َ',
-        definition: 'to want, to like'
-    },
-    {
-        letter1: 'ظ',
-        letter2: 'ل',
-        letter3: 'ل',
-        type: {
-            name: 'geminate'
-        },
-        perfectVowel: 'َ',
-        imperfectVowel: 'َ',
-        definition: 'to continue, remain'
-    },
+    // todo: Rember write logic to handle these cases
+    //{
+    //    letter1: 'و',
+    //    letter2: 'د',
+    //    letter3: 'د',
+    //    type: {
+    //        name: 'geminate'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'َ',
+    //    definition: 'to want, to like'
+    //},
+    //{
+    //    letter1: 'ظ',
+    //    letter2: 'ل',
+    //    letter3: 'ل',
+    //    type: {
+    //        name: 'geminate'
+    //    },
+    //    perfectVowel: 'َ',
+    //    imperfectVowel: 'َ',
+    //    definition: 'to continue, remain'
+    //},
 
 
     // Defective waaw
