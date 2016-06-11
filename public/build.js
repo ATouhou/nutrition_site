@@ -18,6 +18,11 @@ var verbApp = angular.module('verbApp', [])
 
 ;var app = angular.module('arabicSite');
 
+app.controller('homeCtrl', function($scope) {
+})
+
+;var app = angular.module('arabicSite');
+
 app.controller('rootCtrl', function($scope) {
     $scope._ = _;
 
@@ -2113,39 +2118,11 @@ app.config(function($stateProvider) {
             controller: 'rootCtrl'
         })
 
-        .state('main.conjugationPractice', {
-            url: '^/conjugation_practice',
-            templateUrl: '/components/verb_app/templates/index.html',
-            controller: 'verbAppCtrl'
+        .state('main.home', {
+            url: '^/home',
+            templateUrl: '/components/root/templates/home.html',
+            controller: 'homeCtrl'
         })
-
-        .state('main.typingTutor', {
-            url: '^/typing_tutor',
-            templateUrl: '/components/typing_tutor/typing_tutor.html',
-            controller: 'typingTutorCtrl'
-        })
-
-        .state('main.exercises', {
-            url: '^/thackston_book_exercises',
-            templateUrl: '/components/verb_app/templates/exercises.html',
-            controller: 'exercisesCtrl'
-        })
-
-        .state('main.about', {
-            url: '^/about',
-            templateUrl: '/static/about.html'
-        })
-
-        .state('main.conjugation', {
-            url: '^/conjugation',
-            templateUrl: '/components/verb_app/templates/conjugation.html',
-            controller: 'conjugatorCtrl'
-        })
-
-
-
-
-
 })
 ;var arabicSite = angular.module('arabicSite');
 
