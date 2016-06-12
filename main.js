@@ -1,4 +1,4 @@
-var app = angular.module('arabicSite', ['ui.router', 'ngAnimate', 'verbApp']);
+var app = angular.module('arabicSite', ['ui.router', 'ngMaterial', 'material.svgAssetsCache']);
 
 app.run(function ($rootScope, $state) {
     $rootScope._ = window._;
@@ -10,4 +10,5 @@ app.config(function($urlRouterProvider) {
     // This redirects to the conjugator app when the base url is entered
     $urlRouterProvider.when('', '/conjugation_practice');
 })
+// coool
 
