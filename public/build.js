@@ -1,4 +1,4 @@
-var app = angular.module('arabicSite', ['ui.router', 'ngMaterial', 'material.svgAssetsCache']);
+var app = angular.module('arabicSite', ['ui.router', 'ngMaterial']);
 
 app.run(function ($rootScope, $state) {
     $rootScope._ = window._;
@@ -10,7 +10,6 @@ app.config(function($urlRouterProvider) {
     // This redirects to the conjugator app when the base url is entered
     $urlRouterProvider.when('', '/conjugation_practice');
 })
-// coool
 
 ;var app = angular.module('arabicSite');
 
@@ -28,6 +27,11 @@ app.controller('rootCtrl', function($scope) {
 
     $scope.globals = {};
     $scope.globals.count = 0;
+
+    $scope.hello = function() {
+        debugger;
+        console.log('wooooo it worked!');
+    }
 })
 
 String.prototype.capitalize = function() {
@@ -51,8 +55,17 @@ app.config(function($stateProvider) {
 
         .state('main.home', {
             url: '^/home',
-            templateUrl: '/components/root/templates/home.html',
-            controller: 'homeCtrl'
+            templateUrl: '/components/root/templates/home.html'
+        })
+
+        .state('main.about', {
+            url: '^/about',
+            templateUrl: '/components/root/templates/about.html'
+        })
+
+        .state('main.appointment', {
+            url: '^/appointment',
+            templateUrl: '/components/root/templates/appointment.html'
         })
 })
 ;var arabicSite = angular.module('arabicSite');

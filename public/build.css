@@ -9,6 +9,9 @@ body {
   height: 100%;
   font-family: helvetica, verdana, arial, sans-serif;
 }
+.left-column {
+  background-color: #2F6FAD;
+}
 .small-font {
   font-size: 13px;
 }

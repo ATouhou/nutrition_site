@@ -5,6 +5,11 @@ app.controller('rootCtrl', function($scope) {
 
     $scope.globals = {};
     $scope.globals.count = 0;
+
+    $scope.hello = function() {
+        debugger;
+        console.log('wooooo it worked!');
+    }
 })
 
 String.prototype.capitalize = function() {

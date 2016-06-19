@@ -15,7 +15,16 @@ app.config(function($stateProvider) {
 
         .state('main.home', {
             url: '^/home',
-            templateUrl: '/components/root/templates/home.html',
-            controller: 'homeCtrl'
+            templateUrl: '/components/root/templates/home.html'
+        })
+
+        .state('main.about', {
+            url: '^/about',
+            templateUrl: '/components/root/templates/about.html'
+        })
+
+        .state('main.appointment', {
+            url: '^/appointment',
+            templateUrl: '/components/root/templates/appointment.html'
         })
 })

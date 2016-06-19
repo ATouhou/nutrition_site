@@ -1,5 +1,16 @@
 <div>
 
+    <md-toolbar>
+       <h1>Elite Nutrition</h1>
+    </md-toolbar>
+
+    <md-content>
+        <md-nav-bar md-selected-nav-item="currentPage">
+            <md-nav-item md-nav-sref="main.about" name="page1">About</md-nav-item>
+            <md-nav-item md-nav-sref="main.appointment" name="page2">Make An Appointment</md-nav-item>
+        </md-nav-bar>
+    </md-content>
+
     <div ui-view></div>
 
 </div>
