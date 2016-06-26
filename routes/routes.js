@@ -9,7 +9,7 @@ app.config(function($stateProvider) {
         // This is the root state. Every other state is a child of this state (directly or indirectly).
         .state('main', {
             url: '/',
-            templateUrl: '/components/root/templates/index.html',
+            templateUrl: '/components/root/templates/app_index.html',
             controller: 'rootCtrl'
         })
 

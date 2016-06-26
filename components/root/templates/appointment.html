@@ -1,1 +1,34 @@
-<h1>make an appointment silly!</h1>
+<md-content layout-padding class="margin-top-medium">
+    Please fill out the following the form and mention the reason for your visit in the message field. Shahla will reply to you as soon as possible.
+</md-content>
+
+<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+    <div>
+        <md-input-container>
+            <label>Name</label>
+            <input ng-model="user.title">
+        </md-input-container>
+        <md-input-container>
+            <label>Email</label>
+            <input ng-model="user.email" type="email">
+        </md-input-container>
+        <md-input-container>
+            <label>Phone number</label>
+            <input ng-model="user.phone">
+        </md-input-container>
+    </div>
+</md-content>
+
+<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+    <div>
+        <md-input-container class="md-block">
+            <label>Message</label>
+            <textarea ng-model="user.message" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+    </div>
+</md-content>
+
+<md-content>
+    <md-button class="md-raised md-primary" ng-click="submitForm()">Submit</md-button>
+</md-content>
+

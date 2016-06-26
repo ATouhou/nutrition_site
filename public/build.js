@@ -7,8 +7,7 @@ app.run(function ($rootScope, $state) {
 });
 
 app.config(function($urlRouterProvider) {
-    // This redirects to the conjugator app when the base url is entered
-    $urlRouterProvider.when('', '/conjugation_practice');
+    $urlRouterProvider.when('', '/about');
 })
 
 ;var app = angular.module('arabicSite');
@@ -25,18 +24,12 @@ app.controller('homeCtrl', function($scope) {
 app.controller('rootCtrl', function($scope) {
     $scope._ = _;
 
-    $scope.globals = {};
-    $scope.globals.count = 0;
 
-    $scope.hello = function() {
-        debugger;
-        console.log('wooooo it worked!');
+    $scope.submitForm = function() {
+        alert('form submitted!');
     }
-})
 
-String.prototype.capitalize = function() {
-    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
-};
+})
 
 ;var app = angular.module('arabicSite');
 
@@ -49,7 +42,7 @@ app.config(function($stateProvider) {
         // This is the root state. Every other state is a child of this state (directly or indirectly).
         .state('main', {
             url: '/',
-            templateUrl: '/components/root/templates/index.html',
+            templateUrl: '/components/root/templates/app_index.html',
             controller: 'rootCtrl'
         })
 
